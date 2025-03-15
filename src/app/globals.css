@@ -10,7 +10,11 @@
   --color-foreground: var(--foreground);
   --font-aoenik: var(--aoenik)
 }
-
+@layer utilities {
+  .clip-trapezoid {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+  }
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

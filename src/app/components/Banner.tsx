@@ -4,7 +4,7 @@ import { Trapezoid } from "./Trapezoid";
 
 export function Banner() {
     return (
-        <div className="flex">
+        <div className="bg-white flex">
             <Logo></Logo>
             <div className="flex-auto">
                 <Trapezoid></Trapezoid>

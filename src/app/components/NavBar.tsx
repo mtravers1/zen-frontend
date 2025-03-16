@@ -8,8 +8,8 @@ export function NavBar() {
         rows.push(<NavBarItem key={i} name={(names[i]).toUpperCase()} />);
     }
     return (
-        <div className="bg-white h-[50] content-center">
-            <ol className="flex justify-evenly">
+        <div className="bg-white min-h-[24] h-[4vw] content-center">
+            <ol className="flex justify-end gap-[4vw]">
                 {rows}
             </ol>
         </div>);

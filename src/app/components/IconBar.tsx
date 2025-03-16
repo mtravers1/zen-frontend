@@ -10,7 +10,7 @@ export function IconBar() {
         rows.push(<IconButton key={i} source={(icons[i].source)} link={icons[i].link} label={icons[i].label} />);
     }
     return (
-        <div className="flex gap-0.5">
+        <div className="flex gap-[0.3vw]">
             {rows}
         </div>
     );

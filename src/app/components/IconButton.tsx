@@ -1,10 +1,9 @@
+export default function IconButton({ label, link, children }: { label: string; link: string; children: React.ReactNode; }) {
 
-import { Icon } from "./Icon";
-export default function IconButton({ label, source, link }: { label: string; source: string; link: string; }) {
     return (
         <div className="bg-white rounded-full">
-            <a href={link}>
-                <Icon label={label} source={source} />
+            <a className="object-contain" aria-label={label} href={link}>
+                {children}
             </a>
         </div>
     );

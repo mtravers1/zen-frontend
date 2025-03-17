@@ -1,4 +1,5 @@
-import { Banner } from "./components/Banner";
+"use client";
+import { MainTemplate } from "./components/MainTemplate";
 import { HomeSection } from "./components/Sections/HomeSection";
 
 export default function Home() {
@@ -7,10 +8,9 @@ export default function Home() {
     //  <Trapezoid></Trapezoid>
     //  <NavBar></NavBar>
     <div>
-      <div className="sticky top-0 z-100">
-        <Banner></Banner>
-      </div>
-      <HomeSection></HomeSection>
+      <MainTemplate>
+        <HomeSection></HomeSection>
+      </MainTemplate>
     </div>
   );
 }

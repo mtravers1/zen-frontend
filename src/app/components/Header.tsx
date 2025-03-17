@@ -2,7 +2,7 @@ import { Logo } from "./Logo";
 import { NavBar } from "./NavBar";
 import { Trapezoid } from "./Trapezoid";
 
-export function Banner() {
+export function Header() {
     return (
         <div className="bg-white flex">
             <Logo></Logo>

@@ -1,3 +1,4 @@
+'use client';
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { scroller } from "react-scroll";
@@ -10,15 +11,15 @@ export function MainTemplate({ children }: Readonly<{
     const searchParams = useSearchParams()
 
     const searchId = searchParams.get('Section')
-    const elHeight = document.getElementById('Header')?.clientHeight
 
     useEffect(() => {
+        const elHeight = document.getElementById('Header')?.clientHeight
         scroller.scrollTo(searchId ?? "", {
             duration: 500,
             smooth: true,
             offset: (elHeight ?? 0) * -1
         });
-    }, [elHeight, searchId]);
+    }, [searchId]);
 
     return (
         <div>

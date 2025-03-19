@@ -1,6 +1,4 @@
-'use client'
 import { NavBarItem } from "./NavBarItem";
-
 export function NavBar() {
     const names = ["Home", "Solutions", "Contact", "Download"];
     const rows = [];

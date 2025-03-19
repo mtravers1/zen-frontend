@@ -1,4 +1,6 @@
+'use client';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 export function NavBarItem({ name }: { name: string }) {
     const router = useRouter()
@@ -6,10 +8,13 @@ export function NavBarItem({ name }: { name: string }) {
     const handleOnClick = () => {
         router.push("/?Section=" + name)
     };
+    const elHeight = useRef(0);
+    useEffect(() => {
+        elHeight.current = document.getElementById('Header')?.clientHeight ?? 0
+    }, [])
     const getOffset = () => {
-        const elHeight = document.getElementById('Header')?.clientHeight
-        console.log(elHeight)
-        return (elHeight ?? 0) * -1;
+        return elHeight.current * -1;
+
     };
     const pathname = usePathname()
     let button;

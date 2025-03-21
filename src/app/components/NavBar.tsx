@@ -7,7 +7,7 @@ export function NavBar() {
     }
     return (
         <div className="bg-white ">
-            <ol className="flex min-h-[24]  h-[4vw] items-center justify-end  gap-[4vw] mr-[4vw]">
+            <ol className="flex min-h-[24]  h-[5vw] items-center justify-end  gap-[4vw] mr-[4vw]">
                 {rows}
             </ol>
         </div>);

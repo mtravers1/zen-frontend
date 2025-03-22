@@ -27,9 +27,10 @@ export function HomeSection() {
                     Access.</div>
             </div>
             <Image className="!relative z-10" src="/Zevbackground.png" fill={true} alt="" ></Image>
-            <div className="w-full h-[10vw]"></div>
-            <div className="absolute h-[50vw] w-[80vw]  -mt-[45vw] ml-[30vw] </div z-11">
-                <Image className="z-11 " src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
+            <div className="flex h-[70vw] w-[59.1vw]  -mt-[35vw] ml-[40vw] overflow-clip">
+                <div className=" h-[50vw] w-[80vw] z-10">
+                    <Image className="!relative  scale-120" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
+                </div>
             </div>
         </Element>
     );

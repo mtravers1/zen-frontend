@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ContactCard } from "../ContactCard";
 export function ContactSection() {
     return (
-        <div className="mt-[20vw] flex justify-center">
+        <div className="mt-[40vw] flex justify-center">
             <div className=" flex flex-col absolute z-50 ">
                 <div className=" self-center flex flex-col  text-[#1f6d4f] h-[40vw] w-[30vw]">
                     <h1 className="-mt-[15vw] mb-[15vw] text-center text-[5vw]  font-medium">

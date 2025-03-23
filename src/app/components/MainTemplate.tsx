@@ -16,7 +16,7 @@ export function MainTemplate({ children }: Readonly<{
     const isMobile = useRef(false);
 
     useEffect(() => {
-        elHeight.current = document.getElementById('Header')?.clientHeight ?? 0
+        elHeight.current = document.getElementById(`Header${isMobile.current ? 'Mobile' : 'Desktop'}`)?.clientHeight ?? 0
         isMobile.current = window.innerWidth <= 768;
     }, [])
 

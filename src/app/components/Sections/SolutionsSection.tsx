@@ -68,10 +68,10 @@ export function DesktopSolutionsSection({ className }: { className: string }) {
                             <br />
                             and Advice
                         </div>
-                        <div className='absolute border-2  border-t-0 border-r-0 w-[5vw] h-[1vw] mt-[20vw] ml-[8vw] z-10'>
+                        <div className='absolute border-2  border-t-0 border-r-0 w-[5vw] h-[2vw] mt-[20vw] ml-[8vw] z-10'>
 
                         </div>
-                        <div className='absolute border-2 border-b-0 border-l-0 w-[5vw] h-[1vw] mt-[18vw] ml-[33vw] z-10'>
+                        <div className='absolute border-2 border-b-0 border-l-0 w-[5vw] h-[2vw] mt-[18vw] ml-[33vw] z-10'>
 
                         </div>
                         <div className='self-center h-[20vw] w-[20vw]'>
@@ -101,7 +101,7 @@ export function DesktopSolutionsSection({ className }: { className: string }) {
                             <br />
                             & Financial Dashboard
                         </div>
-                        <div className='mt-[2vw] self-center text-[1vw] font-medium'>
+                        <div className='mt-[3vw] ml-[5vw] self-center text-[1vw] font-medium'>
                             • Cash Flow Analysis: Up-to-date Financial
                             <br />
                             Reports, KPI’s, Net Worth
@@ -110,7 +110,7 @@ export function DesktopSolutionsSection({ className }: { className: string }) {
                             • Actionable data to achieve your financial goals
                         </div>
                     </div>
-                    <div>
+                    <div className='h-[50vw] w-[50vw]'>
                         <Image className="!relative z-10" src="/Laptop.png" fill={true} alt="" ></Image>
                     </div>
                 </div>
@@ -133,9 +133,9 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                         <Image className="!relative z-30 " src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
                     </div>
                 </div>
-                <div className="flex flex-col w-[50vw] gap-[8vw] z-40 ml-[55vw] absolute">
-                    <div className="-ml-[18vw] text-[#1f6d4f] font-bold text-center text-[3vw] mt-[6vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
-                    <div className="grid  grid-cols-1  gap-y-[4vw]">
+                <div className="flex flex-col w-[45vw] gap-[8vw] z-40 ml-[50vw] absolute">
+                    <div className="-ml-[5vw] text-[#1f6d4f] font-bold text-center text-[3vw] mt-[6vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
+                    <div className="grid  grid-cols-1  gap-y-[3vw]">
                         <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
                         <IconLabel name={"Bookkeeping, Accounting, & Taxes"}> <ImPieChart /></IconLabel>
                         <IconLabel name={"Real-time Cash Flow Insights"}> <FaHandHoldingDollar /></IconLabel>
@@ -151,66 +151,66 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                     </div>
                 </div>
 
-                    <div className="flex flex-col grow">
-                        <div className='font-bold text-[6vw] text-center text-[#1f6d4f] pr-[4vw]'>
-                            Ai Automation
-                        </div>
-                        <div className='text-[3vw] font-medium text-center pr-[4vw]'>
-                            Data entry automation and AI predictions and projections.
-                        </div>
-                        <div className='absolute text-[6vw] font-bold text-[#1f6d4f] mt-[20vw] ml-[10vw]'>
-                            70%
-                        </div>
-                        <div className='absolute font-medium text-[2vw]/[3vw] mt-[30vw] ml-[6vw] '>
-                            Artificial Intelligence
-                            <br />
-                            Data and Technology
-                        </div>
-                        <div className='absolute  text-[6vw] font-bold text-[#1f6d4f] mt-[40vw] ml-[70vw]'>
-                            30%
-                        </div >
-                        <div className='absolute font-medium text-[2vw]/[3vw] mt-[50vw] ml-[70vw]'>
-                            Human Intelligence
-                            <br />
-                            Costumer Service
-                            <br />
-                            and Advice
-                        </div>
-                        <div className='absolute border-2  border-t-0 border-r-0 w-[10vw] h-[5vw] mt-[40vw] ml-[16vw] z-10'>
-
-                        </div>
-                        <div className='absolute border-2 border-b-0 border-l-0 w-[10vw] h-[5vw] mt-[36vw] ml-[66vw] z-10'>
-
-                        </div>
-                        <div className='ml-[20vw] self-center h-[50vw] w-[50vw]'>
-                            <PieChart tooltip={{ trigger: 'none' }}
-                                series={[
-                                    {
-                                        data: [
-                                            { id: 0, value: 30, color: "#1f6d4f" },
-                                            { id: 1, value: 70, color: "#E0E721" },
-
-                                        ],
-                                        paddingAngle: 5,
-                                        innerRadius: "4%",
-
-                                    },
-
-                                ]}
-
-                            />
-                        </div>
+                <div className="flex flex-col grow">
+                    <div className='font-bold text-[6vw] text-center text-[#1f6d4f] pr-[4vw]'>
+                        Ai Automation
                     </div>
-                    <div className='flex flex-col  self-center -mt-[10vw]'>
-                        <div className=" text-[6vw]/[6vw] text-[#1f6d4f] font-bold text-center">
-                            Specialized Reporting
-                            <br />
-                            & Financial Dashboard
-                        </div>
+                    <div className='text-[3vw] font-medium text-center pr-[4vw]'>
+                        Data entry automation and AI predictions and projections.
                     </div>
-                    <div>
-                        <div className='flex -mt-[10vw]'>
-                    <div className='ml-[5vw] -mt-[5vw] self-center text-[2vw] font-medium'>
+                    <div className='absolute text-[6vw] font-bold text-[#1f6d4f] mt-[20vw] ml-[10vw]'>
+                        70%
+                    </div>
+                    <div className='absolute font-medium text-[2vw]/[3vw] mt-[30vw] ml-[6vw] '>
+                        Artificial Intelligence
+                        <br />
+                        Data and Technology
+                    </div>
+                    <div className='absolute  text-[6vw] font-bold text-[#1f6d4f] mt-[40vw] ml-[70vw]'>
+                        30%
+                    </div >
+                    <div className='absolute font-medium text-[2vw]/[3vw] mt-[50vw] ml-[70vw]'>
+                        Human Intelligence
+                        <br />
+                        Costumer Service
+                        <br />
+                        and Advice
+                    </div>
+                    <div className='absolute border-2  border-t-0 border-r-0 w-[10vw] h-[5vw] mt-[40vw] ml-[16vw] z-10'>
+
+                    </div>
+                    <div className='absolute border-2 border-b-0 border-l-0 w-[10vw] h-[5vw] mt-[36vw] ml-[66vw] z-10'>
+
+                    </div>
+                    <div className='ml-[20vw] self-center h-[50vw] w-[50vw]'>
+                        <PieChart tooltip={{ trigger: 'none' }}
+                            series={[
+                                {
+                                    data: [
+                                        { id: 0, value: 30, color: "#1f6d4f" },
+                                        { id: 1, value: 70, color: "#E0E721" },
+
+                                    ],
+                                    paddingAngle: 5,
+                                    innerRadius: "4%",
+
+                                },
+
+                            ]}
+
+                        />
+                    </div>
+                </div>
+                <div className='flex flex-col  self-center -mt-[10vw]'>
+                    <div className=" text-[6vw]/[6vw] text-[#1f6d4f] font-bold text-center">
+                        Specialized Reporting
+                        <br />
+                        & Financial Dashboard
+                    </div>
+                </div>
+                <div>
+                    <div className='flex -mt-[10vw]'>
+                        <div className='ml-[5vw] -mt-[5vw] self-center text-[2vw] font-medium'>
                             • Cash Flow Analysis: Up-to-date Financial
                             <br />
                             Reports, KPI’s, Net Worth
@@ -219,10 +219,10 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                             • Actionable data to achieve your financial goals
                         </div>
                         <div className='h-[50vw] w-[50vw]'>
-                        <Image className="!relative z-10" src="/Laptop.png" fill={true} alt="" ></Image>
-                                </div>
+                            <Image className="!relative z-10" src="/Laptop.png" fill={true} alt="" ></Image>
+                        </div>
                     </div>
-                    </div>
+                </div>
             </Element>
         </div>
     );

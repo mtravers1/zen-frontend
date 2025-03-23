@@ -5,30 +5,30 @@ export default function Home() {
     return (
         <div>
             <MainTemplate>
-                <div className="mx-[20vh] my-[6vh]">
-                    <h1 className="my-[2vh] text-[4vh] text-[#537652]">
+                <div className=" mx-[10vw] sm:mx-[20vw] my-[6vw]">
+                    <h1 className="my-[2vw] text-[6vw] text-[#537652]">
                         Terms and Conditions for Zentavos™
                     </h1>
 
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         Last Updated: February 27, 2025
                     </h2>
                     <p>
                         Welcome to Zentavos™, a cloud-based or mobile application platform providing Chief Financial Officer, or CFO, services (the “Platform”), including financial planning, budgeting, forecasting, and advisory tools (collectively, the “Service” or “Services”). These terms and conditions for Zentavos™ (the “Terms and Conditions”) govern your access to and use of the Platform, operated by Zentavos, Inc., a Texas corporation (“we,” “us,” or “our”). By downloading, accessing, or using the Platform, you (“User,” “you,” or “your”) agree to be bound legally by these Terms and Conditions. Do not use the Zentavos™ Platform If you do not agree. By extension, you do not have our permission to access or use the Zentavos™ Platform if you do not agree with any part of these Terms and Conditions.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         1. Acceptance of Terms and Conditions
                     </h2>
                     <p>
                         By using the Platform, you confirm that you are at least eighteen (18) years of age and have the legal and contractual capacity to enter into this agreement. These Terms and Conditions constitute a legally binding agreement between you and Zentavos, Inc. We may update these Terms and Conditions from time to time, and the updated version will be effective upon posting on the Platform at <a className="text-blue-600 dark:text-blue-500 hover:underline" href="https://www.zentavos.com">zentavos.com</a> Your continued use of the Platform after any changes signifies your acceptance of the updated Terms and Conditions.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         2. Description of Services
                     </h2>
                     <p>
                         The Platform provides virtual CFO subscription services, which may include, without limitation:
                     </p>
-                    <ul className=" list-disc mx-[2vh]">
+                    <ul className=" list-disc mx-[2vw]">
                         <br />
                         <li>
                             Financial analysis and reporting
@@ -78,16 +78,16 @@ export default function Home() {
                         Zentavos™ is an independent contractor and is not considered to be your employee. Nothing in these Terms and Conditions are intended to create a joint venture, partnership, agency, employer-employee, or other similar relationship. As an independent contractor, Zentavos™ has no authority to bind or otherwise obligate you. In addition, as an independent contractor, Zentavos™ does not have day-to-day insight into the full scope of your financial and accounting situation and systems.
 
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         3. Eligibility and Account Registration
                     </h2>
                     <p>
                         To use the Platform, you must register for an account by providing accurate and complete information, including your name, email address, and payment details. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. Notify us immediately at support@zentavos.com if you suspect unauthorized use of your account.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         4. Subscription and Payment
                     </h2>
-                    <ul className=" list-disc mx-[2vh]">
+                    <ul className=" list-disc mx-[2vw]">
                         <li>
                             <b>Subscription Plans:</b> Access to certain features of the Platform requires a paid subscription. Available plans, pricing, and features are detailed within the Platform or on our website. The subscription fees listed on the Platform are exclusive of applicable state, federal, local, and other taxes and fees. Subscription fees are subject to change by posting on the site or the app. If you have a current account, you will be notified via email at least thirty (30) days before an increase in price to the services you are subscribed to goes into effect. If you do not cancel your service as described in these Terms and Conditions, you will be charged the updated price as specified in the email notice.
                         </li>
@@ -113,13 +113,13 @@ export default function Home() {
                         </li>
                         <br />
                     </ul>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         5. User Responsibilities and Prohibited Uses
                     </h2>
                     <p>
                         You recognize, acknowledge, and agree that the quality and usefulness of the Platform are fully dependent on the information that you input. Zentavos, Inc. has no responsibility for the quality or accuracy of the information that you input into the Platform. You agree to:
                     </p>
-                    <ul className=" list-disc mx-[2vh]">
+                    <ul className=" list-disc mx-[2vw]">
                         <li>
                             Use the Platform only for lawful purposes and in accordance with these Terms and Conditions.
                         </li>
@@ -143,7 +143,7 @@ export default function Home() {
                         You agree that you will use the Platform in accordance with all applicable laws, rules, regulations, and these Terms and Conditions at all times. The following is a non-exhaustive list of prohibited uses of this Platform. You agree that you will not perform any of the following prohibited uses:
                     </p>
                     <br />
-                    <ol className=" list-decimal mx-[2.3vh] indent-3">
+                    <ol className=" list-decimal mx-[2.3vw] indent-3">
                         <li>
                             Impersonating or attempting to impersonate Zentavos, Inc. or its employees, representatives, affiliates, subsidiaries, or divisions;
                         </li>
@@ -217,10 +217,10 @@ export default function Home() {
                     <p>
                         You agree to defend, indemnify, and to hold harmless Zentavos, Inc., its affiliates, subsidiaries, assigns, members, directors, employees, and contractors, to the full extent allowed by law or equity, from and against any and all judgments, losses, claims (whether or not valid), damages, costs, fees, expenses, or liabilities, joint or several, to which Zentavos, Inc. may become subject, related to or arising out of your use of the Platform, or any actual or threatened claim, litigation, investigation, proceeding, or action in any court or before any regulatory, administrative, or other body relating to any of the foregoing (hereinafter referred to collectively as a “Claim”), and shall, upon request, reimburse Zentavos, Inc. for all legal and other costs, fees, and expenses as they are incurred in connection with investigating, preparing, or defending a Claim, whether or not Zentavos, Inc.is ever made party to any legal proceedings or such Claim arose before or after your first use of the Platform; provided, however, that no such indemnification shall be required to be paid to Zentavos, Inc. to the extent a Claim resulted from the gross negligence or willful misconduct of Zentavos, Inc.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         6. Intellectual Property and Digital Millenium Copyright Act Notice
                     </h2>
-                    <ul className=" list-disc mx-[2vh]">
+                    <ul className=" list-disc mx-[2vw]">
                         <li>
                             All content, features, and technology within the Platform, including software, designs, text, and graphics (collectively, “Content”), are owned by Zentavos, Inc. or our licensors and are protected by copyright, trademark, and other intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the Platform and its Content solely for your personal or business fiscal management purposes, as permitted by your subscription. Any violation of the copyright in the Content or these terms and conditions may be enforced by Zentavos, Inc. or the copyright owner to the fullest extent allowed by law. If you are aware of a potential infringement of our intellectual property, please contact <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailtolegal@zentavos.com">legal@zentavos.com</a>.
                         </li>
@@ -229,7 +229,7 @@ export default function Home() {
                             Zentavos, Inc. respects the intellectual property rights of others. It is our policy to respond to any claim that Content posted on the Platform infringes on the copyright, trademark, or other intellectual property rights of any person or entity. You or your agent may send us a written notice of such infringement entitled “DMCA Infringement of Intellectual Property Rights” if you believe in good faith that the Content infringes on your intellectual property rights. Your notice to us must include the following information:
                         </li>
                         <br />
-                        <ul className="list-[square] mx-[2vh]">
+                        <ul className="list-[square] mx-[2vw]">
                             <li>
                                 An electronic or physical signature of the person authorized to act on behalf of the owner of the intellectual property right’s interest;
                             </li>
@@ -253,13 +253,13 @@ export default function Home() {
 
                         At your discretion, you may provide feedback to Zentavos™ concerning the functionality and performance of the Platform from time to time, including, without limitation, identifying potential errors, improvements, modifications, bug fixes, or enhancements (the “Feedback”). If you, through your evaluation or otherwise, suggest any Feedback, you hereby assign the ownership in all Feedback to Zentavos™. In the event ownership in the Feedback cannot be granted to Zentavos™, you grant Zentavos™ at no charge a perpetual, irrevocable, royalty-free, sublicensable, worldwide right, and license to use, reproduce, disclose, sublicense, distribute, modify, and otherwise exploit such Feedback without restriction. You agree that Zentavos™ may disclose that Feedback to any third party in any manner and you agree that Zentavos™ has the ability to sublicense all Feedback in any form to any third party without restriction.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         7. Data Privacy
                     </h2>
                     <p>
                         We collect, store, and process your personal and financial information in accordance with the Zentavos <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href=" /privacy">Privacy Policy</a>. By using the Platform, you consent to such collection and processing. You are responsible for ensuring that any data you input complies with applicable privacy laws.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         8. Third-Party Services
                     </h2>
                     <p>
@@ -267,13 +267,13 @@ export default function Home() {
 
                         The Platform may contain links to other sites that are owned and operated by third-party vendors and other third parties (the “External Sites”). You acknowledge that Zentavos™ is not responsible for the availability of, or the materials located on or through, any External Sites. You should contact the site administrator or webmaster for those External Sites if you have any concerns regarding such links or the materials located on such External Sites. Further, it is your responsibility to take precautions to ensure that whatever links you click on or software that you download, whether from this Platform or other web sites or applications, is free of such items as viruses, worms, trojan horses, defects, and other items of a destructive nature. Our inclusion of hyperlinks to such web sites does not imply any endorsement of the material on such web sites or any association with their operators.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         9. Disclaimer of Warranties
                     </h2>
                     <p>
                         The Platform and Services are provided “as is” and “as available” without warranties of any kind, express or implied, including, without limitation, implied warranties of merchantability, warranties of accuracy, of reliability, of noninfringement, or of fitness for a particular purpose, or any and all other violations of rights. We do not guarantee that the Platform will be uninterrupted, error-free, or free of viruses or other harmful components. Zentavos™ shall have no responsibility or liability for any content or materials posted on the Platform. Zentavos™ MAKES NO GUARANTEES AS TO UPTIME OR AVAILABILITY OF THE SERVICE. THE SERVICE MAY BE SUBJECT TO LIMITATIONS, DELAYS, AND OTHER PROBLEMS INHERENT IN THE USE OF THE INTERNET AND ELECTRONIC COMMUNICATIONS. Zentavos™ IS NOT RESPONSIBLE FOR ANY DELAYS, DELIVERY FAILURES, OR OTHER DAMAGE RESULTING FROM SUCH PROBLEMS, INCLUDING INTERNET CONGESTION, VIRUS ATTACKS, AND DENIAL OF SERVICE (DOS) ATTACKS.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         10. Limitation of Liability
                     </h2>
 
@@ -292,13 +292,13 @@ export default function Home() {
                         <br />
                         SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         11. Termination
                     </h2>
                     <p>
                         We may suspend or terminate your access to the Platform at our discretion, with or without notice, if you violate these Terms and Conditions or for any other reason. Upon termination, your right to use the Platform ceases, and we may delete your account and data, subject to applicable law.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         12. Governing Law and Dispute Resolution
                     </h2>
                     <p>
@@ -336,16 +336,16 @@ export default function Home() {
                     <p className="font-bold">
                         By assenting to these Terms and Conditions, User specifically acknowledges the repetition of these arbitration provisions established by Zentavos, Inc. in these Terms and Conditions.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         13. Indemnification
                     </h2>
                     <p>
                         You agree to indemnify and hold Zentavos, Inc. harmless from any claims, losses, or damages, including legal fees, arising from your use of the Platform, your violation of these Terms and Conditions, or your infringement of any third-party rights.
                     </p>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         14. Miscellaneous
                     </h2>
-                    <ul className=" list-disc mx-[2vh]">
+                    <ul className=" list-disc mx-[2vw]">
                         <li>
                             <b>Entire Agreement:</b> These Terms and Conditions, along with our Privacy Policy, constitute the entire agreement between you and Zentavos, Inc. regarding the Platform; and constitute the entire agreement between the parties regarding the subject matter hereof and supersede all proposals and prior discussions and writings between the parties with respect thereto. These Terms and Conditions may not be modified, supplemented, qualified, or interpreted by any trade usage or prior course of dealing not made a part of these Terms and Conditions by their express terms. No failure or delay in enforcing any right or exercising any remedy will be deemed a waiver of any right or remedy. Each provision of these Terms and Conditions is a separately enforceable provision.
                         </li>
@@ -391,7 +391,7 @@ export default function Home() {
                         </li>
                         <br />
                     </ul>
-                    <h2 className="font-bold my-[2vh]">
+                    <h2 className="font-bold my-[2vw]">
                         15. Contact Us
                     </h2>
                     <p>

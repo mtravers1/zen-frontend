@@ -10,7 +10,7 @@ export function Trapezoid() {
                 <div className="text-[4vw] sm:text-[1vw] text-white">
                     Follow Us:
                 </div>
-                <div className="pb-[0.1vw] w-[20vw] sm:w-[10vw]">
+                <div className="pb-[0.1vw] w-[20vw] sm:w-[10vw] md:w-[5vw]">
                     <IconBar></IconBar>
                 </div>
 

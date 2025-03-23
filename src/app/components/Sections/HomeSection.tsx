@@ -78,7 +78,7 @@ export function MobileHomeSection({ className }: { className: string }) {
                         <Image className="!relative z-10 scale-180" src="/Zentavos_green_bg.png" fill={true} alt="" ></Image>
                     </div>
                 </div>
-                <div className="flex h-[80vw] w-[59.5vw]  -mt-[65vw] mb-[30vw] ml-[40vw] overflow-clip">
+                <div className="flex h-[80vw] w-[59.5vw]  -mt-[65vw] mb-[40vw] ml-[40vw] overflow-clip">
                     <div className=" h-[35vw] w-[80vw] mt-[5vw] z-10 translate-y-[20vw]">
                         <Image className="!relative  scale-260" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
                     </div>

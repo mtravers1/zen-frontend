@@ -123,17 +123,19 @@ export function MobileSolutionsSection({ className }: { className: string }) {
     return (
         <div className={className}>
             <Element id="SolutionsMobile" name="SOLUTIONSMobile" className="element gap-[20vw] flex flex-col">
-                <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[8vw] font-bold -mt-[20vw]">The Complete Financial Tool You Need!</h1>
+                <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[8vw] font-bold -mt-[30vw]">The Complete Financial Tool You Need!</h1>
                 <div className="relative w-full h-[100vw]  overflow-clip">
                     <Image className="!relative z-10 scale-150" src="/Downtown_20Houston_BW.tif" fill={true} alt=""></Image>
                 </div>
                 <div className="absolute z-20 bg-[#bfc221] opacity-90 w-full h-[100vw]"></div>
-                <div className="absolute w-[160vw] h-[100vw] -ml-[50vw]">
-                    <Image className="!relative z-30" src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
+                <div className='absolute h-[100vw] w-[100vw] overflow-clip'>
+                    <div className="w-[100vw] h-[100vw] -ml-[35vw]">
+                        <Image className="!relative z-30 " src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
+                    </div>
                 </div>
-                <div className="flex flex-col w-[100vw] gap-[8vw] z-40 ml-[80vw] absolute">
-                    <div className="text-[#1f6d4f] font-bold text-center text-[4vw] mt-[6vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
-                    <div className="grid  grid-cols-2  gap-y-[4vw]">
+                <div className="flex flex-col w-[50vw] gap-[8vw] z-40 ml-[55vw] absolute">
+                    <div className="-ml-[18vw] text-[#1f6d4f] font-bold text-center text-[3vw] mt-[6vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
+                    <div className="grid  grid-cols-1  gap-y-[4vw]">
                         <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
                         <IconLabel name={"Bookkeeping, Accounting, & Taxes"}> <ImPieChart /></IconLabel>
                         <IconLabel name={"Real-time Cash Flow Insights"}> <FaHandHoldingDollar /></IconLabel>
@@ -148,10 +150,7 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                         <IconLabel name={"B2B Marketplaces"}> <FaBriefcase /></IconLabel>
                     </div>
                 </div>
-                <div className="flex gap-[20vw]" >
-                    <div className=" pl-[10vw] w-[80vw] h-[50vw]">
-                        <Image className="!relative z-10" src="/vecteezy_ai-artificial-intelligence-concept-global-data-connection_24299683.jpg" fill={true} alt="" ></Image>
-                    </div>
+
                     <div className="flex flex-col grow">
                         <div className='font-bold text-[6vw] text-center text-[#1f6d4f] pr-[4vw]'>
                             Ai Automation
@@ -177,13 +176,13 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                             <br />
                             and Advice
                         </div>
-                        <div className='absolute border-2  border-t-0 border-r-0 w-[10vw] h-[2vw] mt-[40vw] ml-[16vw] z-10'>
+                        <div className='absolute border-2  border-t-0 border-r-0 w-[10vw] h-[5vw] mt-[40vw] ml-[16vw] z-10'>
 
                         </div>
-                        <div className='absolute border-2 border-b-0 border-l-0 w-[10vw] h-[2vw] mt-[36vw] ml-[66vw] z-10'>
+                        <div className='absolute border-2 border-b-0 border-l-0 w-[10vw] h-[5vw] mt-[36vw] ml-[66vw] z-10'>
 
                         </div>
-                        <div className='self-center h-[40vw] w-[40vw]'>
+                        <div className='ml-[20vw] self-center h-[50vw] w-[50vw]'>
                             <PieChart tooltip={{ trigger: 'none' }}
                                 series={[
                                     {
@@ -193,7 +192,7 @@ export function MobileSolutionsSection({ className }: { className: string }) {
 
                                         ],
                                         paddingAngle: 5,
-                                        innerRadius: 7.3,
+                                        innerRadius: "4%",
 
                                     },
 
@@ -202,15 +201,16 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                             />
                         </div>
                     </div>
-                </div>
-                <div className='flex'>
-                    <div className='flex flex-col  self-center -mt-[20vw]'>
-                        <div className="ml-[20vw] text-[6vw]/[6vw] text-[#1f6d4f] font-bold text-center">
+                    <div className='flex flex-col  self-center -mt-[10vw]'>
+                        <div className=" text-[6vw]/[6vw] text-[#1f6d4f] font-bold text-center">
                             Specialized Reporting
                             <br />
                             & Financial Dashboard
                         </div>
-                        <div className='mt-[4vw] self-center text-[2vw] font-medium'>
+                    </div>
+                    <div>
+                        <div className='flex -mt-[10vw]'>
+                    <div className='ml-[5vw] -mt-[5vw] self-center text-[2vw] font-medium'>
                             • Cash Flow Analysis: Up-to-date Financial
                             <br />
                             Reports, KPI’s, Net Worth
@@ -218,11 +218,11 @@ export function MobileSolutionsSection({ className }: { className: string }) {
                             <br />
                             • Actionable data to achieve your financial goals
                         </div>
-                    </div>
-                    <div>
+                        <div className='h-[50vw] w-[50vw]'>
                         <Image className="!relative z-10" src="/Laptop.png" fill={true} alt="" ></Image>
+                                </div>
                     </div>
-                </div>
+                    </div>
             </Element>
         </div>
     );

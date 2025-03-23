@@ -3,7 +3,7 @@ import { Element } from "react-scroll";
 export function DesktopHomeSection({ className }: { className: string }) {
     return (
         <div className={className}>
-            <Element id="Home" name="HOME" className="element">
+            <Element id="HomeDesktop" name="HOMEDesktop" className="element">
                 <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw]">
                     <div className="font-bold text-white ">
                         Your CFO
@@ -45,7 +45,7 @@ export function MobileHomeSection({ className }: { className: string }) {
 
     return (
         <div className={className}>
-            <Element id="Home" name="HOME" className="element">
+            <Element id="HomeMobile" name="HOMEMobile" className="element">
                 <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw]">
                     <div className="font-bold text-white ">
                         Your CFO

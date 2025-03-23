@@ -6,8 +6,6 @@ import { scroller } from "react-scroll";
 import { Footer } from "./Footer";
 import { DesktopHeader, MobileHeader } from "./Header";
 
-
-
 export function MainTemplate({ children }: Readonly<{
     children: React.ReactNode;
 }>) {
@@ -15,24 +13,25 @@ export function MainTemplate({ children }: Readonly<{
 
     const searchId = searchParams.get('Section')
     const elHeight = useRef(0);
+    const isMobile = useRef(false);
+
     useEffect(() => {
         elHeight.current = document.getElementById('Header')?.clientHeight ?? 0
+        isMobile.current = window.innerWidth <= 768;
     }, [])
+
     const getOffset = () => {
         return elHeight.current * -1;
-
     };
+
     useEffect(() => {
         setTimeout(() => {
-            scroller.scrollTo(searchId ?? "", {
+            scroller.scrollTo(searchId ? `${searchId}${isMobile.current ? 'Mobile' : 'Desktop'}` : "", {
                 duration: 500,
                 smooth: true,
                 offset: getOffset()
             })
-
-        }, 500
-        )
-
+        }, 500)
     }, [searchId]);
 
     return (

@@ -13,7 +13,7 @@ export function DesktopHeader({ className }: { className: string }) {
 
     return (
         <div className={className}>
-            <div id="Header" className="bg-white flex">
+            <div id="HeaderDesktop" className="bg-white flex">
                 <Logo></Logo>
                 <div className="flex-auto">
                     <Trapezoid></Trapezoid>
@@ -35,7 +35,7 @@ export function MobileHeader({ className }: { className: string }) {
 
     return (
         <div className={className}>
-            <div id="Header" className="bg-white flex flex-col">
+            <div id="HeaderMobile" className="bg-white flex flex-col">
                 <div className="flex flex-row">
                     <Logo></Logo>
                     <div className="grow">

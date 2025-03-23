@@ -2,6 +2,7 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { scroller } from 'react-scroll';
+
 export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: () => void }) {
     const router = useRouter()
     const pathname = usePathname()
@@ -12,21 +13,26 @@ export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: 
         }
     };
     const elHeight = useRef(0);
+    const isMobile = useRef(false);
+
     useEffect(() => {
-        elHeight.current = document.getElementById('Header')?.clientHeight ?? 0
+        isMobile.current = window.innerWidth <= 768;
+        elHeight.current = document.getElementById(`Header${isMobile.current ? 'Mobile' : 'Desktop'}`)?.clientHeight ?? 0
+
     }, [])
+
     const getOffset = () => {
         console.log(elHeight.current)
         return elHeight.current * -1;
-
     };
+
     const handleOnClickNoRouteChange = () => {
         if (closeDrawer) closeDrawer();
         scroll();
-
     }
+
     const scroll = () => {
-        scroller.scrollTo(name, {
+        scroller.scrollTo(`${name}${isMobile.current ? 'Mobile' : 'Desktop'}`, {
             duration: 500,
             smooth: true,
             offset: getOffset()
@@ -46,5 +52,4 @@ export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: 
             {button}
         </li>
     );
-
 }

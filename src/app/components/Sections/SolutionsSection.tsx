@@ -21,7 +21,7 @@ export function SolutionsSection() {
                 <Image className="!relative z-30" src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
             </div>
             <div className="flex flex-col w-[50vw] gap-[4vw] z-40 ml-[40vw] absolute">
-                <div className="text-[#1f6d4f] font-bold text-center"> Everything a Small Business Owner needs at the push of a button.</div>
+                <div className="text-[#1f6d4f] font-bold text-center text-[2vw] mt-[3vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
                 <div className="grid  grid-cols-2  gap-y-[2vw]">
                     <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
                     <IconLabel name={"Bookkeeping, Accounting, & Taxes"}> <ImPieChart /></IconLabel>

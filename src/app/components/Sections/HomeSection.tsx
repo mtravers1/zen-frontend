@@ -25,11 +25,15 @@ export function HomeSection() {
                     Advice.</div>
                 <div className="font-bold text-right text-white my-[-10] text-[3vw]">
                     Access.</div>
+            </div >
+            <div className="h-[40vw] overflow-clip">
+                <div className="h-[50vw]">
+                    <Image className="!relative z-10" src="/Zentavos_green_bg.png" fill={true} alt="" ></Image>
+                </div>
             </div>
-            <Image className="!relative z-10" src="/Zevbackground.png" fill={true} alt="" ></Image>
-            <div className="flex h-[70vw] w-[59.1vw]  -mt-[35vw] ml-[40vw] overflow-clip">
-                <div className=" h-[50vw] w-[80vw] z-10">
-                    <Image className="!relative  scale-120" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
+            <div className="flex h-[70vw] w-[59vw]  -mt-[35vw] ml-[40vw] overflow-clip">
+                <div className=" h-[35vw] w-[80vw] mt-[5vw] z-10">
+                    <Image className="!relative  scale-160" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
                 </div>
             </div>
         </Element>

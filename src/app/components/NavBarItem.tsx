@@ -1,25 +1,41 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-scroll';
-export function NavBarItem({ name }: { name: string }) {
+import { scroller } from 'react-scroll';
+export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: () => void }) {
     const router = useRouter()
+    const pathname = usePathname()
     // Function to handle the activation of a link.
     const handleOnClick = () => {
-        router.push("/?Section=" + name)
+        if (pathname != "/") {
+            router.push("/?Section=" + name)
+        }
     };
     const elHeight = useRef(0);
     useEffect(() => {
         elHeight.current = document.getElementById('Header')?.clientHeight ?? 0
     }, [])
     const getOffset = () => {
+        console.log(elHeight.current)
         return elHeight.current * -1;
 
     };
-    const pathname = usePathname()
+    const handleOnClickNoRouteChange = () => {
+        if (closeDrawer) closeDrawer();
+        scroll();
+
+    }
+    const scroll = () => {
+        scroller.scrollTo(name, {
+            duration: 500,
+            smooth: true,
+            offset: getOffset()
+        });
+    }
+
     let button;
     if (pathname == "/") {
-        button = <Link className="text-[10px] font-medium md:text-[1.4vw] lg:text-[16px] text-[#006847] p-[0.5vw] hover:bg-gray-200 rounded-sm" to={name} smooth={true} duration={500} offset={getOffset()} >{name}</Link>
+        button = <div className="text-[10px] font-medium md:text-[1.4vw] lg:text-[16px] text-[#006847] p-[0.5vw] hover:bg-gray-200 rounded-sm" onClick={handleOnClickNoRouteChange}>{name}</div>
     }
     else {
         button = <div className="text-[10px] font-medium md:text-[1.4vw] lg:text-[16px] text-[#006847] p-[0.5vw] hover:bg-gray-200 rounded-sm" onClick={handleOnClick}>{name}</div>

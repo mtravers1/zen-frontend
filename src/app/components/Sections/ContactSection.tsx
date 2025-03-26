@@ -1,10 +1,11 @@
+'use client'
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { Element } from "react-scroll";
 import { ContactCard } from "../ContactCard";
-export function DesktopContactSection({ className }: { className: string }) {
+export function DesktopContactSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="contactDesktop" name="CONTACTDesktop" className="element mt-[15vw]">
 
                 <div className="flex flex-col">
@@ -39,9 +40,9 @@ export function DesktopContactSection({ className }: { className: string }) {
     );
 }
 
-export function MobileContactSection({ className }: { className: string }) {
+export function MobileContactSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="contactMobile" name="CONTACTMobile" className="element">
                 <div className="mt-[40vw] flex justify-center">
                     <div className=" flex flex-col absolute z-50 ">

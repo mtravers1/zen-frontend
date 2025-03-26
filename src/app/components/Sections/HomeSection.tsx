@@ -1,8 +1,9 @@
+'use client'
 import Image from "next/image";
 import { Element } from "react-scroll";
-export function DesktopHomeSection({ className }: { className: string }) {
+export function DesktopHomeSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="HomeDesktop" name="HOMEDesktop" className="element">
                 <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw]">
                     <div className="font-bold text-white ">
@@ -41,10 +42,10 @@ export function DesktopHomeSection({ className }: { className: string }) {
         </div>
     );
 }
-export function MobileHomeSection({ className }: { className: string }) {
+export function MobileHomeSection() {
 
     return (
-        <div className={className}>
+        <div>
             <Element id="HomeMobile" name="HOMEMobile" className="element">
                 <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw]">
                     <div className="font-bold text-white ">

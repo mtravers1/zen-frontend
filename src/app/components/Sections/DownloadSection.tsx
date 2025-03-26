@@ -1,11 +1,12 @@
+'use client'
 import Image from "next/image";
 import { MdPhoneAndroid } from "react-icons/md";
 import { Element } from "react-scroll";
 import { SimplePopper } from "../Popper";
 
-export function DesktopDownloadSection({ className }: { className: string }) {
+export function DesktopDownloadSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="DownloadDesktop" name="DOWNLOADDesktop" className="flex flex-col element ">
                 <div className="text-center font-bold text-[4vw] text-[#1f6d4f] my-[5vw]">
                     Mobile App
@@ -33,9 +34,9 @@ export function DesktopDownloadSection({ className }: { className: string }) {
     )
 }
 
-export function MobileDownloadSection({ className }: { className: string }) {
+export function MobileDownloadSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="DownloadMobile" name="DOWNLOADMobile" className="flex flex-col element ">
                 <div className="text-center font-bold text-[8vw] text-[#1f6d4f] my-[10vw]">
                     Mobile App

@@ -1,24 +1,36 @@
-"use client";
+import { headers } from 'next/headers';
+import { userAgent } from "next/server";
 import { MainTemplate } from "./components/MainTemplate";
 import { DesktopContactSection, MobileContactSection } from "./components/Sections/ContactSection";
 import { DesktopDownloadSection, MobileDownloadSection } from "./components/Sections/DownloadSection";
 import { DesktopHomeSection, MobileHomeSection } from "./components/Sections/HomeSection";
 import { DesktopSolutionsSection, MobileSolutionsSection } from "./components/Sections/SolutionsSection";
 
-export default function Home() {
-
-  return (
-    <div>
-      <MainTemplate>
-        <DesktopHomeSection className="hidden sm:block"></DesktopHomeSection>
-        <DesktopSolutionsSection className="hidden sm:block"></DesktopSolutionsSection>
-        <DesktopDownloadSection className="hidden sm:block"></DesktopDownloadSection>
-        <DesktopContactSection className="hidden sm:block"></DesktopContactSection>
-        <MobileHomeSection className="block sm:hidden"></MobileHomeSection>
-        <MobileSolutionsSection className="block sm:hidden"></MobileSolutionsSection>
-        <MobileDownloadSection className="block sm:hidden"></MobileDownloadSection>
-        <MobileContactSection className="block sm:hidden"></MobileContactSection>
-      </MainTemplate>
-    </div>
-  );
-}
+export default async function Home() {
+  const headersList = await headers();
+  const { device } = userAgent({ headers: headersList });
+  const deviceType = device?.type === "mobile" ? "mobile" : "desktop";
+  if (deviceType === "mobile") {
+    return (
+      <div>
+        <MainTemplate>
+          <MobileHomeSection ></MobileHomeSection>
+          <MobileSolutionsSection ></MobileSolutionsSection>
+          <MobileDownloadSection ></MobileDownloadSection>
+          <MobileContactSection ></MobileContactSection>
+        </MainTemplate>
+      </div>
+    );
+  }
+  else {
+    return (
+      <div>
+        <MainTemplate>
+          <DesktopHomeSection ></DesktopHomeSection>
+          <DesktopSolutionsSection ></DesktopSolutionsSection>
+          <DesktopDownloadSection ></DesktopDownloadSection>
+          <DesktopContactSection ></DesktopContactSection>
+        </MainTemplate>
+      </div>
+    );
+  }

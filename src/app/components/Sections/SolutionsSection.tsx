@@ -1,3 +1,4 @@
+'use client'
 import { PieChart } from '@mui/x-charts/PieChart';
 import Image from "next/image";
 import { FaBarcode, FaBook, FaBriefcase, FaChartLine } from "react-icons/fa";
@@ -10,9 +11,9 @@ import { RiFilePaperLine } from "react-icons/ri";
 import { Element } from "react-scroll";
 import { IconLabel } from "../IconLabel";
 
-export function DesktopSolutionsSection({ className }: { className: string }) {
+export function DesktopSolutionsSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="SolutionsDesktop" name="SOLUTIONSDesktop" className="element gap-[10vw] flex flex-col">
                 <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[4vw] font-bold -mt-[10vw]">The Complete Financial Tool You Need!</h1>
                 <div className="relative w-full h-[50vw]  overflow-clip">
@@ -119,9 +120,9 @@ export function DesktopSolutionsSection({ className }: { className: string }) {
     );
 }
 
-export function MobileSolutionsSection({ className }: { className: string }) {
+export function MobileSolutionsSection() {
     return (
-        <div className={className}>
+        <div>
             <Element id="SolutionsMobile" name="SOLUTIONSMobile" className="element gap-[20vw] flex flex-col">
                 <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[8vw] font-bold -mt-[30vw]">The Complete Financial Tool You Need!</h1>
                 <div className="relative w-full h-[100vw]  overflow-clip">

@@ -35,7 +35,7 @@ export function DesktopHomeSection() {
                 </div>
                 <div className="flex h-[70vw] w-[59vw]  -mt-[35vw] ml-[40vw] overflow-clip">
                     <div className=" h-[35vw] w-[80vw] mt-[5vw] z-10">
-                        <Image className="!relative  scale-160" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
+                        <Image className="!relative  scale-160" src="/thumbnail_Hero_Phone_screenshot_improved_shadow.png" alt="" fill={true}></Image>
                     </div>
                 </div>
             </Element>
@@ -81,7 +81,7 @@ export function MobileHomeSection() {
                 </div>
                 <div className="flex h-[80vw] w-[59.5vw]  -mt-[65vw] mb-[40vw] ml-[40vw] overflow-clip">
                     <div className=" h-[35vw] w-[80vw] mt-[5vw] z-10 translate-y-[20vw]">
-                        <Image className="!relative  scale-260" src="/Hero_Phone_screenshot.png" alt="" fill={true}></Image>
+                        <Image className="!relative  scale-260" src="/thumbnail_Hero_Phone_screenshot_improved_shadow.png" alt="" fill={true}></Image>
                     </div>
                 </div>
             </Element>

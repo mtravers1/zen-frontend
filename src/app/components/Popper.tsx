@@ -18,10 +18,10 @@ export function SimplePopper() {
         <Popper placement='bottom' className="z-1000" id={id} open={open} anchorEl={anchorEl}>
             <div></div>
             <div className="flex mt-[1vw] -ml-[0.5vw]">
-                <div className="h-[5vw] w-[17vw]">
+                <div className="h-[8vw] w-[25vw] md:h-[5vw] md:w-[17vw]">
                     <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="" ></Image>
                 </div>
-                <div className="h-[5vw] w-[17vw]">
+                <div className="h-[8vw] w-[25vw] md:h-[5vw] md:w-[17vw]">
                     <Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="" ></Image>
                 </div>
             </div>

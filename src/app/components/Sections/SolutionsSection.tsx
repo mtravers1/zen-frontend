@@ -75,7 +75,7 @@ export function DesktopSolutionsSection() {
                         <div className='absolute border-2 border-b-0 border-l-0 w-[5vw] h-[2vw] mt-[18vw] ml-[33vw] z-10'>
 
                         </div>
-                        <div className='self-center h-[20vw] w-[20vw]'>
+                        <div className='self-center md:h-[25vw] md:w-[25vw] lg:h-[20vw] lg:w-[20vw]'>
                             <PieChart tooltip={{ trigger: 'none' }}
                                 series={[
                                     {
@@ -85,7 +85,7 @@ export function DesktopSolutionsSection() {
 
                                         ],
                                         paddingAngle: 5,
-                                        innerRadius: 7.3,
+                                        innerRadius: "4%",
 
                                     },
 
@@ -125,18 +125,18 @@ export function MobileSolutionsSection() {
         <div>
             <Element id="SolutionsMobile" name="SOLUTIONSMobile" className="element gap-[20vw] flex flex-col">
                 <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[8vw] font-bold -mt-[30vw]">The Complete Financial Tool You Need!</h1>
-                <div className="relative w-full h-[100vw]  overflow-clip">
+                <div className="relative w-full h-[80vw]  overflow-clip">
                     <Image className="!relative z-10 scale-150" src="/Downtown_20Houston_BW.tif" fill={true} alt=""></Image>
                 </div>
-                <div className="absolute z-20 bg-[#bfc221] opacity-90 w-full h-[100vw]"></div>
-                <div className='absolute h-[100vw] w-[100vw] overflow-clip'>
-                    <div className="w-[100vw] h-[100vw] -ml-[35vw]">
+                <div className="absolute z-20 bg-[#bfc221] opacity-90 w-full h-[80vw]"></div>
+                <div className='absolute h-[80vw] w-[100vw] overflow-clip'>
+                    <div className="w-[128vw] h-[80vw] -ml-[55vw]">
                         <Image className="!relative z-30 " src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
                     </div>
                 </div>
                 <div className="flex flex-col w-[45vw] gap-[8vw] z-40 ml-[50vw] absolute">
                     <div className="-ml-[5vw] text-[#1f6d4f] font-bold text-center text-[3vw] mt-[6vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
-                    <div className="grid  grid-cols-1  gap-y-[3vw]">
+                    <div className="-mt-[5vw] grid  grid-cols-1  gap-y-[2vw]">
                         <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
                         <IconLabel name={"Bookkeeping, Accounting, & Taxes"}> <ImPieChart /></IconLabel>
                         <IconLabel name={"Real-time Cash Flow Insights"}> <FaHandHoldingDollar /></IconLabel>
@@ -183,7 +183,7 @@ export function MobileSolutionsSection() {
                     <div className='absolute border-2 border-b-0 border-l-0 w-[10vw] h-[5vw] mt-[36vw] ml-[66vw] z-10'>
 
                     </div>
-                    <div className='ml-[20vw] self-center h-[50vw] w-[50vw]'>
+                    <div className='ml-[20vw] self-center h-[50vw] w-[50vw] sm:h-[35vw] sm:w-[35vw]'>
                         <PieChart tooltip={{ trigger: 'none' }}
                             series={[
                                 {

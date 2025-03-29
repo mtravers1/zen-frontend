@@ -1,7 +1,6 @@
 import { headers } from 'next/headers';
 import { userAgent } from "next/server";
 import { MainTemplate } from "./components/MainTemplate";
-import { DesktopContactSection, MobileContactSection } from "./components/Sections/ContactSection";
 import { DesktopDownloadSection, MobileDownloadSection } from "./components/Sections/DownloadSection";
 import { DesktopHomeSection, MobileHomeSection } from "./components/Sections/HomeSection";
 import { DesktopSolutionsSection, MobileSolutionsSection } from "./components/Sections/SolutionsSection";
@@ -17,7 +16,6 @@ export default async function Home() {
           <MobileHomeSection ></MobileHomeSection>
           <MobileSolutionsSection ></MobileSolutionsSection>
           <MobileDownloadSection ></MobileDownloadSection>
-          <MobileContactSection ></MobileContactSection>
         </MainTemplate>
       </div>
     );
@@ -29,8 +27,8 @@ export default async function Home() {
           <DesktopHomeSection ></DesktopHomeSection>
           <DesktopSolutionsSection ></DesktopSolutionsSection>
           <DesktopDownloadSection ></DesktopDownloadSection>
-          <DesktopContactSection ></DesktopContactSection>
         </MainTemplate>
       </div>
     );
   }
+}

@@ -11,7 +11,7 @@ export function DesktopDownloadSection() {
                 <div className="text-center font-bold text-[4vw] text-[#1f6d4f] my-[5vw]">
                     Mobile App
                 </div>
-                <div className="w-full ">
+                <div className="w-full mb-[20vw]">
                     <Image className="!relative z-10" src="/vecteezy_traffic-by-night_52317212.jpg" fill={true} alt="" ></Image>
                 </div>
                 <div className="absolute flex">
@@ -41,16 +41,16 @@ export function MobileDownloadSection() {
                 <div className="text-center font-bold text-[8vw] text-[#1f6d4f] my-[10vw]">
                     Mobile App
                 </div>
-                <div className="w-full ">
+                <div className="w-full mb-[20vw]">
                     <Image className="!relative z-10" src="/vecteezy_traffic-by-night_52317212.jpg" fill={true} alt="" ></Image>
                 </div>
                 <div className="absolute flex">
-                    <div className=" w-[80vw] h-[50vw] -ml-[10vw] mt-[35vw]">
+                    <div className=" w-[80vw] h-[50vw] -ml-[15vw] mt-[35vw]">
                         <Image className="!relative z-15   scale-150" src="/Phone_Screen_center.png" fill={true} alt="" ></Image>
                     </div>
-                    <div className=" flex flex-col absolute z-20 w-[35vw] h-[35vw] ml-[55vw] mt-[40vw] bg-[#1f6d4f] rounded-full items-center">
-                        <MdPhoneAndroid className="mt-[6vw] text-[5vw] text-[#d1e242]" />
-                        <div className="mt-[2vw] text-white text-[4vw] font-bold">
+                    <div className=" flex flex-col absolute z-20 w-[50vw] h-[50vw] ml-[45vw] mt-[32vw] bg-[#1f6d4f] rounded-full items-center">
+                        <MdPhoneAndroid className="mt-[6vw] text-[8vw] text-[#d1e242]" />
+                        <div className="mt-[3vw] text-white text-[4vw] font-bold">
                             $14.99
                         </div>
                         <div className="text-white text-[4vw] -mt-[2vw]">

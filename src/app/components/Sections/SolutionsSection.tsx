@@ -162,7 +162,7 @@ export function MobileSolutionsSection() {
                     <div className='absolute text-[6vw] font-bold text-[#1f6d4f] mt-[20vw] ml-[10vw]'>
                         70%
                     </div>
-                    <div className='absolute font-medium text-[2vw]/[3vw] mt-[30vw] ml-[6vw] '>
+                    <div className='absolute font-medium text-[3vw]/[3vw] mt-[30vw] ml-[6vw] '>
                         Artificial Intelligence
                         <br />
                         Data and Technology
@@ -170,7 +170,7 @@ export function MobileSolutionsSection() {
                     <div className='absolute  text-[6vw] font-bold text-[#1f6d4f] mt-[40vw] ml-[70vw]'>
                         30%
                     </div >
-                    <div className='absolute font-medium text-[2vw]/[3vw] mt-[50vw] ml-[70vw]'>
+                    <div className='absolute font-medium text-[3vw]/[3vw] mt-[50vw] ml-[70vw]'>
                         Human Intelligence
                         <br />
                         Costumer Service
@@ -211,7 +211,7 @@ export function MobileSolutionsSection() {
                 </div>
                 <div>
                     <div className='flex -mt-[10vw]'>
-                        <div className='ml-[5vw] -mt-[5vw] self-center text-[2vw] font-medium'>
+                        <div className='ml-[5vw] -mt-[5vw] self-center text-[3vw] font-medium'>
                             • Cash Flow Analysis: Up-to-date Financial
                             <br />
                             Reports, KPI’s, Net Worth

@@ -15,7 +15,7 @@ export default async function Contact() {
             <div>
                 <Suspense>
                     <MainTemplate>
-                        <div className="mb-[100vw]">
+                        <div className="md:mb-[10vw] mb-[100vw]">
                             <div className="flex flex-col">
                                 <h1 className=" mb-[5vw] text-center text-[#1f6d4f] text-[5vw]  font-medium">
                                     Contact Us

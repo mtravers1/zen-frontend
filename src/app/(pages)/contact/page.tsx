@@ -15,30 +15,32 @@ export default async function Contact() {
             <div>
                 <Suspense>
                     <MainTemplate>
-                        <div className="flex flex-col">
-                            <h1 className=" mb-[5vw] text-center text-[#1f6d4f] text-[5vw]  font-medium">
-                                Contact Us
-                            </h1>
-                            <div className="mt-[20vw] w-full gap-[10vw] absolute z-20 flex justify-center">
+                        <div className="mb-[100vw]">
+                            <div className="flex flex-col">
+                                <h1 className=" mb-[5vw] text-center text-[#1f6d4f] text-[5vw]  font-medium">
+                                    Contact Us
+                                </h1>
+                                <div className="mt-[20vw] w-full gap-[10vw] absolute z-20 flex md:flex-row flex-col justify-center ">
 
-                                <div className=" flex flex-col text-[#1f6d4f] h-[40vw] w-[30vw]">
-                                    <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold md:h-[3vw] md:w-[10vw]"> +1 800-411-1139</Button></ContactCard>
-                                    <ContactCard name="Legal" email="legal@zentavos.com"> </ContactCard>
-                                    <ContactCard name="Support" email="support@zentavos.com"> </ContactCard>
-                                </div>
-                                <div className="-mt-[3vw] self-center w-[30vw] h-[30vw]">
-                                    <Image className="!relative" src="/Zentavos_logo_v1_gradient_color.svg" alt="" fill={true}></Image>
-                                    <h1 className="-mt-[3vw] text-center text-[#578641]">
-                                        Where your peace grows
-                                    </h1>
-                                </div>
+                                    <div className="self-center flex flex-col text-[#1f6d4f] ">
+                                        <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold md:h-[3vw] md:w-[20vw] lg:h-[3vw] lg:w-[15vw] h-[10vw] w-[30vw]"> +1 800-411-1139</Button></ContactCard>
+                                        <ContactCard name="Legal" email="legal@zentavos.com"> </ContactCard>
+                                        <ContactCard name="Support" email="support@zentavos.com"> </ContactCard>
+                                    </div>
+                                    <div className="-mt-[3vw] self-center w-[50vw] h-[50vw] sm:w-[30vw] sm:h-[30vw]">
+                                        <Image className="!relative" src="/Zentavos_logo_v1_gradient_color.svg" alt="" fill={true}></Image>
+                                        <h1 className="-mt-[3vw] text-center text-[#578641]">
+                                            Where your peace grows
+                                        </h1>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div className=" flex brightness-110 contrast-150 w-full h-[70vw] overflow-hidden">
-                            <Image className="!relative grayscale saturate blur-md" src="/pexels-pixabay-534219.jpg" alt="" fill={true} ></Image>
-                            <div className=" bg-green-500 opacity-25  absolute w-full h-[70vw]"></div>
-                            <div className="bg-linear-to-t from-white from-20% to-90% to-transparent opacity-70 w-full h-[70vw] absolute"></div>
+                            <div className=" flex brightness-110 contrast-150 w-full h-[70vw] overflow-hidden">
+                                <Image className="!relative grayscale saturate blur-md" src="/pexels-pixabay-534219.jpg" alt="" fill={true} ></Image>
+                                <div className=" bg-green-500 opacity-25  absolute w-full h-[70vw]"></div>
+                                <div className="bg-linear-to-t from-white from-20% to-90% to-transparent opacity-70 w-full h-[70vw] absolute"></div>
+                            </div>
                         </div>
                     </MainTemplate>
                 </Suspense>
@@ -52,7 +54,7 @@ export default async function Contact() {
                     <MainTemplate>
                         <div className="mt-[20vw] flex justify-center">
                             <div className=" flex flex-col absolute z-50 ">
-                                <div className=" self-center flex flex-col  text-[#1f6d4f] w-[80w] sm:h-[40vw] sm:w-[30vw]">
+                                <div className=" self-center flex flex-col  text-[#1f6d4f]  sm:h-[40vw] sm:w-[30vw]">
                                     <h1 className="-mt-[15vw] mb-[15vw] text-center text-[5vw]  font-medium">
                                         Contact Us
                                     </h1>

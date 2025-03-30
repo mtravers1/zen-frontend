@@ -4,8 +4,8 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import { userAgent } from "next/server";
 import { Suspense } from "react";
-import { ContactCard } from "../components/ContactCard";
-import { MainTemplate } from "../components/MainTemplate";
+import { MainTemplate } from "../../shared_components/MainTemplate";
+import { ContactCard } from "./components/ContactCard";
 export default async function Contact() {
     const headersList = await headers();
     const { device } = userAgent({ headers: headersList });
@@ -22,7 +22,7 @@ export default async function Contact() {
                             <div className="mt-[20vw] w-full gap-[10vw] absolute z-20 flex justify-center">
 
                                 <div className=" flex flex-col text-[#1f6d4f] h-[40vw] w-[30vw]">
-                                    <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold h-[3vw] w-[10vw]"> +1 800-411-1139</Button></ContactCard>
+                                    <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold md:h-[3vw] md:w-[10vw]"> +1 800-411-1139</Button></ContactCard>
                                     <ContactCard name="Legal" email="legal@zentavos.com"> </ContactCard>
                                     <ContactCard name="Support" email="support@zentavos.com"> </ContactCard>
                                 </div>

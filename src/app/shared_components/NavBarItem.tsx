@@ -3,13 +3,16 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { scroller } from 'react-scroll';
 
-export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: () => void }) {
+export function NavBarItem({ name, route, closeDrawer }: { name: string, route: string, closeDrawer?: () => void }) {
     const router = useRouter()
     const pathname = usePathname()
     // Function to handle the activation of a link.
     const handleOnClick = () => {
-        if (pathname != "/") {
+        if (route == "/") {
             router.push("/?Section=" + name)
+        }
+        else {
+            router.push(route)
         }
     };
     const elHeight = useRef(0);
@@ -28,6 +31,12 @@ export function NavBarItem({ name, closeDrawer }: { name: string, closeDrawer?: 
 
     const handleOnClickNoRouteChange = () => {
         if (closeDrawer) closeDrawer();
+        if (route == "/") {
+            scroll();
+        }
+        else {
+            router.push(route)
+        }
         scroll();
     }
 

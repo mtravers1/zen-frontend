@@ -1,9 +1,9 @@
 import { headers } from 'next/headers';
 import { userAgent } from "next/server";
-import { MainTemplate } from "./components/MainTemplate";
-import { DesktopDownloadSection, MobileDownloadSection } from "./components/Sections/DownloadSection";
-import { DesktopHomeSection, MobileHomeSection } from "./components/Sections/HomeSection";
-import { DesktopSolutionsSection, MobileSolutionsSection } from "./components/Sections/SolutionsSection";
+import { MainTemplate } from "./shared_components/MainTemplate";
+import { DesktopDownloadSection, MobileDownloadSection } from "./shared_components/Sections/DownloadSection";
+import { DesktopHomeSection, MobileHomeSection } from "./shared_components/Sections/HomeSection";
+import { DesktopSolutionsSection, MobileSolutionsSection } from "./shared_components/Sections/SolutionsSection";
 
 export default async function Home() {
   const headersList = await headers();

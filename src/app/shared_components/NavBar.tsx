@@ -1,10 +1,11 @@
 import { NavBarItem } from "./NavBarItem";
 import { DownloadPopper } from "./Popper";
 export function NavBar() {
-    const names = ["Home", "Solutions"];
+    const names = ["Home", "Solutions", "Contact"];
+    const routes = ["/", "/", "/contact"];
     const rows = [];
     for (let i = 0; i < names.length; i++) {
-        rows.push(<NavBarItem key={i} name={(names[i]).toUpperCase()} />);
+        rows.push(<NavBarItem key={i} name={(names[i]).toUpperCase()} route={routes[i]} />);
     }
     return (
         <div className="bg-white ">

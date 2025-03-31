@@ -9,7 +9,7 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { MdOutlineOndemandVideo, MdOutlinePhoneIphone } from "react-icons/md";
 import { RiFilePaperLine } from "react-icons/ri";
 import { Element } from "react-scroll";
-import { IconLabel } from "../IconLabel";
+import { IconLabel } from "../shared_components/IconLabel";
 
 export function DesktopSolutionsSection() {
     return (

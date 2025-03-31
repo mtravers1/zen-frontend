@@ -1,5 +1,5 @@
+import { DownloadPopperSide } from "../Popper";
 import { NavBarItem } from "./NavBarItem";
-import { DownloadPopperSide } from "./Popper";
 export function NavMenu({ closeDrawer }: { closeDrawer: () => void }) {
     const names = ["Home", "Solutions", "Contact"];
     const routes = ["/", "/", "/contact"];

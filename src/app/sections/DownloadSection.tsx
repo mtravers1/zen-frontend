@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { MdPhoneAndroid } from "react-icons/md";
 import { Element } from "react-scroll";
-import { SimplePopper } from "../Popper";
+import { SimplePopper } from "../shared_components/Popper";
 
 export function DesktopDownloadSection() {
     return (

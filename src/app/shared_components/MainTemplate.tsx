@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { scroller } from "react-scroll";
 import { Footer } from "./Footer";
-import { DesktopHeader, MobileHeader } from "./Header";
+import { DesktopHeader, MobileHeader } from "./header_components/Header";
 
 export function MainTemplate({ children }: Readonly<{
     children: React.ReactNode;

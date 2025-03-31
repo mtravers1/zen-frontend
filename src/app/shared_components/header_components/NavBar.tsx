@@ -1,5 +1,5 @@
+import { DownloadPopper } from "../Popper";
 import { NavBarItem } from "./NavBarItem";
-import { DownloadPopper } from "./Popper";
 export function NavBar() {
     const names = ["Home", "Solutions", "Contact"];
     const routes = ["/", "/", "/contact"];

@@ -1,6 +1,6 @@
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import IconButton from "./IconButton";
+import IconButton from "../IconButton";
 
 export function IconBar() {
     const icons = [];

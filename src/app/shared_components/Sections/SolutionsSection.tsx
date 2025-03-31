@@ -40,59 +40,68 @@ export function DesktopSolutionsSection() {
                         <IconLabel name={"B2B Marketplaces"}> <FaBriefcase /></IconLabel>
                     </div>
                 </div>
-                <div className="flex gap-[10vw]" >
-                    <div className=" pl-[5vw] w-[40vw] h-[25vw]">
+                <div className="flex gap-[10vw] justify-center" >
+                    <div className="hidden lg:block pl-[5vw] w-[40vw] h-[25vw]">
                         <Image className="!relative z-10" src="/vecteezy_ai-artificial-intelligence-concept-global-data-connection_24299683.jpg" fill={true} alt="" ></Image>
                     </div>
-                    <div className="flex flex-col grow">
-                        <div className='font-bold text-[3vw] text-center text-[#1f6d4f] pr-[2vw]'>
+                    <div className=" flex flex-col grow px-[10vw] lg:px-[0]">
+                        <div className='font-bold text-3xl text-center text-[#1f6d4f] pr-[2vw]'>
                             Ai Automation
                         </div>
-                        <div className='text-[1.5vw] font-medium text-center pr-[2vw]'>
+
+
+                        <div className='text-lg font-medium text-center pr-[2vw]'>
                             Data entry automation and AI predictions and projections.
                         </div>
-                        <div className='absolute text-[3vw] font-bold text-[#1f6d4f] mt-[10vw] ml-[5vw]'>
-                            70%
-                        </div>
-                        <div className='absolute font-medium text-[1vw]/[1.5vw] mt-[15vw] ml-[3vw] '>
-                            Artificial Intelligence
-                            <br />
-                            Data and Technology
-                        </div>
-                        <div className='absolute  text-[3vw] font-bold text-[#1f6d4f] mt-[20vw] ml-[35vw]'>
-                            30%
-                        </div >
-                        <div className='absolute font-medium text-[1vw]/[1.5vw] mt-[25vw] ml-[35vw]'>
-                            Human Intelligence
-                            <br />
-                            Costumer Service
-                            <br />
-                            and Advice
-                        </div>
-                        <div className='absolute border-2  border-t-0 border-r-0 w-[5vw] h-[2vw] mt-[20vw] ml-[8vw] z-10'>
+                        <div className='mt-[5vw] flex justify-center h-[25vw]'>
+                            <div className='basis-1/4'>
+                                <div className='lg:text-[3vw] text-[5vw] font-bold text-[#1f6d4f]'>
+                                    70%
+                                </div>
+
+                                <div className='font-medium lg:text-[1vw]/[1.5vw] text-[.8em] '>
+                                    Artificial Intelligence
+                                    <br />
+                                    Data and Technology
+                                </div>
+                                <div className='border-2  border-t-0 border-r-0 w-[5vw] h-[2vw] ml-[50%] z-10' />
+                            </div>
+                            <div className='basis-1/2 flex-grow'>
+                                <PieChart className="" tooltip={{ trigger: 'none' }}
+                                    series={[
+                                        {
+                                            data: [
+                                                { id: 0, value: 30, color: "#1f6d4f" },
+                                                { id: 1, value: 70, color: "#E0E721" },
+                                            ],
+                                            paddingAngle: 5,
+                                            outerRadius: "100%",
+                                            cx: "60%",
+                                            cy: "50%",
+                                            innerRadius: "4%",
+                                        },
+
+                                    ]}
+                                />
+                            </div>
+                            <div className='basis-1/4 mt-[10vw]'>
+                                <div className='border-2 border-b-0 border-l-0 w-[5vw] h-[2vw]  -ml-[15%] z-10'>
+                                </div>
+                                <div className=' lg:text-[3vw] text-[5vw] font-bold text-[#1f6d4f] '>
+                                    30%
+                                </div >
+                                <div className='font-medium lg:text-[1vw]/[1.5vw] text-[.8em]'>
+                                    Human Intelligence
+                                    <br />
+                                    Costumer Service
+                                    <br />
+                                    and Advice
+                                </div>
+
+                            </div>
 
                         </div>
-                        <div className='absolute border-2 border-b-0 border-l-0 w-[5vw] h-[2vw] mt-[18vw] ml-[33vw] z-10'>
 
-                        </div>
-                        <div className='self-center md:h-[25vw] md:w-[25vw] lg:h-[20vw] lg:w-[20vw]'>
-                            <PieChart tooltip={{ trigger: 'none' }}
-                                series={[
-                                    {
-                                        data: [
-                                            { id: 0, value: 30, color: "#1f6d4f" },
-                                            { id: 1, value: 70, color: "#E0E721" },
-
-                                        ],
-                                        paddingAngle: 5,
-                                        innerRadius: "4%",
-
-                                    },
-
-                                ]}
-
-                            />
-                        </div>
                     </div>
                 </div>
                 <div className='flex'>
@@ -102,7 +111,7 @@ export function DesktopSolutionsSection() {
                             <br />
                             & Financial Dashboard
                         </div>
-                        <div className='mt-[3vw] ml-[5vw] self-center text-[1vw] font-medium'>
+                        <div className='mt-[3vw] ml-[5vw] self-center sm:text-[1vw]  text-[2vw] font-medium'>
                             • Cash Flow Analysis: Up-to-date Financial
                             <br />
                             Reports, KPI’s, Net Worth
@@ -115,8 +124,8 @@ export function DesktopSolutionsSection() {
                         <Image className="!relative z-10" src="/Laptop.png" fill={true} alt="" ></Image>
                     </div>
                 </div>
-            </Element>
-        </div>
+            </Element >
+        </div >
     );
 }
 

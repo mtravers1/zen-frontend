@@ -18,8 +18,8 @@ export function DesktopDownloadSection() {
                     <div className=" w-[80vw] h-[50vw] -ml-[10vw] mt-[25vw]">
                         <Image className="!relative z-15   scale-150" src="/Phone_Screen_center.png" fill={true} alt="" ></Image>
                     </div>
-                    <div className=" flex flex-col absolute z-20 w-[35vw] h-[35vw] ml-[55vw] mt-[25vw] bg-[#1f6d4f] rounded-full items-center">
-                        <MdPhoneAndroid className="mt-[4vw] text-[7vw] text-[#d1e242]" />
+                    <div className=" flex flex-col absolute z-20 md:w-[35vw] md:h-[35vw] w-[50vw] h-[50vw]  md:ml-[55vw] md:mt-[25vw] ml-[45vw] mt-[25vw] bg-[#1f6d4f] rounded-full items-center">
+                        <MdPhoneAndroid className="md:mt-[4vw] mt-[10vw] text-[7vw] text-[#d1e242]" />
                         <div className="text-white text-[4vw] font-bold">
                             $14.99
                         </div>

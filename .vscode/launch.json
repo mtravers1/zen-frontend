@@ -2,10 +2,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Next.js: debug client-side",
+            "name": "Launch Next.js Webapp",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npx next dev"
+        },
+        {
+            "name": "Attach Debug Next.js Webapp",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:3000"
+            "url": "http://localhost:3000",
         }
     ],
+    "compounds": [
+        {
+            "name": "Debug Next.js Webapp",
+            "configurations": [
+                "Launch Next.js Webapp",
+                "Attach Debug Next.js Webapp"
+            ],
+            "stopAll": true
+        }
+    ]
 }

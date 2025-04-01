@@ -7,9 +7,9 @@ export function Footer() {
             <div className="self-center"> © 2025 Zentavos All rights reserved.</div>
             <div className="flex flex-row  gap-[2vw] self-center">
                 <Link className="hover:text-white " href="/"> Home</Link>
-                <Link className="hover:text-white " href="/privacy"> Privacy Policy</Link>
-                <Link className="hover:text-white " href="/terms"> Terms and Conditions</Link>
-                <Link className="hover:text-white " href="/contact"> Contact</Link>
+                <Link className="hover:text-white " href="/privacy-policy"> Privacy Policy</Link>
+                <Link className="hover:text-white " href="/terms-of-service"> Terms of Service</Link>
+                <Link className="hover:text-white " href="/contact-us"> Contact</Link>
             </div>
         </div >
 

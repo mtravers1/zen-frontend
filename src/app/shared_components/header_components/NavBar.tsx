@@ -2,7 +2,7 @@ import { DownloadPopper } from "../Popper";
 import { NavBarItem } from "./NavBarItem";
 export function NavBar() {
     const names = ["Home", "Solutions", "Contact"];
-    const routes = ["/", "/", "/contact"];
+    const routes = ["/", "/", "/contact-us"];
     const rows = [];
     for (let i = 0; i < names.length; i++) {
         rows.push(<NavBarItem key={i} name={(names[i]).toUpperCase()} route={routes[i]} />);

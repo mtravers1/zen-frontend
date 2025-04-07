@@ -2,7 +2,7 @@ import { DownloadPopperSide } from "../Popper";
 import { NavBarItem } from "./NavBarItem";
 export function NavMenu({ closeDrawer }: { closeDrawer: () => void }) {
     const names = ["Home", "Solutions", "Contact"];
-    const routes = ["/", "/", "/contact"];
+    const routes = ["/", "/", "/contact-us"];
     const rows = [];
     for (let i = 0; i < names.length; i++) {
         rows.push(<NavBarItem key={2 * i} name={(names[i]).toUpperCase()} closeDrawer={closeDrawer} route={routes[i]} />);

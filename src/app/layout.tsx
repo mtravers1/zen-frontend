@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
+import Theme from "./theme";
 
 const aeonik = localFont({
   src: [
@@ -112,11 +113,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className={`${aeonik.variable} antialiased`}>
-        {children}
-      </body>
+      <Theme>
+        <body className={`${aeonik.variable} antialiased`}>
+          {children}
+        </body>
+      </Theme>
     </html>
   );
 }

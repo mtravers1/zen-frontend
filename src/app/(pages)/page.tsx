@@ -1,9 +1,9 @@
 import { headers } from 'next/headers';
 import { userAgent } from "next/server";
-import { DesktopDownloadSection, MobileDownloadSection } from "./sections/DownloadSection";
-import { DesktopHomeSection, MobileHomeSection } from "./sections/HomeSection";
-import { DesktopSolutionsSection, MobileSolutionsSection } from "./sections/SolutionsSection";
-import { MainTemplate } from "./shared_components/MainTemplate";
+import { DesktopDownloadSection, MobileDownloadSection } from "../sections/DownloadSection";
+import { DesktopHomeSection, MobileHomeSection } from "../sections/HomeSection";
+import { SolutionsSection } from "../sections/SolutionsSection";
+import { MainTemplate } from "../shared_components/MainTemplate";
 
 export default async function Home() {
   const headersList = await headers();
@@ -14,7 +14,7 @@ export default async function Home() {
       <div>
         <MainTemplate>
           <MobileHomeSection ></MobileHomeSection>
-          <MobileSolutionsSection ></MobileSolutionsSection>
+          <SolutionsSection ></SolutionsSection>
           <MobileDownloadSection ></MobileDownloadSection>
         </MainTemplate>
       </div>
@@ -25,7 +25,7 @@ export default async function Home() {
       <div>
         <MainTemplate>
           <DesktopHomeSection ></DesktopHomeSection>
-          <DesktopSolutionsSection ></DesktopSolutionsSection>
+          <SolutionsSection ></SolutionsSection>
           <DesktopDownloadSection ></DesktopDownloadSection>
         </MainTemplate>
       </div>

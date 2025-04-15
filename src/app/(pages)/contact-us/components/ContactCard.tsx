@@ -15,11 +15,11 @@ export function ContactCard({ name, email, children }: { name: string, email: st
                         <a className="text-[3vw] md:text-[1vw] underline m-[2vw]" href={`mailto:${email}`}>
                             {email}
                         </a>
-                        <div className="mx-[2vw]">
-                            {children}
-                        </div>
 
                     </div>
+                </div>
+                <div className="mx-[2vw] text-center">
+                    {children}
                 </div>
             </div>
         </div>

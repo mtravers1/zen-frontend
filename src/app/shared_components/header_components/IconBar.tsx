@@ -4,10 +4,10 @@ import IconButton from "../IconButton";
 
 export function IconBar() {
     const icons = [];
-    icons.push({ "link": "https://www.facebook.com", "label": "facebook", "icon": <FaFacebookF className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
-    icons.push({ "link": "https://instagram.com", "label": "instagram", "icon": <FaInstagram className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
-    icons.push({ "link": "https://x.com/home", "label": "x", "icon": <FaXTwitter className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
-    icons.push({ "link": "https://www.youtube.com", "label": "youtube", "icon": <FaYoutube className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
+    icons.push({ "link": "https://www.facebook.com/zentavosinc", "label": "facebook", "icon": <FaFacebookF className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
+    icons.push({ "link": "https://www.instagram.com/zentavosinc/", "label": "instagram", "icon": <FaInstagram className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
+    icons.push({ "link": "https://x.com/ZentavosInc", "label": "x", "icon": <FaXTwitter className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
+    icons.push({ "link": "https://www.youtube.com/@zentavosinc", "label": "youtube", "icon": <FaYoutube className="scale-75 fill-[#006847] h-[4.5vw] w-[4.5vw] sm:h-[2.5vw] sm:w-[2.5vw] md:h-[2vw] md:w-[2vw] lg:h-[1.5vw] lg:w-[1.5vw]" /> });
 
 
     const rows = [];

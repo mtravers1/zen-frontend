@@ -10,34 +10,34 @@ import { MdOutlineOndemandVideo, MdOutlinePhoneIphone } from "react-icons/md";
 import { RiFilePaperLine } from "react-icons/ri";
 import { Element } from "react-scroll";
 import { IconLabel } from "../shared_components/IconLabel";
+import { Chip } from "@mui/material";
 
-export function DesktopSolutionsSection() {
+
+export function SolutionsSection() {
     return (
         <div>
             <Element id="SolutionsDesktop" name="SOLUTIONSDesktop" className="element gap-[10vw] flex flex-col">
                 <h1 className="absolute z-40 text-center w-full text-[#1f6d4f] text-[4vw] font-bold -mt-[10vw]">The Complete Financial Tool You Need!</h1>
-                <div className="relative w-full h-[50vw]  overflow-clip">
-                    <Image className="!relative z-10 scale-150" src="/Downtown_20Houston_BW.tif" fill={true} alt=""></Image>
-                </div>
-                <div className="absolute z-20 bg-[#bfc221] opacity-90 w-full h-[50vw]"></div>
-                <div className="absolute w-[80vw] h-[50vw] -ml-[25vw]">
-                    <Image className="!relative z-30" src="/Screenshots_arrange.png" fill={true} alt="" ></Image>
-                </div>
-                <div className="flex flex-col w-[50vw] gap-[4vw] z-40 ml-[40vw] absolute">
-                    <div className="text-[#1f6d4f] font-bold text-center text-[2vw] mt-[3vw]"> Everything a Small Business Owner <br /> needs at the push of a button.</div>
-                    <div className="grid  grid-cols-2  gap-y-[2vw]">
-                        <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
-                        <IconLabel name={"Bookkeeping, Accounting, & Taxes"}> <ImPieChart /></IconLabel>
-                        <IconLabel name={"Real-time Cash Flow Insights"}> <FaHandHoldingDollar /></IconLabel>
-                        <IconLabel name={"Real-time Financial Reports"}> <FaChartLine /></IconLabel>
-                        <IconLabel name={"Tax Liability"}> <IoInformationCircleOutline /></IconLabel>
-                        <IconLabel name={"Invoicing"}><RiFilePaperLine /></IconLabel>
-                        <IconLabel name={"On-Call CFO"}> <MdOutlinePhoneIphone /></IconLabel>
-                        <IconLabel name={"Full Back-Office Support"}> <LuClipboardCheck /></IconLabel>
-                        <IconLabel name={"Access to Capital"}> <IoKey /></IconLabel>
-                        <IconLabel name={"Financial & Business Education"}> <FaBook /></IconLabel>
-                        <IconLabel name={"Video Training Library"}> <MdOutlineOndemandVideo /></IconLabel>
-                        <IconLabel name={"B2B Marketplaces"}> <FaBriefcase /></IconLabel>
+                <div className="relative w-full bg-[url(/Downtown_Houston_BW.jpg)] bg-cover">
+                    <div className="relative z-30 grid md:grid-cols-2 w-full h-full justify-center bg-[#bfc221E6]">
+                        <div className="relative !h-full hidden md:block bg-[url(/Screenshots_arrange.png)] bg-cover bg-no-repeat bg-right"></div>
+                        <div className="flex flex-col my-10 gap-[4vw] w-3/4 md:w-full md:pr-10 mx-auto lg:max-w-xl xl:ml[10vw]">
+                            <div className="text-[#1f6d4f] font-bold text-center text-lg, sm:text-2xl lg:text-3xl">Everything a Small Business Owner needs at the push of a button.</div>
+                            <div className="grid sm:grid-cols-2 mx-auto gap-y-[2vw]">
+                                <IconLabel name={"Digital Wallet"}> <FaBarcode /></IconLabel>
+                                <IconLabel name={"Bookkeeping, Accounting, & Taxes"} soon> <ImPieChart /></IconLabel>
+                                <IconLabel name={"Real-time Cash Flow Insights"}> <FaHandHoldingDollar /></IconLabel>
+                                <IconLabel name={"Real-time Financial Reports"}> <FaChartLine /></IconLabel>
+                                <IconLabel name={"Tax Liability"} soon> <IoInformationCircleOutline /></IconLabel>
+                                <IconLabel name={"Invoicing"} soon><RiFilePaperLine /></IconLabel>
+                                <IconLabel name={"On-Call CFO"} soon> <MdOutlinePhoneIphone /></IconLabel>
+                                <IconLabel name={"Full Back-Office Support"}> <LuClipboardCheck /></IconLabel>
+                                <IconLabel name={"Access to Capital"} soon> <IoKey /></IconLabel>
+                                <IconLabel name={"Financial & Business Education"}> <FaBook /></IconLabel>
+                                <IconLabel name={"Video Training Library"} soon> <MdOutlineOndemandVideo /></IconLabel>
+                                <IconLabel name={"B2B Marketplaces"} soon> <FaBriefcase /></IconLabel>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="flex gap-[10vw] justify-center" >
@@ -52,6 +52,9 @@ export function DesktopSolutionsSection() {
 
                         <div className='text-lg font-medium text-center pr-[2vw]'>
                             Data entry automation and AI predictions and projections.
+                        </div>
+                        <div className='text-center'>
+                            <Chip label="Coming Soon" size="small" variant="outlined" color="primary" />
                         </div>
                         <div className='mt-[5vw] flex justify-center h-[25vw]'>
                             <div className='basis-1/4'>

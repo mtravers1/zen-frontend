@@ -23,7 +23,9 @@ export default async function Contact() {
                                 <div className="mt-[20vw] w-full gap-[10vw] absolute z-20 flex md:flex-row flex-col justify-center ">
 
                                     <div className="self-center flex flex-col text-[#1f6d4f] ">
-                                        <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold md:h-[3vw] md:w-[20vw] lg:h-[3vw] lg:w-[15vw] h-[10vw] w-[30vw]"> +1 800-411-1139</Button></ContactCard>
+                                        <ContactCard name="Customer Service" email="info@zentavos.com">
+                                            <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full"> +1 800-411-1139</Button>
+                                        </ContactCard>
                                         <ContactCard name="Legal" email="legal@zentavos.com"> </ContactCard>
                                         <ContactCard name="Support" email="support@zentavos.com"> </ContactCard>
                                     </div>
@@ -58,7 +60,9 @@ export default async function Contact() {
                                     <h1 className="-mt-[15vw] mb-[15vw] text-center text-[5vw]  font-medium">
                                         Contact Us
                                     </h1>
-                                    <ContactCard name="Customer Service" email="info@zentavos.com"> <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full !mt-[0.5vw] !font-bold"> +1 800-411-1139</Button></ContactCard>
+                                    <ContactCard name="Customer Service" email="info@zentavos.com">
+                                        <Button className="!bg-[#d1e242] !text-[#1f6d4f] !rounded-full"> +1 800-411-1139</Button>
+                                    </ContactCard>
                                     <ContactCard name="Legal" email="legal@zentavos.com"> </ContactCard>
                                     <ContactCard name="Support" email="support@zentavos.com"> </ContactCard>
                                 </div>

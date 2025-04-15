@@ -15,7 +15,7 @@ export function DesktopDownloadSection() {
                     <Image className="!relative z-10" src="/vecteezy_traffic-by-night_52317212.jpg" fill={true} alt="" ></Image>
                 </div>
                 <div className="absolute flex">
-                    <div className=" w-[80vw] h-[50vw] -ml-[10vw] mt-[25vw]">
+                    <div className=" w-[80vw] h-[37.1vw] -ml-[10vw] mt-[25vw]">
                         <Image className="!relative z-15   scale-150" src="/Phone_Screen_center.png" fill={true} alt="" ></Image>
                     </div>
                     <div className=" flex flex-col absolute z-20 md:w-[35vw] md:h-[35vw] w-[50vw] h-[50vw]  md:ml-[55vw] md:mt-[25vw] ml-[45vw] mt-[25vw] bg-[#1f6d4f] rounded-full items-center">
@@ -45,7 +45,7 @@ export function MobileDownloadSection() {
                     <Image className="!relative z-10" src="/vecteezy_traffic-by-night_52317212.jpg" fill={true} alt="" ></Image>
                 </div>
                 <div className="absolute flex">
-                    <div className=" w-[80vw] h-[50vw] -ml-[15vw] mt-[35vw]">
+                    <div className=" w-[80vw] h-[37.1vw] -ml-[15vw] mt-[35vw]">
                         <Image className="!relative z-15   scale-150" src="/Phone_Screen_center.png" fill={true} alt="" ></Image>
                     </div>
                     <div className=" flex flex-col absolute z-20 w-[50vw] h-[50vw] ml-[45vw] mt-[32vw] bg-[#1f6d4f] rounded-full items-center">

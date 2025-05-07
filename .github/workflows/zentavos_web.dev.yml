@@ -72,7 +72,7 @@ jobs:
           ssh -i private_key.pem ${{ secrets.DEPLOYMENT_USER_DEV }}@${{ secrets.DEPLOYMENT_HOST_DEV }} -p ${{ secrets.DEPLOYMENT_PORT }} -o StrictHostKeyChecking=no <<EOF
             cd ${{ secrets.DEPLOYMENT_PATH }}
             npm install --omit=dev
-            pm2 start npm --name ${{ DEPLOYMENT_NAME }} -- run start
+            pm2 start npm --name $DEPLOYMENT_NAME -- run start
             pm2 save
           EOF
           rm -f private_key.pem # Remove the private key file after use for security

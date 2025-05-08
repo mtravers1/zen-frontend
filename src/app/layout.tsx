@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
 import Theme from "./theme";
@@ -104,9 +104,12 @@ export const metadata: Metadata = {
   manifest: '/favicon/manifest.json',
 };
 
-export const viewport = 'width=device-width, initial-scale=1';
-export const themeColor = '#ffffff';
-export const colorScheme = 'light dark';
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#ffffff',
+  colorScheme: 'light dark',
+};
 
 export default function RootLayout({
   children,

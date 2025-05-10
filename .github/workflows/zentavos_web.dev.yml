@@ -9,7 +9,6 @@ on:
 
 env:
   DEPLOYMENT_NAME: dev
-  APP_PORT: 3002
 
 jobs:
   build:
@@ -30,8 +29,10 @@ jobs:
         id: cache-npm
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ztv-web-build-${{ hashFiles('package-lock.json') }}
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ztv-web-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
           restore-keys: |
             ztv-web-build-
             ztv-web-

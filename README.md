@@ -1,10 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
+
 Install npm packages
+
 ```bash
 npm install
 ```
+
 First, run the development server:
 
 ```bash
@@ -13,7 +16,20 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
-
 ## Additional Setup
+
 Install Tailwind extension and set language mode of css files to tailwind (Ctrl-k m)
+
+## Accessing Dev and Staging servers.
+
+Dev and Staging servers require a password to access. The URL and passwords are below:
+
+https://dev.zentavos.com
+
+- user: ztvwebdev
+- pwd: .b1YsdqN1=,0
+
+https://staging.zentavos.com
+
+- user: ztvwebstg
+- pwd: y5@vC6_ff\*WJ

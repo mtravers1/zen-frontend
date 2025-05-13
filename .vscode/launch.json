@@ -5,13 +5,16 @@
             "name": "Launch Next.js Webapp",
             "type": "node-terminal",
             "request": "launch",
-            "command": "npx next dev"
+            "command": "npx next dev",
+            "env": {
+                "PORT": "3936"
+            }
         },
         {
             "name": "Attach Debug Next.js Webapp",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:3000",
+            "url": "http://localhost:3936",
         }
     ],
     "compounds": [

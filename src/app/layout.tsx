@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google'
 import localFont from 'next/font/local';
 import "./globals.css";
 import Theme from "./theme";
@@ -120,22 +120,7 @@ export default function RootLayout({
 
   return (
     <>
-      {/* Begin Scripts */}
-      {/* Google tag (gtag.js) */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX" strategy="afterInteractive"></Script>
-      <Script
-        id="google-analytics-script"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-S98KBFKCFX');
-          `,
-        }}
-      />
-      {/* End Scripts */}
+      <GoogleAnalytics gaId="G-S98KBFKCFX" />
 
       <Theme>
         <body className={`${aeonik.variable} antialiased`}>

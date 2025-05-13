@@ -119,7 +119,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <>
       {/* Begin Scripts */}
       {/* Google tag (gtag.js) */}
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX" strategy="afterInteractive"></Script>
@@ -142,6 +142,6 @@ export default function RootLayout({
           {children}
         </body>
       </Theme>
-    </html>
+    </>
   );
 }

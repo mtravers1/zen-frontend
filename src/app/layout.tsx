@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import Script from 'next/script';
+// import Script from 'next/script';
 import localFont from 'next/font/local';
 import "./globals.css";
 import Theme from "./theme";
@@ -122,7 +122,7 @@ export default function RootLayout({
     <>
       {/* Begin Scripts */}
       {/* Google tag (gtag.js) */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX" strategy="afterInteractive"></Script>
+      {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX" strategy="afterInteractive"></Script>
       <Script
         id="google-analytics-script"
         strategy="afterInteractive"
@@ -134,7 +134,7 @@ export default function RootLayout({
             gtag('config', 'G-S98KBFKCFX');
           `,
         }}
-      />
+      /> */}
       {/* End Scripts */}
 
       <Theme>

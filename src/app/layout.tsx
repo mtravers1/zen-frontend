@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { GoogleAnalytics } from '@next/third-parties/google'
+// import { GoogleAnalytics } from '@next/third-parties/google'
 import localFont from 'next/font/local';
 import "./globals.css";
 import Theme from "./theme";
@@ -120,8 +120,7 @@ export default function RootLayout({
 
   return (
     <>
-      <GoogleAnalytics gaId="G-S98KBFKCFX" />
-
+      {/* <GoogleAnalytics gaId="G-S98KBFKCFX" /> */}
       <Theme>
         <body className={`${aeonik.variable} antialiased`}>
           {children}

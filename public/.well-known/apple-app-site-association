@@ -2,11 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appID": "38X5SLTZMU.com.zentavos.zentavosuat",
-        "paths": [ "/plaid-return-uat", "/new-plaid-return-uat" ]
-      },
-      {
-        "appID": "38X5SLTZMU.com.zentavos.mobile",
+        "appID": "38X5SLTZMU.com.zentavos.zentavosdev",
         "paths": [ "/plaid-return", "/new-plaid-return" ]
       }
     ]

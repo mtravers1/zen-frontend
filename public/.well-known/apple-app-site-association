@@ -3,10 +3,6 @@
     "details": [
       {
         "appID": "38X5SLTZMU.com.zentavos.zentavosuat",
-        "paths": [ "/plaid-return-uat", "/new-plaid-return-uat" ]
-      },
-      {
-        "appID": "38X5SLTZMU.com.zentavos.mobile",
         "paths": [ "/plaid-return", "/new-plaid-return" ]
       }
     ]

@@ -39,6 +39,7 @@ next-env.d.ts
 
 # Environment specific files
 robots.txt
+public/.well-known/apple-app-site-association
 
 # Environment variables
 .env*

@@ -50,13 +50,13 @@ export default function Privacy() {
                                 <b>Purpose</b>: We use location data to deliver relevant content, improve service functionality, or enable location-based features, which includes, but without limitation, to enable mileage tracking for tax and expense purposes, making it easier for you to organize and report business-related travel.
                             </li>
                             <li>
-                                <b>Storage and Security</b>: Location data is securely stored and encrypted to protect your privacy. We retain this data only for as long as necessary to fulfill the stated purposes or as required by applicable laws, including, without limitation, the General Data Protection Regulation ("GDPR") and the California Consumer Privacy Act ("CCPA").
+                                <b>Storage and Security</b>: Location data is securely stored and encrypted to protect your privacy. We retain this data only for as long as necessary to fulfill the stated purposes or as required by applicable laws, including, without limitation, the General Data Protection Regulation (&ldquo;GDPR&rdquo;) and the California Consumer Privacy Act (&ldquo;CCPA&rdquo;).
                             </li>
                             <li>
                                 <b>Sharing</b>: We do not share your location data with third parties, except with service providers for analytics who comply with privacy requirements, or as required by law.
                             </li>
                             <li>
-                                <b>User Control</b>: You can enable or disable location access at any time through your device's settings. Disabling location services will limit certain app functionalities, including the mileage tracking feature.
+                                <b>User Control</b>: You can enable or disable location access at any time through your device&apos;s settings. Disabling location services will limit certain app functionalities, including the mileage tracking feature.
                             </li>
                             <li>
                                 <b>CCPA Compliance</b>: For California residents, we comply with CCPA by disclosing location data collection and offering the right to opt-out of data sales (if applicable) and request data deletion.

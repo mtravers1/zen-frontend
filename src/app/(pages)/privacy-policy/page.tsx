@@ -25,16 +25,49 @@ export default function Privacy() {
                         </h2>
                         <p>
                             When you visit the Zentavos™ website, we collect and store the name of the domain and host from which you accessed the site; the IP address of the computer you used; the browser software and operating system you used; the date and time you accessed the site; the IP address from which you accessed our site; cookie information and all pages within the Zentavos™ website that you access.  We may put small data files called “cookies” on your computer. One kind of cookie identifies you as you move through our site and makes it easier for you to view various site pages. This cookie sits in your computer, not our system, and it expires when you log out and close your browser. Other cookies retain information to make your use of our site easier. Our cookies are coded so that Zentavos™ is the only entity that can use that information, and you can set your browser to decline any cookie downloads if you wish, though that may change your browsing experience.
-                            <br />
-                            <br />
+                        </p>
+                        <p>
                             If you request to transact business with Zentavos™, we will ask you to give us personal information (such as your name, email address and phone number) in order for us to address your needs.
-                            <br />
-                            <br />
+                        </p>
+                        <p>
                             You may receive emails and phone calls from us. Zentavos™ will also email you information about pricing and financing, while answering any questions you may have. If you purchase products, then you will receive emails regarding payment, customer support and delivery scheduling. Zentavos™ may also collect information about your transactions with it; the features of any order for product that you place with us; and any specific instructions you give regarding a purchase or service. Zentavos™ may collect information from you in other ways, such as when you correspond with Zentavos™ or participate in an online survey.
-                            <br />
-                            <br />
+                        </p>
+                        <p>
                             Your disclosure to us of personal information is voluntary and all such information will be used to customize sales for you and process your order, enforce this Privacy Policy and these terms and conditions, and provide you with excellent service.
                         </p>
+                        <p>
+                        Your disclosure to us of personal information is voluntary and all such information will be used to customize sales for you and process your order, enforce this Privacy Policy and these terms and conditions, and provide you with excellent service.
+                        </p>
+
+                        <h2 className="font-bold my-[2vh]">
+                            Location Data
+                        </h2>
+                        <p>
+                            Our app collects and processes your location data to provide personalized recommendations, navigation services, or location-based content, including, without limitation, tracking trips and determining mileage. This information is used to simplify tax filing and expense reporting for you. This may include precise location data obtained through GPS, Wi-Fi, or cellular networks when you enable location services.
+                        </p>
+                        <ul className="list-disc pl-6 space-y-4 my-4">
+                            <li>
+                                <b>Purpose</b>: We use location data to deliver relevant content, improve service functionality, or enable location-based features, which includes, but without limitation, to enable mileage tracking for tax and expense purposes, making it easier for you to organize and report business-related travel.
+                            </li>
+                            <li>
+                                <b>Storage and Security</b>: Location data is securely stored and encrypted to protect your privacy. We retain this data only for as long as necessary to fulfill the stated purposes or as required by applicable laws, including, without limitation, the General Data Protection Regulation (&ldquo;GDPR&rdquo;) and the California Consumer Privacy Act (&ldquo;CCPA&rdquo;).
+                            </li>
+                            <li>
+                                <b>Sharing</b>: We do not share your location data with third parties, except with service providers for analytics who comply with privacy requirements, or as required by law.
+                            </li>
+                            <li>
+                                <b>User Control</b>: You can enable or disable location access at any time through your device&apos;s settings. Disabling location services will limit certain app functionalities, including the mileage tracking feature.
+                            </li>
+                            <li>
+                                <b>CCPA Compliance</b>: For California residents, we comply with CCPA by disclosing location data collection and offering the right to opt-out of data sales (if applicable) and request data deletion.
+                            </li>
+                        </ul>
+                        <div className="text-justify my-4">
+                            <span>We comply with CCPA, and other applicable data protection laws. For more details or to exercise your privacy rights, such as data access, deletion, or opt-out requests under CCPA, please contact us at </span>
+                            <a className="text-[#468C86] underline" href="mailto:legal@zentavos.com">legal@zentavos.com</a>
+                            <span>.</span>
+                        </div>
+
                         <h2 className="font-bold my-[2vh]">
                             Sharing personal information
                         </h2>

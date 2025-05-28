@@ -38,6 +38,11 @@ jobs:
             ztv-web-
       - name: Install dependencies
         run: npm ci
+      - name: Copy server-specific configuration files
+        run: |
+          mkdir -p public/.well-known
+          cp server-config/production/robots.txt public/robots.txt
+          cp server-config/production/.well-known/apple-app-site-association public/.well-known/
       - name: Build Web App
         run: npm run build
       - name: VPN config

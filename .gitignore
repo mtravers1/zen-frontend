@@ -38,8 +38,10 @@ yarn-error.log*
 next-env.d.ts
 
 # Environment specific files
-robots.txt
+public/robots.txt
 public/.well-known/apple-app-site-association
+!server-config/**/robots.txt
+!server-config/**/.well-known/apple-app-site-association
 
 # Environment variables
 .env*

@@ -1,0 +1,10 @@
+﻿{
+  "applinks": {
+    "details": [
+      {
+        "appID": "38X5SLTZMU.com.zentavos.zentavosdev",
+        "paths": [ "/plaid-return", "/new-plaid-return" ]
+      }
+    ]
+  }
+}

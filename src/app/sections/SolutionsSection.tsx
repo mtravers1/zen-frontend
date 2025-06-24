@@ -96,7 +96,7 @@ export function SolutionsSection() {
                                 <div className='font-medium lg:text-[1vw]/[1.5vw] text-[.8em]'>
                                     Human Intelligence
                                     <br />
-                                    Costumer Service
+                                    Customer Service
                                     <br />
                                     and Advice
                                 </div>
@@ -185,7 +185,7 @@ export function MobileSolutionsSection() {
                     <div className='absolute font-medium text-[3vw]/[3vw] mt-[50vw] ml-[70vw]'>
                         Human Intelligence
                         <br />
-                        Costumer Service
+                        Customer Service
                         <br />
                         and Advice
                     </div>

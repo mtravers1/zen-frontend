@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { MdPhoneAndroid } from "react-icons/md";
 import { Element } from "react-scroll";
-import { SimplePopper } from "../shared_components/Popper";
+import Link from "next/link";
 
 export function DesktopDownloadSection() {
     return (
@@ -26,7 +26,14 @@ export function DesktopDownloadSection() {
                         <div className="text-white text-[2vw] -mt-[1vw]">
                             a Month
                         </div>
-                        <SimplePopper />
+                        <div className="flex mt-[1vw] gap-[1vw]">
+                            <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[5vw] w-[17vw]">
+                                <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+                            </Link>
+                            <Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[5vw] w-[17vw]">
+                                <Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Element>
@@ -56,7 +63,14 @@ export function MobileDownloadSection() {
                         <div className="text-white text-[4vw] -mt-[2vw]">
                             a Month
                         </div>
-                        <SimplePopper />
+                        <div className="flex mt-[2vw] gap-[2vw]">
+                            <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[8vw] w-[25vw]">
+                                <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+                            </Link>
+                            <Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[8vw] w-[25vw]">
+                                <Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </Element>

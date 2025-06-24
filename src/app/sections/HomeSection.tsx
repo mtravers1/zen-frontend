@@ -1,19 +1,30 @@
 'use client'
 import Image from "next/image";
+import Link from "next/link";
 import { Element } from "react-scroll";
 export function DesktopHomeSection() {
     return (
         <div>
             <Element id="HomeDesktop" name="HOMEDesktop" className="element">
-                <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw]">
-                    <div className="font-bold text-white ">
-                        Your CFO
+                <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw] flex gap-[2vw] items-center">
+                    <div>
+                        <div className="font-bold text-white ">
+                            Your CFO
+                        </div>
+                        <div className="font-medium text-white ">
+                            at the touch
+                        </div>
+                        <div className="font-medium text-white ">
+                            of a button.</div>
                     </div>
-                    <div className="font-medium text-white ">
-                        at the touch
+                    <div className="flex flex-col gap-[1vw]">
+                        <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[5vw] w-[17vw]">
+                            <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+                        </Link>
+                        <Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[5vw] w-[17vw]">
+                            <Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+                        </Link>
                     </div>
-                    <div className="font-medium text-white ">
-                        of a button.</div>
                 </div>
                 <Image className="!relative z-10" src="/Hero-Banner-Woman-sky.png" fill={true} alt="" ></Image>
                 <div className=" mt-[15%] ml-[20%] absolute z-20">
@@ -47,15 +58,25 @@ export function MobileHomeSection() {
     return (
         <div>
             <Element id="HomeMobile" name="HOMEMobile" className="element">
-                <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw]">
-                    <div className="font-bold text-white ">
-                        Your CFO
+                <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw] flex gap-[4vw] items-center">
+                    <div>
+                        <div className="font-bold text-white ">
+                            Your CFO
+                        </div>
+                        <div className="font-medium text-white ">
+                            at the touch
+                        </div>
+                        <div className="font-medium text-white ">
+                            of a button.</div>
                     </div>
-                    <div className="font-medium text-white ">
-                        at the touch
+                    <div className="flex flex-col gap-[2vw]">
+                        <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[8vw] w-[25vw]">
+                            <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+                        </Link>
+                        <Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[8vw] w-[25vw]">
+                            <Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+                        </Link>
                     </div>
-                    <div className="font-medium text-white ">
-                        of a button.</div>
                 </div>
                 <div className=" w-full  h-[70vw] overflow-clip">
                     <div className="w-[90vw] h-[45vw] translate-x-[35vw] translate-y-[10vw]">

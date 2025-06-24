@@ -224,7 +224,7 @@ export default function Home() {
                         </h2>
                         <ul className=" list-disc mx-[2vw]">
                             <li>
-                                All content, features, and technology within the Platform, including software, designs, text, and graphics (collectively, “Content”), are owned by Zentavos, Inc. or our licensors and are protected by copyright, trademark, and other intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the Platform and its Content solely for your personal or business fiscal management purposes, as permitted by your subscription. Any violation of the copyright in the Content or these terms and conditions may be enforced by Zentavos, Inc. or the copyright owner to the fullest extent allowed by law. If you are aware of a potential infringement of our intellectual property, please contact <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailtolegal@zentavos.com">legal@zentavos.com</a>.
+                                All content, features, and technology within the Platform, including software, designs, text, and graphics (collectively, “Content”), are owned by Zentavos, Inc. or our licensors and are protected by copyright, trademark, and other intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the Platform and its Content solely for your personal or business fiscal management purposes, as permitted by your subscription. Any violation of the copyright in the Content or these terms and conditions may be enforced by Zentavos, Inc. or the copyright owner to the fullest extent allowed by law. If you are aware of a potential infringement of our intellectual property, please contact <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailto:legal@zentavos.com">legal@zentavos.com</a>.
                             </li>
                             <br />
                             <li>
@@ -251,7 +251,7 @@ export default function Home() {
                             </ul>
                         </ul>
                         <p>
-                            Please note that we will not process your complaint if it is not properly filled out or is incomplete. You may be held accountable for damages, including, without limitation, costs and attorneys’ fees for any misrepresentation or bad faith claims regarding the infringement of your intellectual property rights by the Content on this Platform. You may submit your claim to us by contacting us at <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailtolegal@zentavos.com">legal@zentavos.com</a>.
+                            Please note that we will not process your complaint if it is not properly filled out or is incomplete. You may be held accountable for damages, including, without limitation, costs and attorneys’ fees for any misrepresentation or bad faith claims regarding the infringement of your intellectual property rights by the Content on this Platform. You may submit your claim to us by contacting us at <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailto:legal@zentavos.com">legal@zentavos.com</a>.
 
                             At your discretion, you may provide feedback to Zentavos™ concerning the functionality and performance of the Platform from time to time, including, without limitation, identifying potential errors, improvements, modifications, bug fixes, or enhancements (the “Feedback”). If you, through your evaluation or otherwise, suggest any Feedback, you hereby assign the ownership in all Feedback to Zentavos™. In the event ownership in the Feedback cannot be granted to Zentavos™, you grant Zentavos™ at no charge a perpetual, irrevocable, royalty-free, sublicensable, worldwide right, and license to use, reproduce, disclose, sublicense, distribute, modify, and otherwise exploit such Feedback without restriction. You agree that Zentavos™ may disclose that Feedback to any third party in any manner and you agree that Zentavos™ has the ability to sublicense all Feedback in any form to any third party without restriction.
                         </p>
@@ -401,7 +401,7 @@ export default function Home() {
                             <br />
                             Zentavos, Inc.
                             <br />
-                            <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailtolegal@zentavos.com">legal@zentavos.com</a>
+                            <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailto:legal@zentavos.com">legal@zentavos.com</a>
                             <br />
                             5700 NW Central Dr. Suite 110
                             <br />

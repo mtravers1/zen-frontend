@@ -6,7 +6,7 @@ export function DesktopHomeSection() {
     return (
         <div>
             <Element id="HomeDesktop" name="HOMEDesktop" className="element">
-                <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw] flex gap-[2vw] items-center">
+                <div className="mt-[20%] ml-[10%] absolute z-20 text-[4vw]/[4vw] flex gap-[2vw] items-center w-[35vw]">
                     <div>
                         <div className="font-bold text-white ">
                             Your CFO
@@ -58,7 +58,7 @@ export function MobileHomeSection() {
     return (
         <div>
             <Element id="HomeMobile" name="HOMEMobile" className="element">
-                <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw] flex gap-[4vw] items-center">
+                <div className="mt-[20%] ml-[10%] absolute z-20 text-[8vw]/[8vw] flex gap-[4vw] items-center w-[70vw]">
                     <div>
                         <div className="font-bold text-white ">
                             Your CFO

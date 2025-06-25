@@ -26,7 +26,7 @@ export function DesktopDownloadSection() {
                         <div className="text-white text-[2vw] -mt-[1vw]">
                             a Month
                         </div>
-                        <div className="flex mt-[1vw] gap-[1vw]">
+                        <div className="flex flex-col items-center mt-[1vw] gap-[1vw]">
                             <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[5vw] w-[17vw]">
                                 <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
                             </Link>
@@ -63,7 +63,7 @@ export function MobileDownloadSection() {
                         <div className="text-white text-[4vw] -mt-[2vw]">
                             a Month
                         </div>
-                        <div className="flex mt-[2vw] gap-[2vw]">
+                        <div className="flex flex-col items-center mt-[2vw] gap-[2vw]">
                             <Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[8vw] w-[25vw]">
                                 <Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
                             </Link>

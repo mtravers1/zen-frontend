@@ -1,91 +1,94 @@
 import type { Metadata, Viewport } from "next";
-import Script from 'next/script';
-import localFont from 'next/font/local';
+import Script from "next/script";
+import localFont from "next/font/local";
 import "./globals.css";
 import Theme from "./theme";
 
 const aeonik = localFont({
   src: [
     {
-      path: './fonts/Aeonik-Regular.ttf',
-      weight: '400',
-      style: 'normal',
+      path: "./fonts/Aeonik-Regular.ttf",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: './fonts/Aeonik_OVERVIEW-Medium.ttf',
-      weight: '500',
-      style: 'normal',
+      path: "./fonts/Aeonik_OVERVIEW-Medium.ttf",
+      weight: "500",
+      style: "normal",
     },
     {
-      path: './fonts/Aeonik-Bold.ttf',
-      weight: '700',
-      style: 'normal',
+      path: "./fonts/Aeonik-Bold.ttf",
+      weight: "700",
+      style: "normal",
     },
     {
-      path: './fonts/Aeonik-Black.ttf',
-      weight: '900',
-      style: 'normal',
-    }
+      path: "./fonts/Aeonik-Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
   ],
-  variable: '--font-aeonik'
-})
+  variable: "--font-aeonik",
+});
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Zentavos',
-    default: 'Zentavos | Your CFO at the touch of a button.',
+    template: "%s | Zentavos",
+    default: "Zentavos | Your CFO at the touch of a button.",
   },
-  description: 'Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.',
-  keywords: ['finance', 'small business', 'CFO', 'business management'],
-  applicationName: 'Zentavos',
-  authors: [{ name: 'Zentavos Team', url: 'https://zentavos.com' }],
-  creator: 'Zentavos',
-  publisher: 'Zentavos',
+  description:
+    "Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.",
+  keywords: ["finance", "small business", "CFO", "business management"],
+  applicationName: "Zentavos",
+  authors: [{ name: "Zentavos Team", url: "https://zentavos.com" }],
+  creator: "Zentavos",
+  publisher: "Zentavos",
 
   icons: {
-    icon: '/favicon/favicon.png',
-    apple: '/favicon/apple-icon.png',
+    icon: "/favicon/favicon.png",
+    apple: "/favicon/apple-icon.png",
     other: [
       {
-        rel: 'icon',
-        url: '/favicon/favicon-32x32.png',
-        type: 'image/png',
-        sizes: '32x32',
+        rel: "icon",
+        url: "/favicon/favicon-32x32.png",
+        type: "image/png",
+        sizes: "32x32",
       },
       {
-        rel: 'icon',
-        url: '/favicon/favicon-16x16.png',
-        type: 'image/png',
-        sizes: '16x16',
+        rel: "icon",
+        url: "/favicon/favicon-16x16.png",
+        type: "image/png",
+        sizes: "16x16",
       },
     ],
   },
 
   openGraph: {
-    title: 'Zentavos | Your CFO at the touch of a button.',
-    description: 'Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.',
-    url: 'https://zentavos.com',
-    siteName: 'Zentavos',
+    title: "Zentavos | Your CFO at the touch of a button.",
+    description:
+      "Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.",
+    url: "https://zentavos.com",
+    siteName: "Zentavos",
     images: [
       {
-        url: '/favicon/android-icon-192x192.png',
+        url: "/favicon/android-icon-192x192.png",
         width: 192,
         height: 192,
-        alt: 'Zentavos Logo',
+        alt: "Zentavos Logo",
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
 
   twitter: {
-    card: 'summary_large_image',
-    title: 'Zentavos | Your CFO at the touch of a button.',
-    description: 'Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.',
-    images: ['/favicon/android-icon-192x192.png'],
+    card: "summary_large_image",
+    title: "Zentavos | Your CFO at the touch of a button.",
+    description:
+      "Zentavos is the tool a Small Business Owner needs in one simple, easy-to-use, and powerful application that helps you manage your business finances.",
+    images: ["/favicon/android-icon-192x192.png"],
   },
 
-  metadataBase: new URL('https://zentavos.com'),
+  metadataBase: new URL("https://zentavos.com"),
   robots: {
     index: true,
     follow: true,
@@ -94,22 +97,22 @@ export const metadata: Metadata = {
       index: true,
       follow: false,
       noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   alternates: {
-    canonical: './',
+    canonical: "./",
   },
-  manifest: '/favicon/manifest.json',
+  manifest: "/favicon/manifest.json",
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  themeColor: '#ffffff',
-  colorScheme: 'light dark',
+  themeColor: "#ffffff",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -117,12 +120,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       {/* <GoogleAnalytics gaId="G-S98KBFKCFX" /> */}
       {/* Google tag (gtag.js) */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX" strategy="afterInteractive"></Script>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-S98KBFKCFX"
+        strategy="afterInteractive"
+      ></Script>
       <Script
         id="google-analytics-script"
         strategy="afterInteractive"
@@ -136,7 +142,10 @@ export default function RootLayout({
         }}
       />
       <Theme>
-        <body className={`${aeonik.variable} antialiased`}>
+        <body
+          className={`${aeonik.variable} antialiased`}
+          suppressHydrationWarning
+        >
           {children}
         </body>
       </Theme>

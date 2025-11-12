@@ -1,34 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import Script from 'next/script';
-import localFont from 'next/font/local';
+import { Onest } from 'next/font/google';
 import "./globals.css";
 import Theme from "./theme";
 
-const aeonik = localFont({
-  src: [
-    {
-      path: './fonts/Aeonik-Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/Aeonik_OVERVIEW-Medium.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: './fonts/Aeonik-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: './fonts/Aeonik-Black.ttf',
-      weight: '900',
-      style: 'normal',
-    }
-  ],
-  variable: '--font-aeonik'
-})
+const onest = Onest({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-onest',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -136,7 +117,7 @@ export default function RootLayout({
         }}
       />
       <Theme>
-        <body className={`${aeonik.variable} antialiased`}>
+        <body className={`${onest.variable} antialiased`}>
           {children}
         </body>
       </Theme>

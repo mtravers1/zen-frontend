@@ -1,4 +1,5 @@
 "use client";
+import type { ReactElement } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Image from "next/image";
 import { FaBarcode, FaBook, FaBriefcase, FaChartLine } from "react-icons/fa";
@@ -15,7 +16,7 @@ import { Chip } from "@mui/material";
 /**
  * Renders the Solutions section for desktop layouts.
  */
-export const SolutionsSection = (): JSX.Element => (
+export const SolutionsSection = (): ReactElement => (
   <div>
     <Element
       id="SolutionsDesktop"
@@ -187,7 +188,7 @@ export const SolutionsSection = (): JSX.Element => (
 /**
  * Renders the Solutions section optimized for mobile layouts.
  */
-export const MobileSolutionsSection = (): JSX.Element => (
+export const MobileSolutionsSection = (): ReactElement => (
   <div>
     <Element
       id="SolutionsMobile"

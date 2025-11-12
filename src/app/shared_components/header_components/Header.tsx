@@ -44,7 +44,7 @@ export function MobileHeader({ className }: { className: string }) {
                 </div>
                 <div className="right-0">
                     <Button
-                        className="!text-[#006847] !font-aoenik !h-[10vw] !ml-[2vh] !text-[4vw] !right-0"
+                        className="!text-[#006847] !h-[10vw] !ml-[2vh] !text-[4vw] !right-0"
                         aria-label="open drawer"
                         onClick={toggleDrawer(!open)}
                         startIcon={<GrMenu className="!h-[10vw]" />}

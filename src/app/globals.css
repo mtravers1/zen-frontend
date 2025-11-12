@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-aoenik: var(--aoenik)
+  --font-onest: var(--font-onest);
 }
 @layer utilities {
   .clip-trapezoid {
@@ -19,5 +19,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: aeonik, Arial, Helvetica, sans-serif;
+  font-family: var(--font-onest), Arial, Helvetica, sans-serif;
 }

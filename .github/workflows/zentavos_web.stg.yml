@@ -2,9 +2,9 @@ name: zentavos-web-stg
 
 on:
   push:
-    branches: [ staging ]
+    branches: [staging]
   pull_request:
-    branches: [ staging ]
+    branches: [staging]
   workflow_dispatch:
 
 env:
@@ -38,6 +38,8 @@ jobs:
             ztv-web-
       - name: Install dependencies
         run: npm ci
+      - name: Lint Web App
+        run: npm run lint
       - name: Copy server-specific configuration files
         run: |
           mkdir -p public/.well-known

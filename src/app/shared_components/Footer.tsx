@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Footer() {
 	return (
-		<div className="p-[5vw] flex flex-row w-full py-[2vw] bg-gray-400 text-gray-300 gap-[2vh] justify-between items-center">
+		<div className="p-[5vw] flex flex-row w-full py-[2vw] bg-primary text-gray-300 gap-[2vh] justify-between items-center">
 
 			<div className="">
 				<div className="">© 2025 Zentavos All rights reserved.</div>

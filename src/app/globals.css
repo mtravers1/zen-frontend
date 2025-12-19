@@ -1,23 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-onest: var(--font-onest);
+	/* Brand Colors */
+	--color-zen_green: #006747;
+	--color-zen_yellow: #E0E721;
+	--color-zen_teal: #4C8C2B;
+	--color-zen_black: #000000;
+
+	/* Theme Colors */
+	--color-primary: var(--color-zen_green);
+	--color-secondary: var(--color-zen_yellow);
+	--color-tertiary: var(--color-zen_teal);
+
+	/* UI Colors */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-onest: var(--font-onest);
 }
+
 @layer utilities {
-  .clip-trapezoid {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
-  }
+	.clip-trapezoid {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-onest), Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-onest), Arial, Helvetica, sans-serif;
 }

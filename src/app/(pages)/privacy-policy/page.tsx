@@ -1,6 +1,6 @@
 "use client";
 import { Suspense } from "react";
-import { MainTemplate } from "../../shared_components/MainTemplate";
+import { MainTemplate } from "@/app/shared_components/MainTemplate";
 
 export default function Privacy() {
 	return (

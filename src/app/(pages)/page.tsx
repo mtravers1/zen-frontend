@@ -3,10 +3,10 @@ import { userAgent } from "next/server";
 import {
 	DesktopDownloadSection,
 	MobileDownloadSection,
-} from "../sections/DownloadSection";
-import { HomeSection } from "../sections/HomeSection";
-import { SolutionsSection } from "../sections/SolutionsSection";
-import { MainTemplate } from "../shared_components/MainTemplate";
+} from "@/app/sections/DownloadSection";
+import { HomeSection } from "@/app/sections/HomeSection";
+import { SolutionsSection } from "@/app/sections/SolutionsSection";
+import { MainTemplate } from "@/app/shared_components/MainTemplate";
 
 export default async function Home() {
 	const headersList = await headers();

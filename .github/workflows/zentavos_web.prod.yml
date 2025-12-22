@@ -13,6 +13,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
     if: github.ref == 'refs/heads/production'
     strategy:
       matrix:
@@ -36,6 +37,8 @@ jobs:
           restore-keys: |
             ztv-web-build-
             ztv-web-
+      - name: Create environment file
+        run: echo "${{ secrets.ENV_FILE }}" > .env
       - name: Install dependencies
         run: npm ci
       - name: Lint Web App

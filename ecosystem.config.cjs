@@ -1,0 +1,49 @@
+module.exports = {
+	apps: [
+		{
+			name: "dev",
+			script: "npm",
+			args: "start",
+			watch: false,
+			node_args: "-r dotenv/config",
+			env: {
+				DOTENV_CONFIG_PATH: ".env",
+				NODE_ENV: "production",
+				PORT: 3000,
+			},
+			error_file: "/var/log/zentavos/web-error.log",
+			out_file: "/var/log/zentavos/web-out.log",
+			log_date_format: "YYYY-MM-DD HH:mm Z",
+		},
+		{
+			name: "staging",
+			script: "npm",
+			args: "start",
+			watch: false,
+			node_args: "-r dotenv/config",
+			env: {
+				DOTENV_CONFIG_PATH: ".env",
+				NODE_ENV: "production",
+				PORT: 3000,
+			},
+			error_file: "/var/log/zentavos/web-error.log",
+			out_file: "/var/log/zentavos/web-out.log",
+			log_date_format: "YYYY-MM-DD HH:mm Z",
+		},
+		{
+			name: "production",
+			script: "npm",
+			args: "start",
+			watch: false,
+			node_args: "-r dotenv/config",
+			env: {
+				DOTENV_CONFIG_PATH: ".env",
+				NODE_ENV: "production",
+				PORT: 3000,
+			},
+			error_file: "/var/log/zentavos/web-error.log",
+			out_file: "/var/log/zentavos/web-out.log",
+			log_date_format: "YYYY-MM-DD HH:mm Z",
+		},
+	],
+};

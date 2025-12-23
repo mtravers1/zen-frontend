@@ -22,6 +22,12 @@ echo "--- Environment: ${ENVIRONMENT} ---"
 node --version
 npm --version
 
+# Ensure PM2 is installed globally
+if ! command -v pm2 &> /dev/null; then
+    echo "--- PM2 not found, installing globally ---"
+    npm install pm2 -g
+fi
+
 echo "--- Installing dependencies ---"
 npm install --omit=dev
 

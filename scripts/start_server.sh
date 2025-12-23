@@ -31,10 +31,7 @@ echo "--> Stopping and deleting ALL existing PM2 processes to ensure a clean env
 pm2 delete all || true
 
 echo "--> Starting new PM2 process for '${ENVIRONMENT}'..."
-pm2 start ecosystem.config.cjs \
-    --only ${ENVIRONMENT} \
-    --max-memory-restart 1G \
-    --log-date-format 'YYYY-MM-DD HH:mm Z'
+pm2 start ecosystem.config.cjs --only ${ENVIRONMENT}
 
 pm2 save
 

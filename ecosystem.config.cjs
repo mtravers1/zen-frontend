@@ -6,6 +6,7 @@ module.exports = {
 			args: "start",
 			watch: false,
 			node_args: "-r dotenv/config",
+			max_memory_restart: "1G",
 			env: {
 				DOTENV_CONFIG_PATH: ".env",
 				NODE_ENV: "production",
@@ -21,6 +22,7 @@ module.exports = {
 			args: "start",
 			watch: false,
 			node_args: "-r dotenv/config",
+			max_memory_restart: "1G",
 			env: {
 				DOTENV_CONFIG_PATH: ".env",
 				NODE_ENV: "production",
@@ -36,6 +38,7 @@ module.exports = {
 			args: "start",
 			watch: false,
 			node_args: "-r dotenv/config",
+			max_memory_restart: "1G",
 			env: {
 				DOTENV_CONFIG_PATH: ".env",
 				NODE_ENV: "production",

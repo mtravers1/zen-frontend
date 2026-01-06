@@ -27,7 +27,7 @@ export function HomeSection() {
 								<h1 className="font-bold text-white text-[4vmin] sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-2 md:mb-8">
 									<span className="block">Keep more</span>
 									<span className="block">of your</span>
-									<span className="block">money &trade;</span>
+									<span className="block">money&trade;</span>
 								</h1>
 							</div>
 						</div>

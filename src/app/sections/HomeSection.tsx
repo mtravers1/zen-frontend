@@ -25,9 +25,9 @@ export function HomeSection() {
 						<div className="relative z-10 w-full md:w-1/2 flex justify-start items-center p-4 md:p-8 pb-0">
 							<div className="max-w-2xl flex flex-col items-start text-left">
 								<h1 className="font-bold text-white text-[4vmin] sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-2 md:mb-8">
-									<span className="block">Your CFO</span>
-									<span className="block">at the touch</span>
-									<span className="block">of a button.</span>
+									<span className="block">Keep more</span>
+									<span className="block">of your</span>
+									<span className="block">money</span>
 								</h1>
 							</div>
 						</div>
@@ -68,10 +68,9 @@ export function HomeSection() {
 					<div className="w-full flex flex-col items-center relative z-10">
 						{/* Text Content */}
 						<h2 className="font-bold text-white text-[4vmin] sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl leading-tight mb-2 md:mb-8 text-left">
-							<div>Accounting.</div>
-							<div>Analytics.</div>
-							<div>Advice.</div>
-							<div>Access.</div>
+							<div>Your CFO</div>
+							<div>at the touch</div>
+							<div>of a button</div>
 						</h2>
 					</div>
 					{/* Green Background */}

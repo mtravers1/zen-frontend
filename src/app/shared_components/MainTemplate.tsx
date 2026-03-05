@@ -1,14 +1,13 @@
 'use client';
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { scroller } from "react-scroll";
 import { Footer } from "./Footer";
 import { DesktopHeader, MobileHeader } from "./header_components/Header";
 
-export function MainTemplate({ children }: Readonly<{
-    children: React.ReactNode;
-}>) {
+function MainTemplateInner({ children }: Readonly<{ children: React.ReactNode }>) {
 	const searchParams = useSearchParams()
 
 	const searchId = searchParams.get('Section')
@@ -44,4 +43,12 @@ export function MainTemplate({ children }: Readonly<{
 			<Footer></Footer>
 		</div>
 	)
+}
+
+export function MainTemplate({ children }: Readonly<{ children: React.ReactNode }>) {
+	return (
+		<Suspense fallback={null}>
+			<MainTemplateInner>{children}</MainTemplateInner>
+		</Suspense>
+	);
 }

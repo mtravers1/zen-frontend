@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Script from 'next/script';
 import { Onest } from 'next/font/google';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import "./globals.css";
 import Theme from "./theme";
+import { Providers } from "./providers";
 
 const onest = Onest({
 	subsets: ['latin'],
@@ -122,11 +124,15 @@ export default function RootLayout({
           `,
 				}}
 			/>
-			<Theme>
-				<body className={`${onest.variable} antialiased`}>
-					{children}
-				</body>
-			</Theme>
+			<body className={`${onest.variable} antialiased`}>
+				<AppRouterCacheProvider>
+					<Theme>
+						<Providers>
+							{children}
+						</Providers>
+					</Theme>
+				</AppRouterCacheProvider>
+			</body>
 		</html>
 	);
 }

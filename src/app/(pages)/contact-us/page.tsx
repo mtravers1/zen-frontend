@@ -6,6 +6,8 @@ import { userAgent } from "next/server";
 import { Suspense } from "react";
 import { MainTemplate } from "../../shared_components/MainTemplate";
 import { ContactCard } from "./components/ContactCard";
+import { ContactForm } from "./components/ContactForm";
+
 export default async function Contact() {
 	const headersList = await headers();
 	const { device } = userAgent({ headers: headersList });
@@ -44,6 +46,11 @@ export default async function Contact() {
 								<div className="bg-linear-to-t from-white from-20% to-90% to-transparent opacity-70 w-full h-[70vw] absolute"></div>
 							</div>
 						</div>
+
+						{/* Contact Form */}
+						<div className="flex justify-center px-[5vw] py-[5vw] bg-white">
+							<ContactForm />
+						</div>
 					</MainTemplate>
 				</Suspense>
 			</div>
@@ -81,7 +88,11 @@ export default async function Contact() {
 							</div>
 
 						</div>
-						<div className="bg-white w-full h-[80vw]"></div>
+
+						{/* Contact Form */}
+						<div className="flex justify-center px-[8vw] py-[10vw] bg-white">
+							<ContactForm />
+						</div>
 					</MainTemplate>
 				</Suspense>
 			</div>

@@ -2,7 +2,49 @@
 
 :root {
 	--background: #ffffff;
-	--foreground: #171717;
+	--foreground: #0a0f0a;
+
+	/* shadcn/ui compatible tokens */
+	--card: #ffffff;
+	--card-foreground: #0a0f0a;
+	--popover: #ffffff;
+	--popover-foreground: #0a0f0a;
+	--primary: #006747;
+	--primary-foreground: #ffffff;
+	--secondary: #f1f5f1;
+	--secondary-foreground: #0a0f0a;
+	--muted: #f3f4f3;
+	--muted-foreground: #6b7b6b;
+	--accent: #e0e721;
+	--accent-foreground: #0a0f0a;
+	--destructive: #ef4444;
+	--destructive-foreground: #ffffff;
+	--border: #e2e8e2;
+	--input: #e2e8e2;
+	--ring: #006747;
+	--radius: 0.75rem;
+}
+
+.dark {
+	--background: #0a1a0a;
+	--foreground: #f8faf8;
+	--card: #0f1f0f;
+	--card-foreground: #f8faf8;
+	--popover: #0f1f0f;
+	--popover-foreground: #f8faf8;
+	--primary: #1a8a50;
+	--primary-foreground: #ffffff;
+	--secondary: #1a2a1a;
+	--secondary-foreground: #f8faf8;
+	--muted: #152015;
+	--muted-foreground: #9aab9a;
+	--accent: #e0e721;
+	--accent-foreground: #0a0f0a;
+	--destructive: #ef4444;
+	--destructive-foreground: #ffffff;
+	--border: #2a3a2a;
+	--input: #2a3a2a;
+	--ring: #1a8a50;
 }
 
 @theme inline {
@@ -12,14 +54,34 @@
 	--color-zen_teal: #4C8C2B;
 	--color-zen_black: #000000;
 
-	/* Theme Colors */
-	--color-primary: var(--color-zen_green);
-	--color-secondary: var(--color-zen_yellow);
-	--color-tertiary: var(--color-zen_teal);
-
-	/* UI Colors */
+	/* shadcn/ui tokens */
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+
+	/* Legacy brand aliases */
+	--color-zen_green: #006747;
+	--color-zen_yellow: #E0E721;
+	--color-zen_teal: #4C8C2B;
+	--color-zen_black: #000000;
+	--color-tertiary: var(--color-zen_teal);
+
 	--font-onest: var(--font-onest);
 }
 

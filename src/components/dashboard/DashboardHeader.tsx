@@ -61,7 +61,7 @@ const DashboardHeader = () => {
                 Get personalized support from our team
               </p>
               <Button asChild size="sm" variant="outline">
-                <Link to="/contact">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </div>
           </div>

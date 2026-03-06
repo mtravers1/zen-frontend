@@ -49,7 +49,7 @@ const QuickActions = () => {
               className="w-full justify-start h-auto py-3 px-3 hover:bg-secondary/50"
               asChild
             >
-              <Link to={action.href} className="flex items-center gap-3">
+              <Link href={action.href} className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <action.icon className="w-4 h-4 text-primary" />
                 </div>

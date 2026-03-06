@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Briefcase, MessageSquare, FileText, Users, CheckCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase, isSupabaseReady } from "@/integrations/supabase/client";
 import { useDashboardAuth } from "@/hooks/useDashboardAuth";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -49,7 +49,10 @@ const StatsCards = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      if (!user) return;
+      if (!user || !isSupabaseReady) {
+        setLoading(false);
+        return;
+      }
 
       try {
         // Fetch user's active services

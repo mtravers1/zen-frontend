@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Briefcase, Clock, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase, isSupabaseReady } from "@/integrations/supabase/client";
 import { useDashboardAuth } from "@/hooks/useDashboardAuth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +29,10 @@ const MyServices = () => {
 
   useEffect(() => {
     const fetchServices = async () => {
-      if (!user) return;
+      if (!user || !isSupabaseReady) {
+        setLoading(false);
+        return;
+      }
 
       try {
         const { data, error } = await supabase
@@ -54,7 +57,7 @@ const MyServices = () => {
 
         setServices(transformedData);
       } catch (error) {
-        console.error("Error fetching services:", error);
+        console.error("Error fetching services:", error instanceof Error ? error.message : error);
       } finally {
         setLoading(false);
       }
@@ -112,7 +115,7 @@ const MyServices = () => {
               You haven't purchased any services yet.
             </p>
             <Button asChild>
-              <Link to="/solutions">Browse Services</Link>
+              <Link href="/solutions">Browse Services</Link>
             </Button>
           </div>
         </CardContent>

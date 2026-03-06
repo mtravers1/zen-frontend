@@ -23,6 +23,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials?.password) return null;
 
+				// Development test user - allows testing without backend
+				if (process.env.NODE_ENV === 'development') {
+					if (credentials.email === 'admin@test.com' && credentials.password === 'admin') {
+						return {
+							id: 'test-admin-id',
+							email: 'admin@test.com',
+							name: 'Test Admin',
+							role: 'Admin',
+							backendToken: '',
+						};
+					}
+					   if (credentials.email === 'user@test.com' && credentials.password === 'user') {
+						   return {
+							   id: 'test-user-id',
+							   email: 'user@test.com',
+							   name: 'Test User',
+							   role: 'account_manager', // Make this a staff role
+							   backendToken: '',
+						   };
+					   }
+				}
+
 				// 1. Try backend API first
 				if (API_URL) {
 					try {

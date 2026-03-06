@@ -49,7 +49,10 @@
       "Bash(powershell -Command \"Get-Service -Name MongoDB -ErrorAction SilentlyContinue\")",
       "Bash(mongod --version)",
       "Read(//c/Program Files/nodejs/**)",
-      "Bash(\"/c/Program Files/nodejs/node\" --version)"
+      "Bash(\"/c/Program Files/nodejs/node\" --version)",
+      "Bash(npm run dev)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(taskkill //F //IM node.exe)"
     ]
   }
 }

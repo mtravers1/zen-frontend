@@ -27,11 +27,11 @@ export function DesktopDownloadSection() {
 							a Month
 						</div>
 						<div className="flex flex-col items-center mt-[1vw] gap-[1vw]">
-							<Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[5vw] w-[17vw]">
-								<Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+							<Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[5vw] w-[17vw] relative block">
+								<Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" sizes="17vw"></Image>
 							</Link>
-							<Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[5vw] w-[17vw]">
-								<Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+							<Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[5vw] w-[17vw] relative block">
+								<Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" sizes="17vw"></Image>
 							</Link>
 						</div>
 					</div>
@@ -64,11 +64,11 @@ export function MobileDownloadSection() {
 							a Month
 						</div>
 						<div className="flex flex-col items-center mt-[2vw] gap-[2vw]">
-							<Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[8vw] w-[25vw]">
-								<Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" ></Image>
+							<Link href="https://play.google.com/store/apps/details?id=com.zentavos.mobile" className="h-[8vw] w-[25vw] relative block">
+								<Image className="!relative" src="/Google_Play_Store_badge_EN (1).svg" fill={true} alt="Google Play" sizes="25vw"></Image>
 							</Link>
-							<Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[8vw] w-[25vw]">
-								<Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" ></Image>
+							<Link href="https://apps.apple.com/us/app/zentavos/id6742329325" className="h-[8vw] w-[25vw] relative block">
+								<Image className="!relative" src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" fill={true} alt="App Store" sizes="25vw"></Image>
 							</Link>
 						</div>
 					</div>

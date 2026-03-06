@@ -93,20 +93,20 @@ const ServiceDetailDialog = ({ service, open, onOpenChange }: ServiceDetailDialo
         {/* CTA */}
         <div className="mt-6 pt-4 border-t border-border">
           {user ? (
-            <Link to={`/#contact`}>
+            <Link href={`/#contact`}>
               <Button className="w-full" onClick={() => onOpenChange(false)}>
                 {isQuote ? "Request Quote" : "Get Started"}
               </Button>
             </Link>
           ) : (
             <div className="space-y-2">
-              <Link to="/auth">
+              <Link href="/auth">
                 <Button className="w-full" onClick={() => onOpenChange(false)}>
                   {isQuote ? "Sign in to Request Quote" : "Sign in to Get Started"}
                 </Button>
               </Link>
               <p className="text-xs text-center text-muted-foreground">
-                Already have an account? <Link to="/auth" className="text-accent hover:underline">Sign in</Link>
+                Already have an account? <Link href="/auth" className="text-accent hover:underline">Sign in</Link>
               </p>
             </div>
           )}

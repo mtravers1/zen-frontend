@@ -2,7 +2,7 @@
 
 import { useDashboardAuth } from "@/hooks/useDashboardAuth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProtectedRouteWrapper({
   children,
@@ -11,10 +11,18 @@ export default function ProtectedRouteWrapper({
 }) {
   const { user, loading } = useDashboardAuth();
   const router = useRouter();
+  const [showDashboard, setShowDashboard] = useState(false);
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login');
+    // Allow dashboard access if user is authenticated OR if in development mode
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    
+    if (!loading) {
+      if (user || isDevelopment) {
+        setShowDashboard(true);
+      } else {
+        router.push('/login');
+      }
     }
   }, [user, loading, router]);
 
@@ -26,7 +34,7 @@ export default function ProtectedRouteWrapper({
     );
   }
 
-  if (!user) {
+  if (!showDashboard) {
     return null;
   }
 

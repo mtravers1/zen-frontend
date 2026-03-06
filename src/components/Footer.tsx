@@ -36,7 +36,7 @@ const Footer = () => {
               isRoute ? (
                 <Link
                   key={label}
-                  to={href}
+                  href={href}
                   className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
                 >
                   {label}

@@ -269,8 +269,7 @@ const DashboardSidebar = () => {
     <SidebarMenuItem key={item.title}>
       <SidebarMenuButton asChild>
         <NavLink
-          to={item.url}
-          end={item.url === "/dashboard"}
+          href={item.url}
           className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors relative ${
             isActive(item.url)
               ? "bg-primary/10 text-primary font-medium before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-0.5 before:h-6 before:bg-primary before:rounded-r"
@@ -350,7 +349,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <NavLink
-                      to={item.url}
+                      href={item.url}
                       className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-sm ${
                         isActive(item.url)
                           ? "bg-primary/10 text-primary font-medium"
@@ -388,7 +387,7 @@ const DashboardSidebar = () => {
     >
       {/* Logo */}
       <div className="p-4 border-b border-border">
-        <Link to="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <img
             src={zentavosLogo}
             alt="Zentavos"

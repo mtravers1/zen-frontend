@@ -43,7 +43,7 @@ const AccountSummary = () => {
           Account Summary
         </CardTitle>
         <Button variant="ghost" size="sm" asChild>
-          <Link to="/dashboard/account" className="flex items-center gap-1">
+          <Link href="/dashboard/account" className="flex items-center gap-1">
             <Edit2 className="w-4 h-4" />
             <span className="hidden sm:inline">Edit</span>
           </Link>

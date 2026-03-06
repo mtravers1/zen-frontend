@@ -18,7 +18,7 @@ const SolutionsCTA = () => {
             <p className="text-lg text-muted-foreground mb-8">
               Contact us today to discuss how we can help your business grow with our comprehensive financial solutions.
             </p>
-            <Link to="/#contact">
+            <Link href="/#contact">
               <Button size="lg" className="gap-2">
                 Contact Us
                 <ArrowRight className="w-4 h-4" />

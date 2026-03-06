@@ -86,7 +86,7 @@ const DashboardTopBar = () => {
         {quickActions.map((action) => (
           <Link
             key={action.label}
-            to={action.href}
+            href={action.href}
             className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <action.icon className="w-4 h-4" />
@@ -115,13 +115,13 @@ const DashboardTopBar = () => {
             <p className="text-xs text-muted-foreground">{user?.email}</p>
           </div>
           <DropdownMenuItem asChild>
-            <Link to="/dashboard/account" className="flex items-center gap-2 cursor-pointer">
+            <Link href="/dashboard/account" className="flex items-center gap-2 cursor-pointer">
               <User className="w-4 h-4" />
               Account Settings
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link to="/dashboard/settings" className="flex items-center gap-2 cursor-pointer">
+            <Link href="/dashboard/settings" className="flex items-center gap-2 cursor-pointer">
               <Settings className="w-4 h-4" />
               Preferences
             </Link>

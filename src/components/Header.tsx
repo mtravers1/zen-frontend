@@ -138,7 +138,7 @@ const Header = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link}
-                  to={getNavRoute(link)}
+                  href={getNavRoute(link)}
                   className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -182,7 +182,7 @@ const Header = () => {
                   <UserMenu />
                 </div>
               ) : (
-                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/auth" onClick={() => setIsMenuOpen(false)}>
                   <Button className="w-full gap-2">
                     <LogIn className="w-4 h-4" />
                     Login / Sign Up

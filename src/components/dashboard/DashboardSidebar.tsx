@@ -42,6 +42,9 @@ import {
   UserPlus,
   Bell,
   HelpCircle,
+  Video,
+  Shield,
+  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -202,6 +205,15 @@ const DashboardSidebar = () => {
 
   // Activity Feed standalone
   const activityFeedItem: MenuItem = { title: "Activity feed", url: "/dashboard/activity", icon: Activity };
+
+  // Help Center standalone (Staff+)
+  const helpCenterItem: MenuItem = { title: "Help Center", url: "/dashboard/help-center", icon: HelpCircle };
+
+  // Training Manager standalone (Staff+)
+  const trainingManagerItem: MenuItem = { title: "Training Manager", url: "/dashboard/training", icon: Video };
+
+  // Audit Log standalone (Director+)
+  const auditLogItem: MenuItem = { title: "Audit Log", url: "/dashboard/audit-log", icon: Shield };
 
   // Templates section
   const templatesItems: MenuItem[] = [
@@ -524,6 +536,39 @@ const DashboardSidebar = () => {
           </SidebarGroup>
         )}
 
+
+        {/* Help Center - Staff+ */}
+        {isStaff() && (
+          <SidebarGroup className="mt-1">
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {renderMenuItem(helpCenterItem)}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+
+        {/* Training Manager - Staff+ */}
+        {isStaff() && (
+          <SidebarGroup className="mt-1">
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {renderMenuItem(trainingManagerItem)}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+
+        {/* Audit Log - Director+ */}
+        {isDirectorOrAbove() && (
+          <SidebarGroup className="mt-1">
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {renderMenuItem(auditLogItem)}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
 
         {/* Templates - Director+ */}
         {isDirectorOrAbove() && (

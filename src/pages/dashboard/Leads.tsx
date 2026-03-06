@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { useDashboardAuth } from "@/hooks/useDashboardAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import LeadStatsCards from "@/components/dashboard/leads/LeadStatsCards";
@@ -23,7 +23,7 @@ interface Lead {
 }
 
 const LeadsPage = () => {
-  const { isManagerOrAbove } = useDashboardAuth();
+  const { isManagerOrAbove } = useAuth();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState<string | null>(null);
@@ -122,7 +122,6 @@ const LeadsPage = () => {
   }, [leads]);
 
   return (
-    <div>
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10">
@@ -192,7 +191,6 @@ const LeadsPage = () => {
         open={detailOpen}
         onClose={() => setDetailOpen(false)}
       />
-    </div>
   );
 };
 

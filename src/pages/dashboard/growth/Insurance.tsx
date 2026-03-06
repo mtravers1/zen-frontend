@@ -99,3 +99,4 @@ const InsurancePage = () => {
 };
 
 export default InsurancePage;
+

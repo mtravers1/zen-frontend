@@ -157,3 +157,4 @@ const FirmSettingsPage = () => {
 };
 
 export default FirmSettingsPage;
+

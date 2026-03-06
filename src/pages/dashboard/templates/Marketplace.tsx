@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 
-// Mock data
 const mockIntegrations = [
   { id: 1, name: "QuickBooks Online", description: "Sync accounting data with QuickBooks", category: "Accounting", connected: true },
   { id: 2, name: "Stripe", description: "Accept payments via Stripe", category: "Payments", connected: true },
@@ -26,16 +26,23 @@ const mockPerks = [
 const MarketplacePage = () => {
   const [activeTab, setActiveTab] = useState("integrations");
   const [searchValue, setSearchValue] = useState("");
+  const [integrations, setIntegrations] = useState(mockIntegrations);
 
-  const filteredIntegrations = mockIntegrations.filter((integration) =>
-    integration.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-    integration.description.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredIntegrations = integrations.filter((i) =>
+    i.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    i.description.toLowerCase().includes(searchValue.toLowerCase())
   );
 
-  const filteredPerks = mockPerks.filter((perk) =>
-    perk.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-    perk.description.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredPerks = mockPerks.filter((p) =>
+    p.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    p.description.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  const toggleConnect = (id: number, name: string) => {
+    setIntegrations(prev => prev.map(i => i.id === id ? { ...i, connected: !i.connected } : i));
+    const integration = integrations.find(i => i.id === id);
+    toast.success(integration?.connected ? `${name} disconnected` : `${name} connected`);
+  };
 
   return (
       <div className="space-y-6">
@@ -47,9 +54,7 @@ const MarketplacePage = () => {
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList variant="underline">
-            <TabsTrigger value="integrations" variant="underline">
-              Integrations
-            </TabsTrigger>
+            <TabsTrigger value="integrations" variant="underline">Integrations</TabsTrigger>
             <TabsTrigger value="perks" variant="underline">
               <Gift className="w-4 h-4 mr-2" />
               Perks & Offers
@@ -75,16 +80,14 @@ const MarketplacePage = () => {
                         <Badge variant="outline" className="mt-1">{integration.category}</Badge>
                       </div>
                       {integration.connected && (
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-                          Connected
-                        </Badge>
+                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Connected</Badge>
                       )}
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <CardDescription className="mb-4">{integration.description}</CardDescription>
-                    <Button variant={integration.connected ? "outline" : "default"} size="sm" className="w-full">
-                      {integration.connected ? "Manage" : "Connect"}
+                    <Button variant={integration.connected ? "outline" : "default"} size="sm" className="w-full" onClick={() => toggleConnect(integration.id, integration.name)}>
+                      {integration.connected ? "Disconnect" : "Connect"}
                     </Button>
                   </CardContent>
                 </Card>
@@ -107,7 +110,7 @@ const MarketplacePage = () => {
                   </CardHeader>
                   <CardContent className="pt-0">
                     <CardDescription className="mb-4">{perk.description}</CardDescription>
-                    <Button variant="default" size="sm" className="w-full">
+                    <Button variant="default" size="sm" className="w-full" onClick={() => toast.success(`Claiming ${perk.name}...`)}>
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Claim Offer
                     </Button>

@@ -1,16 +1,19 @@
+import { useState } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import { GitBranch, Plus, Store } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
 
 const WorkflowPipelinesPage = () => {
-  const pipelines = [
+  const [pipelines, setPipelines] = useState([
     { id: 1, name: "Tax Return Pipeline", stages: 5, jobs: 156 },
     { id: 2, name: "Audit Pipeline", stages: 7, jobs: 23 },
     { id: 3, name: "Bookkeeping Pipeline", stages: 4, jobs: 89 },
     { id: 4, name: "Payroll Pipeline", stages: 3, jobs: 45 },
     { id: 5, name: "Advisory Pipeline", stages: 6, jobs: 12 },
-  ];
+  ]);
 
   return (
       <div className="space-y-6">
@@ -21,11 +24,11 @@ const WorkflowPipelinesPage = () => {
         />
 
         <div className="flex items-center gap-2">
-          <Button>
+          <Button onClick={() => toast.success("Pipeline creation coming soon")}>
             <Plus className="w-4 h-4 mr-2" />
             New pipeline
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => toast.info("Marketplace opening soon")}>
             <Store className="w-4 h-4 mr-2" />
             Get from Marketplace
           </Button>
@@ -50,6 +53,7 @@ const WorkflowPipelinesPage = () => {
                       </div>
                     </div>
                   </div>
+                  <Button variant="ghost" size="sm" onClick={() => toast.info(`Editing ${pipeline.name}`)}>Edit</Button>
                 </div>
               ))}
             </div>

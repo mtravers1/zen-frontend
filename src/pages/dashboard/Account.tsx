@@ -12,6 +12,7 @@ const AccountPage = () => {
   const [activeTab, setActiveTab] = useState("profile");
 
   return (
+    <div>
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10">
@@ -127,6 +128,7 @@ const AccountPage = () => {
           </div>
         </TabsContent>
       </Tabs>
+    </div>
   );
 };
 

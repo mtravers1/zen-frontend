@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import zentavosLogo from "@/assets/zentavos-logo.png";
 
 const Footer = () => {
@@ -32,24 +32,14 @@ const Footer = () => {
 
           {/* Right Side - Navigation Links */}
           <nav className="flex flex-col items-start md:items-end gap-2">
-            {links.map(({ label, href, isRoute }) => (
-              isRoute ? (
-                <Link
-                  key={label}
-                  href={href}
-                  className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
-                >
-                  {label}
-                </Link>
-              ) : (
-                <a
-                  key={label}
-                  href={href}
-                  className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
-                >
-                  {label}
-                </a>
-              )
+            {links.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="text-sm text-primary-foreground/80 hover:text-accent transition-colors"
+              >
+                {label}
+              </Link>
             ))}
           </nav>
         </div>

@@ -1,5 +1,5 @@
 import { Check, Smartphone, Users, Building2, Receipt } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,

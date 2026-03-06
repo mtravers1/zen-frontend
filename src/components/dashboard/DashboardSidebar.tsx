@@ -77,7 +77,7 @@ interface MenuItem {
 
 const DashboardSidebar = () => {
   const { isStaff, isDirectorOrAbove } = useDashboardAuth();
-  const { state } = useSidebar();
+  const { state, toggleSidebar } = useSidebar();
   const collapsed = state === "collapsed";
   const pathname = usePathname();
 
@@ -382,9 +382,27 @@ const DashboardSidebar = () => {
 
   return (
     <Sidebar
-      className={`${collapsed ? "w-14" : "w-60"} border-r border-border bg-card transition-all duration-300`}
+      className={
+        `${collapsed ? "w-14" : "w-60"} border-r border-border bg-card transition-all duration-300 h-screen 
+        fixed top-0 left-0 z-50 md:top-auto md:left-auto`
+      }
       collapsible="icon"
     >
+      {/* Toggle Button */}
+      <div className="flex items-center justify-end p-2 border-b border-border">
+        <button
+          type="button"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          onClick={toggleSidebar}
+          className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-secondary/50 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          {collapsed ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          )}
+        </button>
+      </div>
       {/* Logo */}
       <div className="p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-2">

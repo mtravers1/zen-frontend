@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+// import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -12,7 +12,7 @@ interface DirectorRouteProps {
  */
 const DirectorRoute = ({ children, redirectTo = "/dashboard" }: DirectorRouteProps) => {
   const { user, loading, isDirectorOrAbove } = useAuth();
-  const location = useLocation();
+  // const router = useRouter();
 
   if (loading) {
     return (
@@ -24,12 +24,14 @@ const DirectorRoute = ({ children, redirectTo = "/dashboard" }: DirectorRoutePro
 
   // Check authentication first
   if (!user) {
-    return <Navigate to="/auth" state={{ from: location }} replace />;
+    if (typeof window !== "undefined") window.location.href = "/auth";
+    return null;
   }
 
   // Check director access
   if (!isDirectorOrAbove()) {
-    return <Navigate to={redirectTo} replace />;
+    if (typeof window !== "undefined") window.location.href = redirectTo;
+    return null;
   }
 
   return <>{children}</>;

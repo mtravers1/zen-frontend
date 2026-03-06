@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import Link from "next/link";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -89,7 +89,7 @@ const Auth = () => {
   ];
 
   const { user, loading, signIn, signUp, resetPassword } = useAuth();
-  const navigate = useNavigate();
+  // Use router.push from next/navigation if needed for navigation
   const { toast } = useToast();
 
   useEffect(() => {

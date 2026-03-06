@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+// import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import type { AppRole } from "@/lib/permissions";
@@ -18,7 +18,7 @@ const ProtectedRoute = ({
   redirectTo = "/auth",
 }: ProtectedRouteProps) => {
   const { user, roles, loading } = useAuth();
-  const location = useLocation();
+  // const router = useRouter();
 
   // Show loading spinner while checking auth
   if (loading) {
@@ -31,17 +31,16 @@ const ProtectedRoute = ({
 
   // Check authentication
   if (requireAuth && !user) {
-    // Save the attempted URL for redirecting after login
-    return <Navigate to={redirectTo} state={{ from: location }} replace />;
+    if (typeof window !== "undefined") window.location.href = redirectTo;
+    return null;
   }
 
   // Check role authorization
   if (requiredRole && user) {
     const hasAccess = hasMinimumRole(roles, requiredRole);
-    
     if (!hasAccess) {
-      // Redirect to home if user doesn't have required role
-      return <Navigate to="/" replace />;
+      if (typeof window !== "undefined") window.location.href = "/";
+      return null;
     }
   }
 

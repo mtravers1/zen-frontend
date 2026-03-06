@@ -23,7 +23,8 @@ const PhoneShowcase = () => {
               <img
                 src={phoneImage}
                 alt="Zentavos Mobile App"
-                className="relative w-72 md:w-96 animate-float drop-shadow-2xl"
+                className="relative animate-float drop-shadow-2xl"
+                style={{ width: '68%' }}
               />
             </div>
           </div>

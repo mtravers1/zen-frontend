@@ -1,8 +1,13 @@
+import { useState } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import { CreditCard, Download, FileText, Calendar, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { toast } from "sonner";
 import {
   Table,
   TableBody,
@@ -12,11 +17,39 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+const downloadInvoice = (id: string, date: string, amount: string, plan: string) => {
+  const content = [
+    "INVOICE",
+    "=======",
+    `Invoice #:  ${id}`,
+    `Date:       ${new Date(date).toLocaleDateString()}`,
+    `Plan:       ${plan}`,
+    `Status:     PAID`,
+    "",
+    `AMOUNT:     ${amount}`,
+  ].join("\n");
+  const blob = new Blob([content], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `${id}.txt`; a.click();
+  URL.revokeObjectURL(url);
+};
+
 const BillingSettingsPage = () => {
-  const paymentMethod = {
-    type: "Visa",
-    last4: "4242",
-    expiry: "12/26",
+  const [paymentMethod, setPaymentMethod] = useState({ type: "Visa", last4: "4242", expiry: "12/26" });
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [newExpiry, setNewExpiry] = useState("");
+  const [cvv, setCvv] = useState("");
+
+  const handleUpdatePayment = () => {
+    if (cardNumber.length < 4) { toast.error("Please enter a valid card number"); return; }
+    if (!newExpiry) { toast.error("Please enter an expiry date"); return; }
+    if (!cvv) { toast.error("Please enter CVV"); return; }
+    setPaymentMethod({ type: "Visa", last4: cardNumber.slice(-4), expiry: newExpiry });
+    toast.success("Payment method updated");
+    setUpdateOpen(false);
+    setCardNumber(""); setNewExpiry(""); setCvv("");
   };
 
   const nextBilling = {
@@ -33,6 +66,7 @@ const BillingSettingsPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Billing"
         description="Manage your subscription and payment methods"
@@ -57,7 +91,7 @@ const BillingSettingsPage = () => {
                   <p className="text-sm text-muted-foreground">Expires {paymentMethod.expiry}</p>
                 </div>
               </div>
-              <Button variant="outline" size="sm">Update</Button>
+              <Button variant="outline" size="sm" onClick={() => setUpdateOpen(true)}>Update</Button>
             </div>
           </CardContent>
         </Card>
@@ -124,7 +158,7 @@ const BillingSettingsPage = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" onClick={() => downloadInvoice(invoice.id, invoice.date, invoice.amount, nextBilling.plan)}>
                       <Download className="w-4 h-4" />
                     </Button>
                   </TableCell>
@@ -134,6 +168,33 @@ const BillingSettingsPage = () => {
           </Table>
         </CardContent>
       </Card>
+
+      <Dialog open={updateOpen} onOpenChange={setUpdateOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader><DialogTitle>Update Payment Method</DialogTitle></DialogHeader>
+          <div className="space-y-4 py-2">
+            <div className="space-y-2">
+              <Label>Card Number</Label>
+              <Input placeholder="1234 5678 9012 3456" value={cardNumber} onChange={e => setCardNumber(e.target.value.replace(/\D/g, "").slice(0, 16))} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Expiry (MM/YY)</Label>
+                <Input placeholder="MM/YY" value={newExpiry} onChange={e => setNewExpiry(e.target.value)} />
+              </div>
+              <div className="space-y-2">
+                <Label>CVV</Label>
+                <Input placeholder="123" value={cvv} onChange={e => setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))} />
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setUpdateOpen(false)}>Cancel</Button>
+            <Button onClick={handleUpdatePayment}>Save Card</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

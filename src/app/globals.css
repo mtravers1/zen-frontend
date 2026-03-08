@@ -96,3 +96,8 @@ body {
 	color: var(--foreground);
 	font-family: var(--font-onest), Arial, Helvetica, sans-serif;
 }
+
+/* Invert logo in dark mode so a dark logo stays visible */
+.dark .logo-dark-mode {
+	filter: invert(1) brightness(2);
+}

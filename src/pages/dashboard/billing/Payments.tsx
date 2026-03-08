@@ -39,6 +39,7 @@ const PaymentsPage = () => {
   const totalRefunds = Math.abs(mockPayments.filter(p => p.status === "refunded").reduce((s, p) => s + p.amount, 0));
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader title="Payments" description="Track all incoming payments and refunds" icon={<CreditCard className="w-6 h-6" />} />
         <PageStatsBar stats={[{ label: "Payments", value: mockPayments.filter(p => p.amount > 0).length }, { label: "Total", value: `$${totalPayments.toLocaleString()}`, variant: "success" }, { label: "Refunds", value: `$${totalRefunds.toLocaleString()}`, variant: "danger" }, { label: "Net Revenue", value: `$${(totalPayments - totalRefunds).toLocaleString()}` }]} />
@@ -77,6 +78,7 @@ const PaymentsPage = () => {
           </Table>
         </div>
       </div>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import { UserPlus, Copy, Mail, Link2, Settings, FileText, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -10,6 +11,11 @@ import { toast } from "sonner";
 
 const ClientSignupPage = () => {
   const signupLink = "https://zentavos.app/signup/yourfirm";
+  const [requireApproval, setRequireApproval] = useState(false);
+  const [autoAssign, setAutoAssign] = useState(true);
+  const [sendWelcome, setSendWelcome] = useState(true);
+  const [collectCompany, setCollectCompany] = useState(true);
+  const [welcomeMessage, setWelcomeMessage] = useState("Welcome to our firm! We're excited to work with you. You now have access to your client portal where you can view documents, pay invoices, and communicate with our team.");
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(signupLink);
@@ -25,6 +31,7 @@ const ClientSignupPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Client signup"
         description="Configure how new clients join your firm"
@@ -156,6 +163,7 @@ const ClientSignupPage = () => {
       <div className="flex justify-end mt-6">
         <Button>Save Settings</Button>
       </div>
+    </>
   );
 };
 

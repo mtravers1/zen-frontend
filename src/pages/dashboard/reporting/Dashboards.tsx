@@ -47,6 +47,7 @@ const DashboardsPage = () => {
   ];
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader
           icon={<LayoutTemplate className="w-5 h-5 text-primary" />}
@@ -137,6 +138,7 @@ const DashboardsPage = () => {
           </Table>
         </Card>
       </div>
+    </>
   );
 };
 

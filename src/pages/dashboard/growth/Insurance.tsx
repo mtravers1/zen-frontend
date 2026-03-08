@@ -31,6 +31,7 @@ const InsurancePage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Insurance services"
         description="Fast-track your business insurance needs"
@@ -95,6 +96,7 @@ const InsurancePage = () => {
           </div>
         </CardContent>
       </Card>
+    </>
   );
 };
 

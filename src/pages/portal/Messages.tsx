@@ -35,6 +35,7 @@ const PortalMessages = () => {
   };
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -83,6 +84,7 @@ const PortalMessages = () => {
         </Card>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

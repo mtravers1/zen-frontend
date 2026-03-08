@@ -38,6 +38,7 @@ const TimeEntriesPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Time Entries" description="Track and manage time spent on client work" icon={<Clock className="w-6 h-6" />} />
@@ -80,6 +81,7 @@ const TimeEntriesPage = () => {
         setEntries(prev => [...prev, { id: Date.now(), name: data.name, timerStatus: "stopped", date: data.date, type: data.billable ? "Billable" : "Non-billable", assignee: data.assignee, service: data.service, duration: data.duration, billed: false }]);
         toast.success("Time entry added");
       }} />
+    </>
   );
 };
 

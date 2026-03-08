@@ -36,6 +36,7 @@ const CommunicationsPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<Mail className="w-5 h-5 text-primary" />} title="Communications" description="Manage client emails, SMS, and notifications" />
         <div className="flex items-center justify-between">
@@ -76,6 +77,7 @@ const CommunicationsPage = () => {
         setComms(prev => [{ id: Date.now(), type: "Email", subject: data.subject, recipient: data.to, status: "sent", date: new Date().toISOString().split("T")[0] }, ...prev]);
         toast.success(`Message sent to ${data.to}`);
       }} />
+    </>
   );
 };
 

@@ -2,12 +2,13 @@ import { useState } from "react";
 import ClientPortalLayout from "@/components/portal/ClientPortalLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { FolderOpen, Upload, Download, FileText, Search, File, Image } from "lucide-react";
 import { toast } from "sonner";
 
-const mockDocuments = [
+type DocEntry = { id: number; name: string; type: string; size: string; date: string; uploadedBy: string; file?: File };
+
+const mockDocuments: DocEntry[] = [
   { id: 1, name: "W-2 Form 2024.pdf", type: "Tax Document", size: "245 KB", date: "2024-01-20", uploadedBy: "Your Team" },
   { id: 2, name: "Quarterly Report Q4.pdf", type: "Financial Report", size: "1.2 MB", date: "2024-01-15", uploadedBy: "Your Team" },
   { id: 3, name: "Bank Statement Dec.pdf", type: "Bank Statement", size: "890 KB", date: "2024-01-10", uploadedBy: "You" },
@@ -17,7 +18,7 @@ const mockDocuments = [
 
 const PortalDocuments = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [documents, setDocuments] = useState(mockDocuments);
+  const [documents, setDocuments] = useState<DocEntry[]>(mockDocuments);
 
   const filtered = documents.filter(d => !searchValue || d.name.toLowerCase().includes(searchValue.toLowerCase()) || d.type.toLowerCase().includes(searchValue.toLowerCase()));
 
@@ -29,12 +30,34 @@ const PortalDocuments = () => {
       const files = (e.target as HTMLInputElement).files;
       if (files) {
         Array.from(files).forEach(file => {
-          setDocuments(prev => [{ id: Date.now(), name: file.name, type: "Uploaded", size: `${(file.size / 1024).toFixed(0)} KB`, date: new Date().toISOString().split("T")[0], uploadedBy: "You" }, ...prev]);
+          setDocuments(prev => [{ id: Date.now() + Math.random(), name: file.name, type: "Uploaded", size: `${(file.size / 1024).toFixed(0)} KB`, date: new Date().toISOString().split("T")[0], uploadedBy: "You", file }, ...prev]);
         });
         toast.success(`${files.length} file(s) uploaded successfully`);
       }
     };
     input.click();
+  };
+
+  const handleDownload = (doc: DocEntry) => {
+    if (doc.file) {
+      const url = URL.createObjectURL(doc.file);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = doc.name;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      // For mock/server documents, generate a placeholder
+      const content = `Document: ${doc.name}\nType: ${doc.type}\nDate: ${doc.date}\nUploaded by: ${doc.uploadedBy}\n\n[This document was provided by your firm. Contact your accountant to receive the actual file.]`;
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = doc.name.replace(/\.[^.]+$/, "") + ".txt";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    toast.success(`Downloading "${doc.name}"`);
   };
 
   const getFileIcon = (name: string) => {
@@ -44,6 +67,7 @@ const PortalDocuments = () => {
   };
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -70,7 +94,7 @@ const PortalDocuments = () => {
                     <p className="text-sm text-muted-foreground">{doc.type} • {doc.size} • Uploaded by {doc.uploadedBy}</p>
                   </div>
                   <span className="text-sm text-muted-foreground whitespace-nowrap">{doc.date}</span>
-                  <Button variant="ghost" size="icon" onClick={() => toast.success(`Downloading "${doc.name}"...`)}><Download className="w-4 h-4" /></Button>
+                  <Button variant="ghost" size="icon" onClick={() => handleDownload(doc)}><Download className="w-4 h-4" /></Button>
                 </div>
               ))}
               {filtered.length === 0 && <div className="p-8 text-center text-muted-foreground">No documents found</div>}
@@ -79,6 +103,7 @@ const PortalDocuments = () => {
         </Card>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

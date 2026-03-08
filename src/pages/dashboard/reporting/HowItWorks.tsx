@@ -50,6 +50,7 @@ const HowItWorksPage = () => {
   ];
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader
           icon={<HelpCircle className="w-5 h-5 text-primary" />}
@@ -116,6 +117,7 @@ const HowItWorksPage = () => {
           </div>
         </div>
       </div>
+    </>
   );
 };
 

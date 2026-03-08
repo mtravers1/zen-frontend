@@ -388,13 +388,13 @@ const DashboardSidebar = () => {
       }
       collapsible="icon"
     >
-      {/* Toggle Button */}
-      <div className="flex items-center justify-end p-2 border-b border-border">
+      {/* Header: toggle + logo */}
+      <div className="flex items-center gap-2 px-2 h-14 border-b border-border shrink-0">
         <button
           type="button"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           onClick={toggleSidebar}
-          className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-secondary/50 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-secondary/50 hover:text-foreground focus:outline-none shrink-0"
         >
           {collapsed ? (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -402,19 +402,16 @@ const DashboardSidebar = () => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           )}
         </button>
-      </div>
-      {/* Logo */}
-      <div className="p-4 border-b border-border">
-        <Link href="/" className="flex items-center gap-2">
-          <img
-            src={zentavosLogo}
-            alt="Zentavos"
-            className={`h-8 object-contain logo-dark-mode ${collapsed ? "mx-auto" : ""}`}
-          />
-          {!collapsed && (
-            <span className="font-semibold text-lg text-foreground">Zentavos</span>
-          )}
-        </Link>
+        {!collapsed && (
+          <Link href="/" className="flex items-center gap-2 overflow-hidden">
+            <img
+              src={zentavosLogo}
+              alt="Zentavos"
+              className="h-8 w-8 object-contain logo-dark-mode shrink-0"
+            />
+            <span className="font-semibold text-lg text-foreground truncate">Zentavos</span>
+          </Link>
+        )}
       </div>
 
       <SidebarContent className="px-2 py-4">

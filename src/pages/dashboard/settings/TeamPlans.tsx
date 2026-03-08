@@ -36,6 +36,7 @@ const TeamPlansPage = () => {
   };
 
   return (
+    <>
       <DashboardPageHeader
         title="Team & plans"
         description="Manage your team members and subscription"
@@ -154,6 +155,7 @@ const TeamPlansPage = () => {
           </Table>
         </CardContent>
       </Card>
+    </>
   );
 };
 

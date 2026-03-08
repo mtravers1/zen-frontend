@@ -12,27 +12,39 @@ interface NewCustomFieldDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (field: { name: string; type: string; required: boolean }) => void;
+  initialValues?: { name: string; type: string; required: boolean };
+  editMode?: boolean;
 }
 
-const NewCustomFieldDialog = ({ open, onOpenChange, onSubmit }: NewCustomFieldDialogProps) => {
-  const [name, setName] = useState("");
-  const [type, setType] = useState("Text");
-  const [required, setRequired] = useState(false);
+const NewCustomFieldDialog = ({ open, onOpenChange, onSubmit, initialValues, editMode }: NewCustomFieldDialogProps) => {
+  const [name, setName] = useState(initialValues?.name ?? "");
+  const [type, setType] = useState(initialValues?.type ?? "Text");
+  const [required, setRequired] = useState(initialValues?.required ?? false);
+
+  // Sync with initialValues when dialog opens
+  const handleOpenChange = (o: boolean) => {
+    if (o && initialValues) {
+      setName(initialValues.name);
+      setType(initialValues.type);
+      setRequired(initialValues.required);
+    } else if (!o) {
+      if (!initialValues) { setName(""); setType("Text"); setRequired(false); }
+    }
+    onOpenChange(o);
+  };
 
   const handleSubmit = () => {
     if (!name.trim()) return;
     onSubmit({ name: name.trim(), type, required });
-    setName("");
-    setType("Text");
-    setRequired(false);
+    if (!initialValues) { setName(""); setType("Text"); setRequired(false); }
     onOpenChange(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add Custom Field</DialogTitle>
+          <DialogTitle>{editMode ? "Edit Custom Field" : "Add Custom Field"}</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <div className="space-y-2">
@@ -57,7 +69,7 @@ const NewCustomFieldDialog = ({ open, onOpenChange, onSubmit }: NewCustomFieldDi
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
-          <Button onClick={handleSubmit} disabled={!name.trim()}>Add Field</Button>
+          <Button onClick={handleSubmit} disabled={!name.trim()}>{editMode ? "Save Changes" : "Add Field"}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

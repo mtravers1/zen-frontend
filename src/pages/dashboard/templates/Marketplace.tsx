@@ -45,6 +45,7 @@ const MarketplacePage = () => {
   };
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader
           title="Marketplace"
@@ -121,6 +122,7 @@ const MarketplacePage = () => {
           </TabsContent>
         </Tabs>
       </div>
+    </>
   );
 };
 

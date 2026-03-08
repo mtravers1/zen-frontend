@@ -48,6 +48,7 @@ const InsightsPage = () => {
   ];
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader icon={<BarChart2 className="w-5 h-5 text-primary" />} title="Insights" description="Analytics and performance metrics for your firm" />
@@ -106,6 +107,7 @@ const InsightsPage = () => {
           </Card>
         </div>
       </div>
+    </>
   );
 };
 

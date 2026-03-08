@@ -40,6 +40,7 @@ const OrganizersPage = () => {
   const archivedCount = organizers.filter((o) => o.status === "archived").length;
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Organizers" description="Manage client organizers and checklists" icon={<ClipboardList className="w-6 h-6" />} />
@@ -76,6 +77,7 @@ const OrganizersPage = () => {
         setOrganizers((prev) => [...prev, { id: newId, name: data.name, account: data.account, status: "active", progress: 0, checklist: "0/10", dateCreated: new Date().toISOString().split("T")[0] }]);
         toast.success(`Organizer "${data.name}" created`);
       }} />
+    </>
   );
 };
 

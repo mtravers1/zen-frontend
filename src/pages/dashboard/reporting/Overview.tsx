@@ -54,6 +54,7 @@ const ReportingOverviewPage = () => {
   ];
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader
           icon={<BarChart2 className="w-5 h-5 text-primary" />}
@@ -198,6 +199,7 @@ const ReportingOverviewPage = () => {
           </Table>
         </Card>
       </div>
+    </>
   );
 };
 

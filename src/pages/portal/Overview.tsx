@@ -51,6 +51,7 @@ const PortalOverview = () => {
   ];
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         {/* Welcome */}
@@ -164,6 +165,7 @@ const PortalOverview = () => {
         </Card>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

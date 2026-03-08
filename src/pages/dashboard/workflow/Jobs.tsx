@@ -41,6 +41,7 @@ const JobsPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<Briefcase className="w-5 h-5 text-primary" />} title="Jobs" description="Track and manage client jobs and projects" />
         <div className="flex items-center justify-between">
@@ -102,6 +103,7 @@ const JobsPage = () => {
         setJobs(prev => [...prev, { id: Date.now(), ...data, stage: "New", status: "in_progress", clientStatus: "In Progress" }]);
         toast.success(`Job "${data.name}" created`);
       }} />
+    </>
   );
 };
 

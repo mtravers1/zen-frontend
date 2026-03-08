@@ -27,6 +27,7 @@ const FirmBalancePage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Firm balance"
         description="Manage your account balance and credits"
@@ -125,6 +126,7 @@ const FirmBalancePage = () => {
           </Table>
         </CardContent>
       </Card>
+    </>
   );
 };
 

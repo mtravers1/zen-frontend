@@ -44,6 +44,7 @@ const ServicesTemplatesPage = () => {
   };
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Services" description="Manage your service offerings and pricing" icon={<Briefcase className="w-6 h-6" />} />
@@ -89,6 +90,7 @@ const ServicesTemplatesPage = () => {
         </Tabs>
       </div>
       <NewServiceTemplateDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={handleAdd} />
+    </>
   );
 };
 

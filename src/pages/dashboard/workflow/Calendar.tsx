@@ -52,6 +52,7 @@ const CalendarPage = () => {
   };
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<CalendarIcon className="w-5 h-5 text-primary" />} title="Calendar" description="View deadlines, meetings, and scheduled tasks" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -126,6 +127,7 @@ const CalendarPage = () => {
           <DialogFooter><Button variant="outline" onClick={() => setAddOpen(false)}>Cancel</Button><Button onClick={handleAddEvent} disabled={!newTitle.trim()}>Add Event</Button></DialogFooter>
         </DialogContent>
       </Dialog>
+    </>
   );
 };
 

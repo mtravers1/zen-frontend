@@ -93,6 +93,7 @@ const ServicesPage = () => {
   };
 
   return (
+    <>
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10">
@@ -133,6 +134,7 @@ const ServicesPage = () => {
           />
         </TabsContent>
       </Tabs>
+    </>
   );
 };
 
@@ -175,6 +177,7 @@ const ServicesList = ({ services, loading, getStatusBadge, emptyMessage }: Servi
   }
 
   return (
+    <>
     <Card className="border border-border shadow-sm">
       <CardContent className="p-6">
         <div className="space-y-3">
@@ -208,6 +211,7 @@ const ServicesList = ({ services, loading, getStatusBadge, emptyMessage }: Servi
         </div>
       </CardContent>
     </Card>
+    </>
   );
 };
 

@@ -60,6 +60,7 @@ const PerksOffersPage = () => {
     : offers.filter(offer => offer.category === activeCategory);
 
   return (
+    <>
       <DashboardPageHeader
         title="Perks & offers"
         description="Exclusive discounts from trusted partners"
@@ -113,6 +114,7 @@ const PerksOffersPage = () => {
           <p className="text-muted-foreground">No offers found in this category.</p>
         </div>
       )}
+    </>
   );
 };
 

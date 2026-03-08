@@ -8,6 +8,14 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 
+const downloadBlob = (content: string, filename: string) => {
+  const blob = new Blob([content], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+};
+
 const mockInvoices = [
   { id: "INV-042", description: "Monthly CFO Service - January", amount: 2500, status: "unpaid", date: "2024-01-15", due: "2024-02-15" },
   { id: "INV-038", description: "Tax Return Preparation", amount: 1200, status: "paid", date: "2023-12-01", due: "2024-01-01" },
@@ -27,7 +35,44 @@ const PortalBilling = () => {
   const totalOutstanding = mockInvoices.filter(i => i.status === "unpaid").reduce((s, i) => s + i.amount, 0);
   const totalPaid = mockInvoices.filter(i => i.status === "paid").reduce((s, i) => s + i.amount, 0);
 
+  const downloadInvoice = (inv: typeof mockInvoices[0]) => {
+    const content = [
+      "INVOICE",
+      "=======",
+      `Invoice #:   ${inv.id}`,
+      `Date:        ${inv.date}`,
+      `Due Date:    ${inv.due}`,
+      `Status:      ${inv.status.toUpperCase()}`,
+      "",
+      "DESCRIPTION",
+      "-----------",
+      inv.description,
+      "",
+      `AMOUNT DUE:  $${inv.amount.toLocaleString()}`,
+    ].join("\n");
+    downloadBlob(content, `${inv.id}.txt`);
+    toast.success(`Downloaded ${inv.id}`);
+  };
+
+  const downloadReceipt = (pay: typeof mockPayments[0]) => {
+    const inv = mockInvoices.find(i => i.id === pay.invoice);
+    const content = [
+      "PAYMENT RECEIPT",
+      "===============",
+      `Payment #:   ${pay.id}`,
+      `Invoice #:   ${pay.invoice}`,
+      `Date:        ${pay.date}`,
+      `Method:      ${pay.method}`,
+      `Description: ${inv?.description ?? ""}`,
+      "",
+      `AMOUNT PAID: $${pay.amount.toLocaleString()}`,
+    ].join("\n");
+    downloadBlob(content, `receipt-${pay.id}.txt`);
+    toast.success(`Downloaded receipt for ${pay.id}`);
+  };
+
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -66,7 +111,7 @@ const PortalBilling = () => {
                       <TableCell>
                         <div className="flex gap-1">
                           {inv.status === "unpaid" && <Button size="sm" onClick={() => toast.success("Redirecting to payment...")}>Pay Now</Button>}
-                          <Button variant="ghost" size="icon" onClick={() => toast.success(`Downloading ${inv.id}...`)}><Download className="w-4 h-4" /></Button>
+                          <Button variant="ghost" size="icon" onClick={() => downloadInvoice(inv)}><Download className="w-4 h-4" /></Button>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -88,7 +133,7 @@ const PortalBilling = () => {
                       <TableCell className="text-muted-foreground">{pay.date}</TableCell>
                       <TableCell>{pay.method}</TableCell>
                       <TableCell className="text-right font-medium">${pay.amount.toLocaleString()}</TableCell>
-                      <TableCell><Button variant="ghost" size="icon" onClick={() => toast.success(`Downloading receipt...`)}><Receipt className="w-4 h-4" /></Button></TableCell>
+                      <TableCell><Button variant="ghost" size="icon" onClick={() => downloadReceipt(pay)}><Receipt className="w-4 h-4" /></Button></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -98,6 +143,7 @@ const PortalBilling = () => {
         )}
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

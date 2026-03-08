@@ -34,6 +34,7 @@ const RecurringInvoicesPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Recurring Invoices" description="Manage automated recurring billing" icon={<RefreshCw className="w-6 h-6" />} />
@@ -70,6 +71,7 @@ const RecurringInvoicesPage = () => {
         setInvoices(prev => [...prev, { id: Date.now(), account: data.account, name: data.name, status: "active", paymentMethod: data.paymentMethod, amount: data.amount, balance: 0, nextBilling: "-" }]);
         toast.success(`Recurring invoice "${data.name}" created`);
       }} />
+    </>
   );
 };
 

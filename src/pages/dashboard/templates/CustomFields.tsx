@@ -26,6 +26,7 @@ const CustomFieldsPage = () => {
   const [accountFields, setAccountFields] = useState(initialAccountFields);
   const [contactFields, setContactFields] = useState(initialContactFields);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingField, setEditingField] = useState<{ id: number; name: string; type: string; required: boolean } | null>(null);
 
   const fields = activeTab === "account" ? accountFields : contactFields;
   const setFields = activeTab === "account" ? setAccountFields : setContactFields;
@@ -36,7 +37,15 @@ const CustomFieldsPage = () => {
     toast.success(`Field "${field.name}" added`);
   };
 
+  const handleEdit = (field: { name: string; type: string; required: boolean }) => {
+    if (!editingField) return;
+    setFields((prev) => prev.map((f) => f.id === editingField.id ? { ...f, ...field } : f));
+    toast.success(`Field "${field.name}" updated`);
+    setEditingField(null);
+  };
+
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Custom Fields" description="Define custom data fields for accounts and contacts" icon={<FormInput className="w-6 h-6" />} />
@@ -63,7 +72,7 @@ const CustomFieldsPage = () => {
                         </div>
                         <span className="text-sm text-muted-foreground">{field.type}</span>
                       </div>
-                      <Button variant="ghost" size="sm" onClick={() => toast.info(`Editing "${field.name}"`)}>Edit</Button>
+                      <Button variant="ghost" size="sm" onClick={() => setEditingField(field)}>Edit</Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -83,6 +92,14 @@ const CustomFieldsPage = () => {
         </Tabs>
       </div>
       <NewCustomFieldDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={handleAdd} />
+      <NewCustomFieldDialog
+        open={!!editingField}
+        onOpenChange={(o) => { if (!o) setEditingField(null); }}
+        onSubmit={handleEdit}
+        initialValues={editingField ?? undefined}
+        editMode
+      />
+    </>
   );
 };
 

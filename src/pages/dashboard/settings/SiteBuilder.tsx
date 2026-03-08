@@ -1,13 +1,28 @@
+import { useState, useRef } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
-import { Globe, Palette, Layout, Eye, Smartphone, Monitor, ExternalLink } from "lucide-react";
+import { Globe, Palette, Layout, Eye, Smartphone, Monitor, ExternalLink, Upload, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner";
 
 const SiteBuilderPage = () => {
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const logoInputRef = useRef<HTMLInputElement>(null);
+
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return; }
+    if (file.size > 5 * 1024 * 1024) { toast.error("Image must be under 5MB"); return; }
+    const url = URL.createObjectURL(file);
+    setLogoUrl(url);
+    toast.success("Logo uploaded");
+  };
+
   const templates = [
     { id: 1, name: "Modern Clean", preview: "Clean and professional layout" },
     { id: 2, name: "Classic Corporate", preview: "Traditional business design" },
@@ -15,6 +30,7 @@ const SiteBuilderPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Site builder"
         description="Customize your client-facing website"
@@ -142,12 +158,24 @@ const SiteBuilderPage = () => {
               </div>
               <div className="space-y-2">
                 <Label>Logo</Label>
-                <div className="border-2 border-dashed rounded-lg p-6 text-center">
-                  <p className="text-muted-foreground">Drop your logo here or click to upload</p>
-                  <Button variant="outline" size="sm" className="mt-2">
-                    Upload Logo
-                  </Button>
-                </div>
+                <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+                {logoUrl ? (
+                  <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50">
+                    <img src={logoUrl} alt="Logo preview" className="h-12 w-auto object-contain rounded" />
+                    <div className="flex-1 text-sm text-muted-foreground">Logo uploaded</div>
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => { setLogoUrl(null); if (logoInputRef.current) logoInputRef.current.value = ""; }}>
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 transition-colors" onClick={() => logoInputRef.current?.click()}>
+                    <Upload className="w-6 h-6 mx-auto text-muted-foreground mb-2" />
+                    <p className="text-muted-foreground text-sm">Drop your logo here or click to upload</p>
+                    <Button variant="outline" size="sm" className="mt-2" onClick={e => { e.stopPropagation(); logoInputRef.current?.click(); }}>
+                      Upload Logo
+                    </Button>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -190,6 +218,7 @@ const SiteBuilderPage = () => {
       <div className="flex justify-end mt-6">
         <Button>Save & Publish</Button>
       </div>
+    </>
   );
 };
 

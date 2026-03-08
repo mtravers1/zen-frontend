@@ -45,6 +45,7 @@ const Solutions = () => {
   };
 
   return (
+    <>
     <div className="min-h-screen bg-background">
       <Header />
       
@@ -118,6 +119,7 @@ const Solutions = () => {
         onOpenChange={setDialogOpen}
       />
     </div>
+    </>
   );
 };
 

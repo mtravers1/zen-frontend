@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AlertsPage = () => {
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader
           icon={<Bell className="w-5 h-5 text-primary" />}
@@ -41,6 +42,7 @@ const AlertsPage = () => {
           </CardContent>
         </Card>
       </div>
+    </>
   );
 };
 

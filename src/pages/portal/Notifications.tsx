@@ -39,6 +39,7 @@ const PortalNotifications = () => {
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -73,6 +74,7 @@ const PortalNotifications = () => {
         </Card>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

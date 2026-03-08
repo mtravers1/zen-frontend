@@ -10,23 +10,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
 import NewInvoiceDialog from "@/components/dashboard/dialogs/NewInvoiceDialog";
-
-const initialInvoices = [
-  { id: "INV-001", account: "Acme Corp", status: "paid", assignee: "John D.", posted: "2024-01-15", total: 5000 },
-  { id: "INV-002", account: "Tech Solutions", status: "unpaid", assignee: "Sarah M.", posted: "2024-01-18", total: 3500 },
-  { id: "INV-003", account: "Global Industries", status: "overdue", assignee: "Mike R.", posted: "2024-01-10", total: 8200 },
-  { id: "INV-004", account: "StartUp Inc", status: "paid", assignee: "John D.", posted: "2024-01-20", total: 2100 },
-  { id: "INV-005", account: "Enterprise Ltd", status: "unpaid", assignee: "Sarah M.", posted: "2024-01-22", total: 6800 },
-];
+import { useDashboardData } from "@/contexts/DashboardDataContext";
 
 const presetOptions = [
   { value: "all", label: "All Invoices" }, { value: "paid", label: "Paid" }, { value: "unpaid", label: "Unpaid Only" }, { value: "overdue", label: "Overdue" },
 ];
 
 const InvoicesPage = () => {
+  const { invoices, addInvoice } = useDashboardData();
   const [searchValue, setSearchValue] = useState("");
   const [selectedPreset, setSelectedPreset] = useState("all");
-  const [invoices, setInvoices] = useState(initialInvoices);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [assigneeFilter, setAssigneeFilter] = useState("all");
 
@@ -45,6 +38,7 @@ const InvoicesPage = () => {
   const totalUnpaid = invoices.filter(i => i.status !== "paid").reduce((s, i) => s + i.total, 0);
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Invoices" description="Manage and track all client invoices" icon={<Receipt className="w-6 h-6" />} />
@@ -84,10 +78,10 @@ const InvoicesPage = () => {
         </div>
       </div>
       <NewInvoiceDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={(data) => {
-        const newId = `INV-${String(invoices.length + 1).padStart(3, "0")}`;
-        setInvoices(prev => [...prev, { id: newId, account: data.account, status: "unpaid", assignee: data.assignee, posted: new Date().toISOString().split("T")[0], total: data.amount }]);
-        toast.success(`Invoice ${newId} created`);
+        addInvoice(data);
+        toast.success(`Invoice created for ${data.account}`);
       }} />
+    </>
   );
 };
 

@@ -49,6 +49,7 @@ const ReportsPage = () => {
   };
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<FileBarChart className="w-5 h-5 text-primary" />} title="Reports" description="Generate and manage business reports" />
         <div className="flex items-center justify-between gap-4">
@@ -74,7 +75,10 @@ const ReportsPage = () => {
                     <div className="flex items-center gap-2">
                       {report.scheduled && <Badge variant="outline" className="text-xs">Scheduled</Badge>}
                       <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toast.success(`Running "${report.name}"...`)}><Play className="h-4 w-4" /></Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toast.success(`Downloading "${report.name}"...`)}><Download className="h-4 w-4" /></Button>
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
+                        exportToCSV([{ Category: cat.title, Name: report.name, "Last Run": report.lastRun, Scheduled: report.scheduled ? "Yes" : "No" }], report.name.replace(/\s+/g, "-").toLowerCase());
+                        toast.success(`Downloaded "${report.name}"`);
+                      }}><Download className="h-4 w-4" /></Button>
                     </div>
                   </div>
                 ))}
@@ -87,6 +91,7 @@ const ReportsPage = () => {
         setCategories(prev => prev.map(cat => cat.title === data.category ? { ...cat, reports: [...cat.reports, { name: data.name, lastRun: "-", scheduled: data.scheduled }] } : cat));
         toast.success(`Report "${data.name}" created`);
       }} />
+    </>
   );
 };
 

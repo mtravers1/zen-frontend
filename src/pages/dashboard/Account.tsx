@@ -13,13 +13,25 @@ const AccountPage = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [twoFA, setTwoFA] = useState(false);
   const [prefs, setPrefs] = useState({ systemTheme: true, compactSidebar: false, welcomeMessage: true });
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const togglePref = (key: keyof typeof prefs) => {
     setPrefs((prev) => ({ ...prev, [key]: !prev[key] }));
     toast.success("Preference updated");
   };
 
+  const handleUpdatePassword = () => {
+    if (!currentPassword) { toast.error("Please enter your current password"); return; }
+    if (newPassword.length < 6) { toast.error("New password must be at least 6 characters"); return; }
+    if (newPassword !== confirmPassword) { toast.error("Passwords don't match"); return; }
+    toast.success("Password updated successfully");
+    setCurrentPassword(""); setNewPassword(""); setConfirmPassword("");
+  };
+
   return (
+    <>
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10"><User className="w-6 h-6 text-primary" /></div>
@@ -42,10 +54,10 @@ const AccountPage = () => {
             <Card className="border border-border shadow-sm">
               <CardHeader><CardTitle className="flex items-center gap-2 text-lg"><Shield className="w-5 h-5 text-primary" />Change Password</CardTitle></CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2"><Label htmlFor="current-password">Current Password</Label><Input id="current-password" type="password" /></div>
-                <div className="space-y-2"><Label htmlFor="new-password">New Password</Label><Input id="new-password" type="password" /></div>
-                <div className="space-y-2"><Label htmlFor="confirm-password">Confirm New Password</Label><Input id="confirm-password" type="password" /></div>
-                <Button className="w-full" onClick={() => toast.success("Password updated successfully")}>Update Password</Button>
+                <div className="space-y-2"><Label htmlFor="current-password">Current Password</Label><Input id="current-password" type="password" value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} /></div>
+                <div className="space-y-2"><Label htmlFor="new-password">New Password</Label><Input id="new-password" type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} /></div>
+                <div className="space-y-2"><Label htmlFor="confirm-password">Confirm New Password</Label><Input id="confirm-password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} /></div>
+                <Button className="w-full" onClick={handleUpdatePassword}>Update Password</Button>
               </CardContent>
             </Card>
             <Card className="border border-border shadow-sm">
@@ -76,6 +88,7 @@ const AccountPage = () => {
           </div>
         </TabsContent>
       </Tabs>
+    </>
   );
 };
 

@@ -53,6 +53,7 @@ const PortalShop = () => {
   };
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -119,6 +120,7 @@ const PortalShop = () => {
         )}
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

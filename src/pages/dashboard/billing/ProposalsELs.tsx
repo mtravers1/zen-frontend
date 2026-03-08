@@ -36,6 +36,7 @@ const ProposalsELsPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Proposals & Engagement Letters" description="Create and manage client proposals" icon={<FileCheck className="w-6 h-6" />} />
@@ -60,6 +61,7 @@ const ProposalsELsPage = () => {
         setProposals(prev => [...prev, { id: Date.now(), ...data, status: "draft", auth: false, date: new Date().toISOString().split("T")[0], signed: false }]);
         toast.success(`Proposal "${data.name}" created`);
       }} />
+    </>
   );
 };
 

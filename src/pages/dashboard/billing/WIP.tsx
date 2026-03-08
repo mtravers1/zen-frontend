@@ -34,6 +34,7 @@ const WIPPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader title="Work in Progress (WIP)" description="View unbilled work across all accounts" icon={<BarChart3 className="w-6 h-6" />} />
         <PageStatsBar stats={[{ label: "Total Unbilled Time", value: "27:15" }, { label: "Total Billable", value: `$${totalBillable.toLocaleString()}`, variant: "warning" }, { label: "Accounts with WIP", value: mockWipEntries.length }]} />
@@ -50,6 +51,7 @@ const WIPPage = () => {
         </div>
       </div>
       <NewInvoiceDialog open={invoiceDialogOpen} onOpenChange={setInvoiceDialogOpen} onSubmit={(data) => { toast.success(`Invoice created for ${data.account}`); }} />
+    </>
   );
 };
 

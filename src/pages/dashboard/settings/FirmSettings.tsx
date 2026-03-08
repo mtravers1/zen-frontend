@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import { Settings, Building2, Phone, Mail, MapPin, Globe, Facebook, Twitter, Linkedin, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -6,9 +7,29 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner";
 
 const FirmSettingsPage = () => {
+  const [firmName, setFirmName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [address, setAddress] = useState("");
+  const [aboutUs, setAboutUs] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [aiEnabled, setAiEnabled] = useState(true);
+  const [smartSuggestions, setSmartSuggestions] = useState(true);
+
+  const handleSave = () => {
+    const settings = { firmName, phone, email, website, address, aboutUs, facebook, twitter, linkedin, aiEnabled, smartSuggestions };
+    localStorage.setItem("firmSettings", JSON.stringify(settings));
+    toast.success("Firm settings saved successfully");
+  };
+
   return (
+    <>
       <DashboardPageHeader
         title="Firm settings"
         description="Configure your firm's profile and contact information"
@@ -31,27 +52,27 @@ const FirmSettingsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firmName">Firm Name</Label>
-                <Input id="firmName" placeholder="Your Firm Name" />
+                <Input id="firmName" placeholder="Your Firm Name" value={firmName} onChange={e => setFirmName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone Number</Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="phone" placeholder="+1 (555) 000-0000" className="pl-10" />
+                  <Input id="phone" placeholder="+1 (555) 000-0000" className="pl-10" value={phone} onChange={e => setPhone(e.target.value)} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="email" type="email" placeholder="contact@yourfirm.com" className="pl-10" />
+                  <Input id="email" type="email" placeholder="contact@yourfirm.com" className="pl-10" value={email} onChange={e => setEmail(e.target.value)} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="website">Website</Label>
                 <div className="relative">
                   <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="website" placeholder="https://yourfirm.com" className="pl-10" />
+                  <Input id="website" placeholder="https://yourfirm.com" className="pl-10" value={website} onChange={e => setWebsite(e.target.value)} />
                 </div>
               </div>
             </div>
@@ -59,7 +80,7 @@ const FirmSettingsPage = () => {
               <Label htmlFor="address">Address</Label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                <Textarea id="address" placeholder="Enter your firm's address" className="pl-10 min-h-[80px]" />
+                <Textarea id="address" placeholder="Enter your firm's address" className="pl-10 min-h-[80px]" value={address} onChange={e => setAddress(e.target.value)} />
               </div>
             </div>
           </CardContent>
@@ -74,9 +95,11 @@ const FirmSettingsPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Textarea 
+            <Textarea
               placeholder="Describe your firm, expertise, and what makes you different..."
               className="min-h-[120px]"
+              value={aboutUs}
+              onChange={e => setAboutUs(e.target.value)}
             />
           </CardContent>
         </Card>
@@ -95,21 +118,21 @@ const FirmSettingsPage = () => {
                 <Label htmlFor="facebook">Facebook</Label>
                 <div className="relative">
                   <Facebook className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="facebook" placeholder="facebook.com/yourfirm" className="pl-10" />
+                  <Input id="facebook" placeholder="facebook.com/yourfirm" className="pl-10" value={facebook} onChange={e => setFacebook(e.target.value)} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="twitter">Twitter / X</Label>
                 <div className="relative">
                   <Twitter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="twitter" placeholder="twitter.com/yourfirm" className="pl-10" />
+                  <Input id="twitter" placeholder="twitter.com/yourfirm" className="pl-10" value={twitter} onChange={e => setTwitter(e.target.value)} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="linkedin">LinkedIn</Label>
                 <div className="relative">
                   <Linkedin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="linkedin" placeholder="linkedin.com/company/yourfirm" className="pl-10" />
+                  <Input id="linkedin" placeholder="linkedin.com/company/yourfirm" className="pl-10" value={linkedin} onChange={e => setLinkedin(e.target.value)} />
                 </div>
               </div>
             </div>
@@ -135,7 +158,7 @@ const FirmSettingsPage = () => {
                   Allow AI to help draft emails and documents.
                 </p>
               </div>
-              <Switch defaultChecked />
+              <Switch checked={aiEnabled} onCheckedChange={setAiEnabled} />
             </div>
             <div className="flex items-center justify-between">
               <div>
@@ -144,17 +167,17 @@ const FirmSettingsPage = () => {
                   Get AI-powered workflow recommendations.
                 </p>
               </div>
-              <Switch defaultChecked />
+              <Switch checked={smartSuggestions} onCheckedChange={setSmartSuggestions} />
             </div>
           </CardContent>
         </Card>
 
         <div className="flex justify-end">
-          <Button>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </div>
       </div>
+    </>
   );
 };
 
 export default FirmSettingsPage;
-

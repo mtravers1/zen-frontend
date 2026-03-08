@@ -87,6 +87,7 @@ const ResetPassword = () => {
   }
 
   return (
+    <>
     <div className="min-h-screen flex flex-col relative">
       {/* Full-screen background image */}
       <img
@@ -258,6 +259,7 @@ const ResetPassword = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

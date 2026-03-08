@@ -16,6 +16,9 @@ const PortalAccount = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [emailNotif, setEmailNotif] = useState(true);
   const [smsNotif, setSmsNotif] = useState(false);
+  const [fullName, setFullName] = useState(profile?.full_name || "");
+  const [phone, setPhone] = useState(profile?.phone || "");
+  const [company, setCompany] = useState(profile?.company_name || "");
 
   const getInitials = () => {
     if (profile?.full_name) return profile.full_name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
@@ -32,6 +35,7 @@ const PortalAccount = () => {
   };
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -52,12 +56,12 @@ const PortalAccount = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="space-y-2"><Label>Full Name</Label><Input defaultValue={profile?.full_name || ""} /></div>
-              <div className="space-y-2"><Label>Phone</Label><Input defaultValue={profile?.phone || ""} /></div>
-              <div className="space-y-2"><Label>Company</Label><Input defaultValue={profile?.company_name || ""} /></div>
+              <div className="space-y-2"><Label>Full Name</Label><Input value={fullName} onChange={e => setFullName(e.target.value)} /></div>
+              <div className="space-y-2"><Label>Phone</Label><Input value={phone} onChange={e => setPhone(e.target.value)} /></div>
+              <div className="space-y-2"><Label>Company</Label><Input value={company} onChange={e => setCompany(e.target.value)} /></div>
               <div className="space-y-2"><Label>Email</Label><Input value={user?.email || ""} disabled /></div>
             </div>
-            <Button onClick={() => toast.success("Profile updated")}>Save Changes</Button>
+            <Button onClick={() => { localStorage.setItem("portalProfile", JSON.stringify({ fullName, phone, company })); toast.success("Profile updated"); }}>Save Changes</Button>
           </CardContent>
         </Card>
 
@@ -89,6 +93,7 @@ const PortalAccount = () => {
         </Card>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

@@ -51,6 +51,7 @@ const TagsPage = () => {
   };
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Tags" description="Organize and categorize your accounts with tags" icon={<Tag className="w-6 h-6" />} />
@@ -105,6 +106,7 @@ const TagsPage = () => {
         </Tabs>
       </div>
       <NewTagDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={handleCreate} />
+    </>
   );
 };
 

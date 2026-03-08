@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FolderOpen, Upload, Plus, FileText, Folder } from "lucide-react";
+import { FolderOpen, Upload, Plus, FileText, Folder, Download } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
 import { Button } from "@/components/ui/button";
@@ -8,9 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import UploadDocumentDialog from "@/components/dashboard/dialogs/UploadDocumentDialog";
 import NewFolderDialog from "@/components/dashboard/dialogs/NewFolderDialog";
+import { useDashboardData } from "@/contexts/DashboardDataContext";
 
 const ClientDocumentsPage = () => {
-  const [items, setItems] = useState<{ id: number; name: string; type: "folder" | "document"; docType?: string; date: string }[]>([]);
+  const { documents: items, addDocument, addFolder } = useDashboardData();
   const [uploadOpen, setUploadOpen] = useState(false);
   const [folderOpen, setFolderOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -22,7 +23,19 @@ const ClientDocumentsPage = () => {
     return matchesSearch && matchesType;
   });
 
+  const handleDownload = (item: DocItem) => {
+    if (item.fileUrl) {
+      const a = document.createElement("a");
+      a.href = item.fileUrl;
+      a.download = item.fileName || item.name;
+      a.click();
+    } else {
+      toast.error("No file available to download");
+    }
+  };
+
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Client Documents" description="Manage and organize client files and documents" icon={<FolderOpen className="w-6 h-6" />} />
@@ -63,22 +76,28 @@ const ClientDocumentsPage = () => {
         ) : (
           <Card><CardContent className="p-0"><div className="divide-y divide-border">
             {filtered.map(item => (
-              <div key={item.id} className="flex items-center gap-3 p-4 hover:bg-muted/50 cursor-pointer transition-colors">
+              <div key={item.id} className="flex items-center gap-3 p-4 hover:bg-muted/50 transition-colors">
                 {item.type === "folder" ? <Folder className="w-5 h-5 text-primary" /> : <FileText className="w-5 h-5 text-muted-foreground" />}
-                <div className="flex-1"><div className="font-medium">{item.name}</div><div className="text-sm text-muted-foreground">{item.docType || "Folder"} • {item.date}</div></div>
+                <div className="flex-1 min-w-0"><div className="font-medium">{item.name}</div><div className="text-sm text-muted-foreground">{item.docType || "Folder"} • {item.date}</div></div>
+                {item.type === "document" && (
+                  <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => handleDownload(item)}>
+                    <Download className="w-4 h-4" />
+                  </Button>
+                )}
               </div>
             ))}
           </div></CardContent></Card>
         )}
       </div>
       <UploadDocumentDialog open={uploadOpen} onOpenChange={setUploadOpen} onSubmit={(data) => {
-        setItems(prev => [...prev, { id: Date.now(), name: data.name, type: "document", docType: data.type, date: new Date().toLocaleDateString() }]);
+        addDocument(data);
         toast.success(`Document "${data.name}" uploaded`);
       }} />
       <NewFolderDialog open={folderOpen} onOpenChange={setFolderOpen} onSubmit={(data) => {
-        setItems(prev => [...prev, { id: Date.now(), name: data.name, type: "folder", date: new Date().toLocaleDateString() }]);
+        addFolder(data.name);
         toast.success(`Folder "${data.name}" created`);
       }} />
+    </>
   );
 };
 

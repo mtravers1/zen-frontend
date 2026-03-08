@@ -54,6 +54,7 @@ const ReferEarnPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Refer & earn"
         description="Share Zentavos and earn rewards"
@@ -115,6 +116,7 @@ const ReferEarnPage = () => {
           </Accordion>
         </CardContent>
       </Card>
+    </>
   );
 };
 

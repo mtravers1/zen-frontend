@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { LayoutTemplate, Plus, Copy, X, Sparkles } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
@@ -41,6 +42,7 @@ const initialTemplates: Record<string, Array<{ id: number; name: string; descrip
 };
 
 const FirmTemplatesPage = () => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("proposals");
   const [searchValue, setSearchValue] = useState("");
   const [showBanner, setShowBanner] = useState(true);
@@ -54,6 +56,7 @@ const FirmTemplatesPage = () => {
   );
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader
@@ -62,7 +65,7 @@ const FirmTemplatesPage = () => {
             icon={<LayoutTemplate className="w-6 h-6" />}
           />
           <div className="flex gap-2">
-            <Button variant="outline" onClick={() => toast.info("Copying from library...")}>
+            <Button variant="outline" onClick={() => router.push("/dashboard/templates/marketplace")}>
               <Copy className="w-4 h-4 mr-2" />
               Copy from Library
             </Button>
@@ -162,6 +165,7 @@ const FirmTemplatesPage = () => {
           toast.success(`Template "${data.name}" created`);
         }}
       />
+    </>
   );
 };
 

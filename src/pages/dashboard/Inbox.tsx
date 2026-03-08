@@ -38,6 +38,7 @@ const InboxPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<Inbox className="w-5 h-5 text-primary" />} title="Inbox+" description="Unified inbox for all client communications" />
         <div className="flex items-center justify-between">
@@ -84,6 +85,7 @@ const InboxPage = () => {
         setMessages(prev => [{ id: Date.now(), from: "You", subject: data.subject, preview: data.body.slice(0, 80), time: "Just now", unread: false, starred: false }, ...prev]);
         toast.success(`Message sent to ${data.to}`);
       }} />
+    </>
   );
 };
 

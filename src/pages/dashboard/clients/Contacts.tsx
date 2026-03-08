@@ -35,6 +35,7 @@ const ContactsPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<Contact className="w-5 h-5 text-primary" />} title="Contacts" description="Manage client contacts and relationships" />
         <div className="flex items-center justify-between">
@@ -76,8 +77,8 @@ const ContactsPage = () => {
                     <TableCell>{contact.isPrimary && <Badge className="bg-primary/10 text-primary">Primary</Badge>}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toast.success(`Email drafted to ${contact.name}`)}><Mail className="h-4 w-4" /></Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => toast.success(`Calling ${contact.phone}`)}><Phone className="h-4 w-4" /></Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { window.location.href = `mailto:${contact.email}`; }}><Mail className="h-4 w-4" /></Button>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { window.location.href = `tel:${contact.phone}`; }}><Phone className="h-4 w-4" /></Button>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -93,6 +94,7 @@ const ContactsPage = () => {
         setContacts(prev => [...prev, { id: Date.now(), ...data, initials }]);
         toast.success(`Contact "${data.name}" created`);
       }} />
+    </>
   );
 };
 

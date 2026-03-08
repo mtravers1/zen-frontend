@@ -44,6 +44,7 @@ const ActivityFeedPage = () => {
   const handleExport = () => { exportToCSV(filteredActivities.map((a) => ({ date: a.date, account: a.account, type: a.type, item: a.item, action: a.action, user: a.user.name })), "activity-feed"); toast.success("Activity feed exported"); };
 
   return (
+    <>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <DashboardPageHeader title="Activity Feed" description="Track all actions and events across accounts" icon={<Activity className="w-6 h-6" />} />
@@ -75,6 +76,7 @@ const ActivityFeedPage = () => {
           </Table>
         </div>
       </div>
+    </>
   );
 };
 

@@ -42,6 +42,7 @@ const UsersPage = () => {
   };
 
   return (
+    <>
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-primary/10"><Users className="w-6 h-6 text-primary" /></div>
@@ -126,6 +127,7 @@ const UsersPage = () => {
           </Card>
         </TabsContent>
       </Tabs>
+    </>
   );
 };
 

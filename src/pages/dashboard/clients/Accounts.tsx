@@ -11,19 +11,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
 import NewAccountDialog from "@/components/dashboard/dialogs/NewAccountDialog";
-
-const initialAccounts = [
-  { id: 1, name: "Smith Corporation", type: "Business", assignee: "John Doe", email: "contact@smithcorp.com", phone: "(555) 123-4567", status: "active", balance: "$5,250.00" },
-  { id: 2, name: "Johnson LLC", type: "Business", assignee: "Jane Smith", email: "info@johnsonllc.com", phone: "(555) 234-5678", status: "active", balance: "$0.00" },
-  { id: 3, name: "Brown & Associates", type: "Business", assignee: "Mike Johnson", email: "hello@brownassoc.com", phone: "(555) 345-6789", status: "active", balance: "$1,200.00" },
-  { id: 4, name: "Emily Davis", type: "Individual", assignee: "Sarah Wilson", email: "emily@email.com", phone: "(555) 456-7890", status: "inactive", balance: "$0.00" },
-  { id: 5, name: "Wilson Group", type: "Business", assignee: "John Doe", email: "contact@wilsongroup.com", phone: "(555) 567-8901", status: "active", balance: "$3,500.00" },
-];
+import { useDashboardData } from "@/contexts/DashboardDataContext";
 
 const AccountsPage = () => {
+  const { accounts, addAccount } = useDashboardData();
   const [activeTab, setActiveTab] = useState("active");
   const [searchValue, setSearchValue] = useState("");
-  const [accounts, setAccounts] = useState(initialAccounts);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [typeFilter, setTypeFilter] = useState("all");
 
@@ -35,6 +28,7 @@ const AccountsPage = () => {
   });
 
   return (
+    <>
       <div className="space-y-6">
         <DashboardPageHeader icon={<Building2 className="w-5 h-5 text-primary" />} title="Accounts" description="Manage client accounts and organizations" />
         <div className="flex items-center justify-between">
@@ -87,9 +81,10 @@ const AccountsPage = () => {
         </Card>
       </div>
       <NewAccountDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={(data) => {
-        setAccounts(prev => [...prev, { id: Date.now(), ...data, status: "active", balance: "$0.00" }]);
+        addAccount(data);
         toast.success(`Account "${data.name}" created`);
       }} />
+    </>
   );
 };
 

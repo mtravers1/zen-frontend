@@ -1,31 +1,42 @@
 import { ReactNode } from "react";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardTopBar from "./DashboardTopBar";
+import { DashboardDataProvider } from "@/contexts/DashboardDataContext";
 
 interface DashboardLayoutProps {
   children: ReactNode;
 }
 
+const DashboardContent = ({ children }: { children: ReactNode }) => {
+  const { state } = useSidebar();
+  const collapsed = state === "collapsed";
+
+  return (
+    <div
+      className="flex flex-col h-screen transition-all duration-300"
+      style={{ marginLeft: collapsed ? "3.5rem" : "15rem" }}
+    >
+      <DashboardTopBar />
+      <main className="flex-1 overflow-y-auto p-6">
+        <div className="max-w-7xl mx-auto">
+          {children}
+        </div>
+      </main>
+    </div>
+  );
+};
+
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
-        {/* Toggle button always visible at top left */}
-        <div className="absolute top-2 left-2 z-40 md:hidden">
-          {/* SidebarTrigger is already used in DashboardTopBar for mobile, but you can add another if needed */}
+    <DashboardDataProvider>
+      <SidebarProvider>
+        <div className="h-screen overflow-hidden w-full bg-background">
+          <DashboardSidebar />
+          <DashboardContent>{children}</DashboardContent>
         </div>
-        <DashboardSidebar />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <DashboardTopBar />
-          <main className="flex-1 overflow-auto p-6">
-            <div className="max-w-7xl mx-auto">
-              {children}
-            </div>
-          </main>
-        </div>
-      </div>
-    </SidebarProvider>
+      </SidebarProvider>
+    </DashboardDataProvider>
   );
 };
 

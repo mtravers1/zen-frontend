@@ -88,6 +88,7 @@ const IntegrationsPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Integrations"
         description="Connect your favorite tools and services"
@@ -152,6 +153,7 @@ const IntegrationsPage = () => {
           </TabsContent>
         ))}
       </Tabs>
+    </>
   );
 };
 

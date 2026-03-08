@@ -8,6 +8,28 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Download, BookOpen, Library, FileText, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
+const downloadResource = (title: string, description: string, type: string) => {
+  const content = [
+    title.toUpperCase(),
+    "=".repeat(title.length),
+    "",
+    `Type: ${type}`,
+    "",
+    description,
+    "",
+    "---",
+    "This resource is provided by your accounting firm.",
+    "Contact your accountant for the full document.",
+  ].join("\n");
+  const blob = new Blob([content], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 const resources = [
   { id: 1, title: "New Client Onboarding Checklist", category: "onboarding", type: "PDF", description: "Everything you need before your first meeting.", icon: "📋" },
   { id: 2, title: "Tax Preparation Document List", category: "tax", type: "PDF", description: "Documents needed for personal and business tax returns.", icon: "📄" },
@@ -43,6 +65,7 @@ const PortalResources = () => {
   });
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -78,7 +101,7 @@ const PortalResources = () => {
                   </div>
                   <p className="text-xs text-muted-foreground">{resource.description}</p>
                 </div>
-                <Button size="sm" variant="outline" onClick={() => toast.success(`Downloading "${resource.title}"...`)}>
+                <Button size="sm" variant="outline" onClick={() => { downloadResource(resource.title, resource.description, resource.type); toast.success(`Downloading "${resource.title}"`); }}>
                   <Download className="w-4 h-4 mr-2" />Download
                 </Button>
               </CardContent>
@@ -93,6 +116,7 @@ const PortalResources = () => {
         )}
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

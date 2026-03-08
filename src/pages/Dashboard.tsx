@@ -13,6 +13,7 @@ const Dashboard = () => {
   const { isStaff } = useAuth();
 
   return (
+    <>
     <DashboardLayout>
       <DashboardHeader />
       <StatsCards />
@@ -58,6 +59,7 @@ const Dashboard = () => {
         </div>
       )}
     </DashboardLayout>
+    </>
   );
 };
 

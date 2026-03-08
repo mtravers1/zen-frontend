@@ -54,6 +54,7 @@ const PortalWorkflow = () => {
   };
 
   return (
+    <>
     <ClientPortalLayout>
       <div className="space-y-6">
         <div>
@@ -110,6 +111,7 @@ const PortalWorkflow = () => {
         </div>
       </div>
     </ClientPortalLayout>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import ContactForm from "@/components/contact/ContactForm";
 
 const Contact = () => {
   return (
+    <>
     <div className="min-h-screen bg-background">
       <Header />
       
@@ -35,6 +36,7 @@ const Contact = () => {
       
       <Footer />
     </div>
+    </>
   );
 };
 

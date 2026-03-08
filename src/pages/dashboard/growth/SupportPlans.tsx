@@ -23,6 +23,7 @@ const SupportPlansPage = () => {
   ];
 
   return (
+    <>
       <DashboardPageHeader
         title="Support plans"
         description="Get dedicated support and training for your team"
@@ -72,6 +73,7 @@ const SupportPlansPage = () => {
           Schedule a Call
         </Button>
       </div>
+    </>
   );
 };
 

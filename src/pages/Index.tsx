@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
+    <>
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Header />
       {/* Add padding for fixed header (two rows: ~80px + ~48px = ~128px) */}
@@ -22,6 +23,7 @@ const Index = () => {
       </main>
       <Footer />
     </div>
+    </>
   );
 };
 

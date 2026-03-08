@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import { Briefcase, Clock, AlertCircle } from "lucide-react";
 import { useEffect } from "react";
-
+import Link from "next/link";
 import { supabase } from "@/integrations/supabase/client";
-import { useDashboardAuth } from "@/hooks/useDashboardAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +25,7 @@ interface UserService {
 }
 
 const ServicesPage = () => {
-  const { user } = useDashboardAuth();
+  const { user } = useAuth();
   const [services, setServices] = useState<UserService[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("active");
@@ -33,101 +33,12 @@ const ServicesPage = () => {
   useEffect(() => {
     const fetchServices = async () => {
       if (!user) return;
+
       try {
         const { data, error } = await supabase
           .from("user_services")
           .select(`
             id,
-            status,
-            purchased_at,
-            expires_at,
-            services (
-              id,
-              name,
-              short_description,
-              category
-            )
-          `)
-          .eq("user_id", user.id)
-          .order("purchased_at", { ascending: false });
-        if (error) throw error;
-        const transformedData = (data || []).map((item) => ({
-          ...item,
-          service: Array.isArray(item.service) ? item.service[0] : item.service,
-        })) as UserService[];
-        setServices(transformedData);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchServices();
-  }, [user]);
-
-  const filteredServices = useMemo(() => {
-    if (activeTab === "active") {
-      return services.filter((s) => s.status === "active" || s.status === "pending");
-    }
-    return services.filter((s) => s.status === "expired" || s.status === "cancelled");
-  }, [services, activeTab]);
-
-  const counts = useMemo(() => ({
-    active: services.filter((s) => s.status === "active" || s.status === "pending").length,
-    archived: services.filter((s) => s.status === "expired" || s.status === "cancelled").length,
-  }), [services]);
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "active":
-        return <Badge className="bg-primary/10 text-primary border-primary/30">Active</Badge>;
-      case "pending":
-        return <Badge className="bg-accent/10 text-accent-foreground border-accent/30">Pending</Badge>;
-      case "expired":
-        return <Badge variant="secondary">Expired</Badge>;
-      case "cancelled":
-        return <Badge variant="outline">Cancelled</Badge>;
-      default:
-        return <Badge variant="outline">{status}</Badge>;
-    }
-  };
-
-  return (
-    <div>
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-primary/10">
-            <Briefcase className="w-6 h-6 text-primary" />
-          </div>
-          <h1 className="text-2xl font-bold">My Services</h1>
-        </div>
-        <p className="text-muted-foreground">
-          View and manage your subscribed services
-        </p>
-      </div>
-
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList variant="pills" className="mb-6">
-          <TabsTrigger variant="pills" value="active">
-            Active {counts.active > 0 && <span className="ml-1.5 text-xs">({counts.active})</span>}
-          </TabsTrigger>
-          <TabsTrigger variant="pills" value="archived">
-            Archived {counts.archived > 0 && <span className="ml-1.5 text-xs">({counts.archived})</span>}
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="active">
-          {/* ...active services content... */}
-        </TabsContent>
-        <TabsContent value="archived">
-          {/* ...archived services content... */}
-        </TabsContent>
-      </Tabs>
-    </div>
-  );
-};
-
-export default ServicesPage;
             status,
             purchased_at,
             expires_at,
@@ -255,7 +166,7 @@ const ServicesList = ({ services, loading, getStatusBadge, emptyMessage }: Servi
             <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
             <p className="text-muted-foreground mb-4">{emptyMessage}</p>
             <Button asChild>
-              <Link to="/solutions">Browse Services</Link>
+              <Link href="/solutions">Browse Services</Link>
             </Button>
           </div>
         </CardContent>

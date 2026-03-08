@@ -119,3 +119,4 @@ const ReferEarnPage = () => {
 };
 
 export default ReferEarnPage;
+

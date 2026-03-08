@@ -5,14 +5,9 @@ import PageToolbar from "@/components/dashboard/PageToolbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import NewTemplateDialog from "@/components/dashboard/dialogs/NewTemplateDialog";
+import { toast } from "sonner";
 
 const templateTabs = [
   { value: "proposals", label: "Proposals & ELs" },
@@ -30,8 +25,7 @@ const templateTabs = [
   { value: "folders", label: "Folders" },
 ];
 
-// Mock data for templates
-const mockTemplates: Record<string, Array<{ id: number; name: string; description: string; lastModified: string }>> = {
+const initialTemplates: Record<string, Array<{ id: number; name: string; description: string; lastModified: string }>> = {
   proposals: [
     { id: 1, name: "Standard Proposal", description: "Basic service proposal template", lastModified: "2024-01-15" },
     { id: 2, name: "Enterprise Package", description: "Multi-tier enterprise proposal", lastModified: "2024-01-10" },
@@ -50,12 +44,13 @@ const FirmTemplatesPage = () => {
   const [activeTab, setActiveTab] = useState("proposals");
   const [searchValue, setSearchValue] = useState("");
   const [showBanner, setShowBanner] = useState(true);
+  const [templates, setTemplates] = useState(initialTemplates);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const currentTemplates = mockTemplates[activeTab] || [];
-
-  const filteredTemplates = currentTemplates.filter((template) =>
-    template.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-    template.description.toLowerCase().includes(searchValue.toLowerCase())
+  const currentTemplates = templates[activeTab] || [];
+  const filteredTemplates = currentTemplates.filter((t) =>
+    t.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    t.description.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   return (
@@ -67,11 +62,11 @@ const FirmTemplatesPage = () => {
             icon={<LayoutTemplate className="w-6 h-6" />}
           />
           <div className="flex gap-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => toast.info("Copying from library...")}>
               <Copy className="w-4 h-4 mr-2" />
               Copy from Library
             </Button>
-            <Button>
+            <Button onClick={() => setDialogOpen(true)}>
               <Plus className="w-4 h-4 mr-2" />
               Create Template
             </Button>
@@ -143,7 +138,7 @@ const FirmTemplatesPage = () => {
                     ) : (
                       <TableRow>
                         <TableCell colSpan={3} className="text-center py-8 text-muted-foreground">
-                          No templates found for this category. Create one to get started.
+                          No templates found. Create one to get started.
                         </TableCell>
                       </TableRow>
                     )}
@@ -154,6 +149,19 @@ const FirmTemplatesPage = () => {
           ))}
         </Tabs>
       </div>
+      <NewTemplateDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        categories={templateTabs.map(t => ({ value: t.value, label: t.label }))}
+        defaultCategory={activeTab}
+        onSubmit={(data) => {
+          setTemplates(prev => ({
+            ...prev,
+            [data.category]: [...(prev[data.category] || []), { id: Date.now(), name: data.name, description: data.description, lastModified: new Date().toISOString().split("T")[0] }],
+          }));
+          toast.success(`Template "${data.name}" created`);
+        }}
+      />
   );
 };
 

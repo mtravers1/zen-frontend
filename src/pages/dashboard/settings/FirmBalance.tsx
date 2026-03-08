@@ -129,3 +129,4 @@ const FirmBalancePage = () => {
 };
 
 export default FirmBalancePage;
+

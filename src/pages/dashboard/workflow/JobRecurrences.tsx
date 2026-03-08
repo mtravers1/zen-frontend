@@ -6,70 +6,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { toast } from "sonner";
 
 const JobRecurrencesPage = () => {
   const [activeTab, setActiveTab] = useState("active");
+  const [searchValue, setSearchValue] = useState("");
 
   const recurrences = [
-    {
-      id: 1,
-      name: "Monthly Bookkeeping",
-      template: "Bookkeeping Template",
-      frequency: "Monthly",
-      accounts: 15,
-      nextRun: "2024-02-01",
-      status: "active",
-    },
-    {
-      id: 2,
-      name: "Quarterly Tax Estimates",
-      template: "Tax Estimate Template",
-      frequency: "Quarterly",
-      accounts: 42,
-      nextRun: "2024-04-01",
-      status: "active",
-    },
-    {
-      id: 3,
-      name: "Annual Tax Returns",
-      template: "Tax Return Template",
-      frequency: "Yearly",
-      accounts: 156,
-      nextRun: "2024-01-01",
-      status: "active",
-    },
-    {
-      id: 4,
-      name: "Bi-weekly Payroll",
-      template: "Payroll Template",
-      frequency: "Bi-weekly",
-      accounts: 23,
-      nextRun: "2024-01-15",
-      status: "active",
-    },
-    {
-      id: 5,
-      name: "Annual Audit",
-      template: "Audit Template",
-      frequency: "Yearly",
-      accounts: 8,
-      nextRun: "2024-06-01",
-      status: "paused",
-    },
+    { id: 1, name: "Monthly Bookkeeping", template: "Bookkeeping Template", frequency: "Monthly", accounts: 15, nextRun: "2024-02-01", status: "active" },
+    { id: 2, name: "Quarterly Tax Estimates", template: "Tax Estimate Template", frequency: "Quarterly", accounts: 42, nextRun: "2024-04-01", status: "active" },
+    { id: 3, name: "Annual Tax Returns", template: "Tax Return Template", frequency: "Yearly", accounts: 156, nextRun: "2024-01-01", status: "active" },
+    { id: 4, name: "Bi-weekly Payroll", template: "Payroll Template", frequency: "Bi-weekly", accounts: 23, nextRun: "2024-01-15", status: "active" },
+    { id: 5, name: "Annual Audit", template: "Audit Template", frequency: "Yearly", accounts: 8, nextRun: "2024-06-01", status: "paused" },
   ];
 
   const filteredRecurrences = recurrences.filter((rec) => {
-    if (activeTab === "active") return rec.status === "active";
-    if (activeTab === "paused") return rec.status === "paused";
-    return true;
+    const matchesTab = activeTab === "all" || rec.status === activeTab;
+    const matchesSearch = !searchValue || rec.name.toLowerCase().includes(searchValue.toLowerCase()) || rec.template.toLowerCase().includes(searchValue.toLowerCase());
+    return matchesTab && matchesSearch;
   });
 
   return (
@@ -89,16 +44,17 @@ const JobRecurrencesPage = () => {
             </TabsList>
           </Tabs>
 
-          <Button>
+          <Button onClick={() => toast.success("New recurrence creation coming soon")}>
             <Plus className="w-4 h-4 mr-2" />
             New Recurrence
           </Button>
         </div>
 
         <PageToolbar
-          onSearchChange={() => {}}
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
           searchPlaceholder="Search recurrences..."
-          showFilter={true}
+          showFilter
         />
 
         <Card>
@@ -119,24 +75,17 @@ const JobRecurrencesPage = () => {
                   <TableRow key={rec.id} className="cursor-pointer hover:bg-muted/50">
                     <TableCell className="font-medium">{rec.name}</TableCell>
                     <TableCell>{rec.template}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{rec.frequency}</Badge>
-                    </TableCell>
+                    <TableCell><Badge variant="outline">{rec.frequency}</Badge></TableCell>
                     <TableCell>{rec.accounts}</TableCell>
                     <TableCell className="text-muted-foreground">{rec.nextRun}</TableCell>
                     <TableCell>
-                      <Badge
-                        className={
-                          rec.status === "active"
-                            ? "bg-green-500/10 text-green-500"
-                            : "bg-yellow-500/10 text-yellow-600"
-                        }
-                      >
+                      <Badge className={rec.status === "active" ? "bg-green-500/10 text-green-500" : "bg-yellow-500/10 text-yellow-600"}>
                         {rec.status.charAt(0).toUpperCase() + rec.status.slice(1)}
                       </Badge>
                     </TableCell>
                   </TableRow>
                 ))}
+                {filteredRecurrences.length === 0 && <TableRow><TableCell colSpan={6} className="text-center text-muted-foreground py-8">No recurrences found</TableCell></TableRow>}
               </TableBody>
             </Table>
           </CardContent>

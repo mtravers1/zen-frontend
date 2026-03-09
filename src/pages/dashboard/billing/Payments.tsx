@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CreditCard } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageStatsBar from "@/components/dashboard/PageStatsBar";
@@ -8,41 +8,84 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
+import useBackendFetch from "@/hooks/useBackendFetch";
 
-const mockPayments = [
-  { id: "PAY-001", account: "Acme Corp", date: "2024-01-22", status: "completed", amount: 5000, method: "Credit Card" },
-  { id: "PAY-002", account: "Tech Solutions", date: "2024-01-21", status: "completed", amount: 3500, method: "ACH" },
-  { id: "PAY-003", account: "Global Industries", date: "2024-01-20", status: "refunded", amount: -1200, method: "Credit Card" },
-  { id: "PAY-004", account: "StartUp Inc", date: "2024-01-19", status: "completed", amount: 2100, method: "Credit Card" },
-  { id: "PAY-005", account: "Enterprise Ltd", date: "2024-01-18", status: "pending", amount: 6800, method: "Wire" },
+type Payment = {
+  id: string;
+  account: string;
+  date: string;
+  status: string;
+  amount: number;
+  method: string;
+};
+
+const fallbackPayments: Payment[] = [
+  { id: "PAY-001", account: "Acme Corp",        date: "2024-01-22", status: "completed", amount: 5000,  method: "Credit Card" },
+  { id: "PAY-002", account: "Tech Solutions",   date: "2024-01-21", status: "completed", amount: 3500,  method: "ACH" },
+  { id: "PAY-003", account: "Global Industries",date: "2024-01-20", status: "refunded",  amount: -1200, method: "Credit Card" },
+  { id: "PAY-004", account: "StartUp Inc",      date: "2024-01-19", status: "completed", amount: 2100,  method: "Credit Card" },
+  { id: "PAY-005", account: "Enterprise Ltd",   date: "2024-01-18", status: "pending",   amount: 6800,  method: "Wire" },
 ];
 
 const presetOptions = [
-  { value: "all", label: "All Payments" }, { value: "completed", label: "Completed" }, { value: "pending", label: "Pending" }, { value: "refunded", label: "Refunds Only" },
+  { value: "all", label: "All Payments" },
+  { value: "completed", label: "Completed" },
+  { value: "pending", label: "Pending" },
+  { value: "refunded", label: "Refunds Only" },
 ];
 
 const PaymentsPage = () => {
+  const fetchBackend = useBackendFetch();
+  const [payments, setPayments] = useState<Payment[]>(fallbackPayments);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPreset, setSelectedPreset] = useState("all");
   const [methodFilter, setMethodFilter] = useState("all");
 
-  const getStatusBadge = (s: string) => { switch(s) { case "completed": return <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Completed</Badge>; case "pending": return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Pending</Badge>; case "refunded": return <Badge className="bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">Refunded</Badge>; default: return <Badge variant="secondary">{s}</Badge>; } };
+  useEffect(() => {
+    fetchBackend<{ payments: Record<string, unknown>[] }>("/firm-payments?limit=100")
+      .then((res) => {
+        const items = (res.payments ?? []).map((p) => ({
+          id: String(p.paymentNumber ?? p._id),
+          account: String(p.clientName ?? ""),
+          date: p.date ? new Date(String(p.date)).toISOString().split("T")[0] : "",
+          status: String(p.status ?? "pending"),
+          amount: typeof p.amount === "number" ? p.amount : 0,
+          method: String(p.paymentMethod ?? "ACH"),
+        }));
+        if (items.length > 0) setPayments(items);
+      })
+      .catch(() => { /* keep fallback */ });
+  }, [fetchBackend]);
 
-  const filtered = mockPayments.filter(p => {
+  const getStatusBadge = (s: string) => {
+    switch (s) {
+      case "completed": return <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Completed</Badge>;
+      case "pending":   return <Badge className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Pending</Badge>;
+      case "refunded":  return <Badge className="bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">Refunded</Badge>;
+      default:          return <Badge variant="secondary">{s}</Badge>;
+    }
+  };
+
+  const filtered = payments.filter((p) => {
     const matchesPreset = selectedPreset === "all" || p.status === selectedPreset;
     const matchesSearch = !searchValue || p.account.toLowerCase().includes(searchValue.toLowerCase()) || p.id.toLowerCase().includes(searchValue.toLowerCase());
     const matchesMethod = methodFilter === "all" || p.method === methodFilter;
     return matchesPreset && matchesSearch && matchesMethod;
   });
 
-  const totalPayments = mockPayments.filter(p => p.status === "completed").reduce((s, p) => s + p.amount, 0);
-  const totalRefunds = Math.abs(mockPayments.filter(p => p.status === "refunded").reduce((s, p) => s + p.amount, 0));
+  const totalPayments = payments.filter((p) => p.status === "completed").reduce((s, p) => s + p.amount, 0);
+  const totalRefunds = Math.abs(payments.filter((p) => p.status === "refunded").reduce((s, p) => s + p.amount, 0));
 
   return (
     <>
       <div className="space-y-6">
         <DashboardPageHeader title="Payments" description="Track all incoming payments and refunds" icon={<CreditCard className="w-6 h-6" />} />
-        <PageStatsBar stats={[{ label: "Payments", value: mockPayments.filter(p => p.amount > 0).length }, { label: "Total", value: `$${totalPayments.toLocaleString()}`, variant: "success" }, { label: "Refunds", value: `$${totalRefunds.toLocaleString()}`, variant: "danger" }, { label: "Net Revenue", value: `$${(totalPayments - totalRefunds).toLocaleString()}` }]} />
+        <PageStatsBar stats={[
+          { label: "Payments",    value: payments.filter((p) => p.amount > 0).length },
+          { label: "Total",       value: `$${totalPayments.toLocaleString()}`,        variant: "success" },
+          { label: "Refunds",     value: `$${totalRefunds.toLocaleString()}`,         variant: "danger" },
+          { label: "Net Revenue", value: `$${(totalPayments - totalRefunds).toLocaleString()}` },
+        ]} />
         <PageToolbar
           searchValue={searchValue}
           onSearchChange={setSearchValue}
@@ -63,7 +106,7 @@ const PaymentsPage = () => {
             </Select>
           }
           showExport
-          onExportClick={() => { exportToCSV(filtered.map(p => ({ ID: p.id, Account: p.account, Date: p.date, Status: p.status, Amount: p.amount, Method: p.method })), "payments"); toast.success("Payments exported"); }}
+          onExportClick={() => { exportToCSV(filtered.map((p) => ({ ID: p.id, Account: p.account, Date: p.date, Status: p.status, Amount: p.amount, Method: p.method })), "payments"); toast.success("Payments exported"); }}
           showPrint
           onPrintClick={() => { window.print(); }}
         />
@@ -71,8 +114,15 @@ const PaymentsPage = () => {
           <Table>
             <TableHeader><TableRow><TableHead>Payment #</TableHead><TableHead>Account</TableHead><TableHead>Date</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Amount</TableHead><TableHead>Payment Method</TableHead></TableRow></TableHeader>
             <TableBody>
-              {filtered.map(p => (
-                <TableRow key={p.id} className="cursor-pointer hover:bg-muted/50"><TableCell className="font-medium">{p.id}</TableCell><TableCell>{p.account}</TableCell><TableCell>{p.date}</TableCell><TableCell>{getStatusBadge(p.status)}</TableCell><TableCell className={`text-right font-medium ${p.amount < 0 ? "text-red-600" : ""}`}>{p.amount < 0 ? "-" : ""}${Math.abs(p.amount).toLocaleString()}</TableCell><TableCell>{p.method}</TableCell></TableRow>
+              {filtered.map((p) => (
+                <TableRow key={p.id} className="cursor-pointer hover:bg-muted/50">
+                  <TableCell className="font-medium">{p.id}</TableCell>
+                  <TableCell>{p.account}</TableCell>
+                  <TableCell>{p.date}</TableCell>
+                  <TableCell>{getStatusBadge(p.status)}</TableCell>
+                  <TableCell className={`text-right font-medium ${p.amount < 0 ? "text-red-600" : ""}`}>{p.amount < 0 ? "-" : ""}${Math.abs(p.amount).toLocaleString()}</TableCell>
+                  <TableCell>{p.method}</TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RefreshCw, Plus } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
@@ -9,8 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 import NewRecurringInvoiceDialog from "@/components/dashboard/dialogs/NewRecurringInvoiceDialog";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const initialInvoices = [
+const fallbackInvoices = [
   { id: 1, account: "Acme Corp", name: "Monthly Retainer", status: "active", paymentMethod: "Credit Card", amount: 2500, balance: 0, nextBilling: "2024-02-01" },
   { id: 2, account: "Tech Solutions", name: "Support Plan", status: "active", paymentMethod: "ACH", amount: 1500, balance: 500, nextBilling: "2024-02-15" },
   { id: 3, account: "Global Industries", name: "Enterprise License", status: "inactive", paymentMethod: "Invoice", amount: 5000, balance: 0, nextBilling: "-" },
@@ -18,9 +19,29 @@ const initialInvoices = [
 ];
 
 const RecurringInvoicesPage = () => {
+  const fetchBackend = useBackendFetch();
   const [activeTab, setActiveTab] = useState("active");
   const [searchValue, setSearchValue] = useState("");
-  const [invoices, setInvoices] = useState(initialInvoices);
+  const [invoices, setInvoices] = useState(fallbackInvoices);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ _id: string; clientName?: string; name?: string; status?: string; paymentMethod?: string; amount?: number; balance?: number; nextBilling?: string }> }>("/recurring-invoices")
+      .then(res => {
+        if (res?.data?.length) {
+          setInvoices(res.data.map((r, i) => ({
+            id: i + 1,
+            account: r.clientName ?? "",
+            name: r.name ?? "",
+            status: r.status ?? "active",
+            paymentMethod: r.paymentMethod ?? "-",
+            amount: r.amount ?? 0,
+            balance: r.balance ?? 0,
+            nextBilling: r.nextBilling ? new Date(r.nextBilling).toISOString().split("T")[0] : "-",
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [methodFilter, setMethodFilter] = useState("all");
 

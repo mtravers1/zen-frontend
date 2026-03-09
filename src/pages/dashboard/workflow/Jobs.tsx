@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
 import { Briefcase, Plus, Download } from "lucide-react";
@@ -11,8 +11,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
 import NewJobDialog from "@/components/dashboard/dialogs/NewJobDialog";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const initialJobs = [
+const fallbackJobs = [
   { id: 1, name: "2023 Tax Return", account: "Smith Corporation", assignee: "John Doe", pipeline: "Tax Returns", stage: "In Review", priority: "high", status: "in_progress", clientStatus: "Awaiting Info", startDate: "2024-01-01", dueDate: "2024-04-15" },
   { id: 2, name: "Annual Audit 2023", account: "Johnson LLC", assignee: "Jane Smith", pipeline: "Audits", stage: "Planning", priority: "medium", status: "in_progress", clientStatus: "In Progress", startDate: "2024-01-10", dueDate: "2024-03-31" },
   { id: 3, name: "Quarterly Bookkeeping", account: "Brown & Associates", assignee: "Mike Johnson", pipeline: "Bookkeeping", stage: "Processing", priority: "low", status: "in_progress", clientStatus: "On Track", startDate: "2024-01-15", dueDate: "2024-01-31" },
@@ -20,9 +21,32 @@ const initialJobs = [
 ];
 
 const JobsPage = () => {
+  const fetchBackend = useBackendFetch();
   const [activeTab, setActiveTab] = useState("in_progress");
   const [searchValue, setSearchValue] = useState("");
-  const [jobs, setJobs] = useState(initialJobs);
+  const [jobs, setJobs] = useState(fallbackJobs);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ _id: string; name?: string; clientName?: string; assignee?: string; pipelineId?: string | { name?: string }; stage?: string; priority?: string; status?: string; clientStatus?: string; startDate?: string; dueDate?: string }> }>("/jobs")
+      .then(res => {
+        if (res?.data?.length) {
+          setJobs(res.data.map((j, i) => ({
+            id: i + 1,
+            name: j.name ?? "",
+            account: j.clientName ?? "",
+            assignee: j.assignee ?? "",
+            pipeline: typeof j.pipelineId === "object" ? (j.pipelineId?.name ?? "") : "",
+            stage: j.stage ?? "",
+            priority: j.priority ?? "medium",
+            status: j.status ?? "in_progress",
+            clientStatus: j.clientStatus ?? "In Progress",
+            startDate: j.startDate ? new Date(j.startDate).toISOString().split("T")[0] : "",
+            dueDate: j.dueDate ? new Date(j.dueDate).toISOString().split("T")[0] : "",
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [pipelineFilter, setPipelineFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");

@@ -45,7 +45,38 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 					   }
 				}
 
-				// 1. Try backend API first
+				// 1. Try staff-auth endpoint first (web-dashboard staff users)
+				if (API_URL) {
+					try {
+						const staffRes = await fetch(`${API_URL}/api/staff-auth/signin`, {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify({
+								email: credentials.email,
+								password: credentials.password,
+							}),
+						});
+
+						if (staffRes.ok) {
+							const user = await staffRes.json();
+							if (user?.token) {
+								return {
+									id: String(user._id ?? user.id),
+									email: user.email,
+									name: user.name
+										? `${user.name.firstName ?? ""} ${user.name.lastName ?? ""}`.trim()
+										: user.email,
+									role: user.account_type ?? user.role ?? "account_manager",
+									backendToken: user.token,
+								};
+							}
+						}
+					} catch {
+						// Staff auth unavailable — fall through to mobile-app auth
+					}
+				}
+
+				// 2. Try mobile-app backend API
 				if (API_URL) {
 					try {
 						const res = await fetch(`${API_URL}/api/auth/signin`, {

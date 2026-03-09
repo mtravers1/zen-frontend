@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Users, UserCog, Activity, Search } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const teamMembers = [
+const fallbackTeamMembers = [
   { name: "John Director", email: "john@zentavos.com", role: "Director", initials: "JD" },
   { name: "Sarah Manager", email: "sarah@zentavos.com", role: "Executive Manager", initials: "SM" },
   { name: "Mike Account", email: "mike@zentavos.com", role: "Account Manager", initials: "MA" },
@@ -14,7 +15,7 @@ const teamMembers = [
   { name: "Tom Analyst", email: "tom@zentavos.com", role: "Relationship Manager", initials: "TA" },
 ];
 
-const activityLog = [
+const fallbackActivityLog = [
   { user: "John Director", action: "Logged in", time: "2 minutes ago", type: "login" },
   { user: "Sarah Manager", action: "Updated role for Mike Account", time: "15 minutes ago", type: "role_change" },
   { user: "Mike Account", action: "Created new client account", time: "1 hour ago", type: "account" },
@@ -24,8 +25,39 @@ const activityLog = [
 ];
 
 const UsersPage = () => {
+  const fetchBackend = useBackendFetch();
   const [activeTab, setActiveTab] = useState("team");
   const [teamSearch, setTeamSearch] = useState("");
+  const [teamMembers, setTeamMembers] = useState(fallbackTeamMembers);
+  const [activityLog, setActivityLog] = useState(fallbackActivityLog);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ name: string; email: string; role: string; initials?: string; firstName?: string; lastName?: string }> }>("/staff")
+      .then(res => {
+        if (res?.data?.length) {
+          setTeamMembers(res.data.map(s => ({
+            name: s.name ?? `${s.firstName} ${s.lastName}`,
+            email: s.email,
+            role: s.role,
+            initials: s.initials ?? (s.name ?? `${s.firstName} ${s.lastName}`).split(" ").map((w: string) => w[0]).join("").slice(0, 2).toUpperCase(),
+          })));
+        }
+      })
+      .catch(() => {});
+
+    fetchBackend<{ data: Array<{ userName?: string; action?: string; date?: string; type?: string }> }>("/activities")
+      .then(res => {
+        if (res?.data?.length) {
+          setActivityLog(res.data.slice(0, 10).map(a => ({
+            user: a.userName ?? "Unknown",
+            action: a.action ?? "",
+            time: a.date ? new Date(a.date).toLocaleDateString() : "",
+            type: a.type ?? "account",
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
 
   const filteredMembers = teamMembers.filter(m =>
     !teamSearch || m.name.toLowerCase().includes(teamSearch.toLowerCase()) || m.email.toLowerCase().includes(teamSearch.toLowerCase()) || m.role.toLowerCase().includes(teamSearch.toLowerCase())

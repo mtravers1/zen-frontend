@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Clock, Plus } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageStatsBar from "@/components/dashboard/PageStatsBar";
@@ -10,32 +10,78 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
 import NewTimeEntryDialog from "@/components/dashboard/dialogs/NewTimeEntryDialog";
+import useBackendFetch from "@/hooks/useBackendFetch";
 
-const initialEntries = [
-  { id: 1, name: "Project Research", timerStatus: "stopped", date: "2024-01-22", type: "Billable", assignee: "John D.", service: "Consulting", duration: "2:30", billed: false },
-  { id: 2, name: "Client Meeting", timerStatus: "stopped", date: "2024-01-22", type: "Billable", assignee: "Sarah M.", service: "Advisory", duration: "1:00", billed: true },
-  { id: 3, name: "Documentation", timerStatus: "running", date: "2024-01-22", type: "Non-billable", assignee: "Mike R.", service: "Internal", duration: "0:45", billed: false },
-  { id: 4, name: "Code Review", timerStatus: "stopped", date: "2024-01-21", type: "Billable", assignee: "John D.", service: "Development", duration: "3:15", billed: false },
-  { id: 5, name: "Strategy Session", timerStatus: "stopped", date: "2024-01-21", type: "Billable", assignee: "Sarah M.", service: "Consulting", duration: "2:00", billed: true },
+type TimeEntry = {
+  id: string | number;
+  name: string;
+  timerStatus: string;
+  date: string;
+  type: string;
+  assignee: string;
+  service: string;
+  duration: string;
+  billed: boolean;
+};
+
+const fallbackEntries: TimeEntry[] = [
+  { id: 1, name: "Project Research", timerStatus: "stopped", date: "2024-01-22", type: "Billable",     assignee: "John D.",  service: "Consulting",  duration: "2:30", billed: false },
+  { id: 2, name: "Client Meeting",   timerStatus: "stopped", date: "2024-01-22", type: "Billable",     assignee: "Sarah M.", service: "Advisory",    duration: "1:00", billed: true  },
+  { id: 3, name: "Documentation",    timerStatus: "running", date: "2024-01-22", type: "Non-billable", assignee: "Mike R.",  service: "Internal",    duration: "0:45", billed: false },
+  { id: 4, name: "Code Review",      timerStatus: "stopped", date: "2024-01-21", type: "Billable",     assignee: "John D.",  service: "Development", duration: "3:15", billed: false },
+  { id: 5, name: "Strategy Session", timerStatus: "stopped", date: "2024-01-21", type: "Billable",     assignee: "Sarah M.", service: "Consulting",  duration: "2:00", billed: true  },
 ];
 
 const presetOptions = [
-  { value: "all", label: "All Entries" }, { value: "today", label: "Today" }, { value: "this-week", label: "This Week" }, { value: "unbilled", label: "Unbilled Only" },
+  { value: "all", label: "All Entries" },
+  { value: "today", label: "Today" },
+  { value: "this-week", label: "This Week" },
+  { value: "unbilled", label: "Unbilled Only" },
 ];
 
 const TimeEntriesPage = () => {
+  const fetchBackend = useBackendFetch();
+  const [entries, setEntries] = useState<TimeEntry[]>(fallbackEntries);
   const [searchValue, setSearchValue] = useState("");
   const [selectedPreset, setSelectedPreset] = useState("all");
-  const [entries, setEntries] = useState(initialEntries);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [typeFilter, setTypeFilter] = useState("all");
 
-  const filtered = entries.filter(e => {
+  useEffect(() => {
+    fetchBackend<{ entries: Record<string, unknown>[] }>("/time-entries?limit=100")
+      .then((res) => {
+        const items = (res.entries ?? []).map((e) => ({
+          id: String(e._id),
+          name: String(e.name ?? ""),
+          timerStatus: String(e.timerStatus ?? "idle"),
+          date: e.date ? new Date(String(e.date)).toISOString().split("T")[0] : "",
+          type: String(e.type ?? "Billable"),
+          assignee: String(e.assignee ?? ""),
+          service: String(e.service ?? ""),
+          duration: String(e.duration ?? "0:00"),
+          billed: Boolean(e.billed),
+        }));
+        if (items.length > 0) setEntries(items);
+      })
+      .catch(() => { /* keep fallback */ });
+  }, [fetchBackend]);
+
+  const filtered = entries.filter((e) => {
     const matchesSearch = !searchValue || e.name.toLowerCase().includes(searchValue.toLowerCase()) || e.assignee.toLowerCase().includes(searchValue.toLowerCase());
     const matchesPreset = selectedPreset === "all" || (selectedPreset === "unbilled" && !e.billed);
     const matchesType = typeFilter === "all" || e.type === typeFilter;
     return matchesSearch && matchesPreset && matchesType;
   });
+
+  const totalUnbilledMinutes = entries.filter((e) => !e.billed).reduce((acc, e) => {
+    const [h, m] = e.duration.split(":").map(Number);
+    return acc + (h || 0) * 60 + (m || 0);
+  }, 0);
+  const totalBilledMinutes = entries.filter((e) => e.billed).reduce((acc, e) => {
+    const [h, m] = e.duration.split(":").map(Number);
+    return acc + (h || 0) * 60 + (m || 0);
+  }, 0);
+  const fmt = (mins: number) => `${Math.floor(mins / 60)}:${String(mins % 60).padStart(2, "0")}`;
 
   return (
     <>
@@ -44,7 +90,11 @@ const TimeEntriesPage = () => {
           <DashboardPageHeader title="Time Entries" description="Track and manage time spent on client work" icon={<Clock className="w-6 h-6" />} />
           <Button onClick={() => setDialogOpen(true)}><Plus className="w-4 h-4 mr-2" />New Entry</Button>
         </div>
-        <PageStatsBar stats={[{ label: "Total Duration", value: "9:30" }, { label: "Unbilled", value: "6:30", variant: "warning" }, { label: "Billed", value: "3:00", variant: "success" }]} />
+        <PageStatsBar stats={[
+          { label: "Total Duration", value: fmt(totalUnbilledMinutes + totalBilledMinutes) },
+          { label: "Unbilled",       value: fmt(totalUnbilledMinutes), variant: "warning" },
+          { label: "Billed",         value: fmt(totalBilledMinutes),   variant: "success" },
+        ]} />
         <PageToolbar
           searchValue={searchValue}
           onSearchChange={setSearchValue}
@@ -64,21 +114,34 @@ const TimeEntriesPage = () => {
             </Select>
           }
           showExport
-          onExportClick={() => { exportToCSV(filtered.map(e => ({ Name: e.name, Date: e.date, Type: e.type, Assignee: e.assignee, Service: e.service, Duration: e.duration, Billed: e.billed ? "Yes" : "No" })), "time-entries"); toast.success("Time entries exported"); }}
+          onExportClick={() => { exportToCSV(filtered.map((e) => ({ Name: e.name, Date: e.date, Type: e.type, Assignee: e.assignee, Service: e.service, Duration: e.duration, Billed: e.billed ? "Yes" : "No" })), "time-entries"); toast.success("Time entries exported"); }}
         />
         <div className="border rounded-lg bg-card">
           <Table>
             <TableHeader><TableRow><TableHead>Name</TableHead><TableHead>Timer</TableHead><TableHead>Date</TableHead><TableHead>Type</TableHead><TableHead>Assignee</TableHead><TableHead>Service</TableHead><TableHead>Duration</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
             <TableBody>
-              {filtered.map(entry => (
-                <TableRow key={entry.id} className="cursor-pointer hover:bg-muted/50"><TableCell className="font-medium">{entry.name}</TableCell><TableCell><Badge variant={entry.timerStatus === "running" ? "default" : "secondary"}>{entry.timerStatus}</Badge></TableCell><TableCell>{entry.date}</TableCell><TableCell><Badge variant={entry.type === "Billable" ? "default" : "outline"}>{entry.type}</Badge></TableCell><TableCell>{entry.assignee}</TableCell><TableCell>{entry.service}</TableCell><TableCell className="font-mono">{entry.duration}</TableCell><TableCell><Badge variant={entry.billed ? "default" : "secondary"}>{entry.billed ? "Billed" : "Unbilled"}</Badge></TableCell></TableRow>
+              {filtered.map((entry) => (
+                <TableRow key={entry.id} className="cursor-pointer hover:bg-muted/50">
+                  <TableCell className="font-medium">{entry.name}</TableCell>
+                  <TableCell><Badge variant={entry.timerStatus === "running" ? "default" : "secondary"}>{entry.timerStatus}</Badge></TableCell>
+                  <TableCell>{entry.date}</TableCell>
+                  <TableCell><Badge variant={entry.type === "Billable" ? "default" : "outline"}>{entry.type}</Badge></TableCell>
+                  <TableCell>{entry.assignee}</TableCell>
+                  <TableCell>{entry.service}</TableCell>
+                  <TableCell className="font-mono">{entry.duration}</TableCell>
+                  <TableCell><Badge variant={entry.billed ? "default" : "secondary"}>{entry.billed ? "Billed" : "Unbilled"}</Badge></TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
         </div>
       </div>
       <NewTimeEntryDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={(data) => {
-        setEntries(prev => [...prev, { id: Date.now(), name: data.name, timerStatus: "stopped", date: data.date, type: data.billable ? "Billable" : "Non-billable", assignee: data.assignee, service: data.service, duration: data.duration, billed: false }]);
+        setEntries((prev) => [...prev, {
+          id: Date.now(), name: data.name, timerStatus: "stopped", date: data.date,
+          type: data.billable ? "Billable" : "Non-billable", assignee: data.assignee,
+          service: data.service, duration: data.duration, billed: false,
+        }]);
         toast.success("Time entry added");
       }} />
     </>

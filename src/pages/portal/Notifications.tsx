@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ClientPortalLayout from "@/components/portal/ClientPortalLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Bell, CheckCircle2, CreditCard, FolderOpen, GitBranch, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const initialNotifications = [
+type Notification = { id: number; title: string; description: string; type: string; time: string; read: boolean };
+
+const fallbackNotifications: Notification[] = [
   { id: 1, title: "Tax Return moved to 'In Review'", description: "Your 2024 Tax Return has progressed to the review stage.", type: "workflow", time: "2 hours ago", read: false },
   { id: 2, title: "New invoice generated", description: "Invoice INV-042 for $2,500 has been created for Monthly CFO Service.", type: "billing", time: "1 day ago", read: false },
   { id: 3, title: "Document uploaded by your team", description: "John D. uploaded 'W-2 Form 2024.pdf' to your file cabinet.", type: "document", time: "2 days ago", read: false },
@@ -15,7 +18,25 @@ const initialNotifications = [
 ];
 
 const PortalNotifications = () => {
-  const [notifications, setNotifications] = useState(initialNotifications);
+  const fetchBackend = useBackendFetch();
+  const [notifications, setNotifications] = useState<Notification[]>(fallbackNotifications);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ _id: string; title?: string; message?: string; type?: string; read?: boolean; createdAt?: string }> }>("/notifications")
+      .then(res => {
+        if (res?.data?.length) {
+          setNotifications(res.data.map((n, i) => ({
+            id: i + 1,
+            title: n.title ?? "",
+            description: n.message ?? "",
+            type: n.type ?? "workflow",
+            time: n.createdAt ? new Date(n.createdAt).toLocaleDateString() : "",
+            read: n.read ?? false,
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
 
   const markAllRead = () => {
     setNotifications(prev => prev.map(n => ({ ...n, read: true })));

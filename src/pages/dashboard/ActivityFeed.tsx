@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Activity, HelpCircle, Star } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
@@ -9,39 +9,86 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { exportToCSV } from "@/lib/export";
 import { toast } from "sonner";
+import useBackendFetch from "@/hooks/useBackendFetch";
 
-const mockActivities = [
-  { id: 1, date: "2024-01-22 14:30", account: "Acme Corp", type: "Invoice", item: "INV-001", action: "Created", user: { name: "John D.", avatar: "" } },
-  { id: 2, date: "2024-01-22 13:15", account: "Tech Solutions", type: "Document", item: "Tax Return 2024", action: "Uploaded", user: { name: "Sarah M.", avatar: "" } },
-  { id: 3, date: "2024-01-22 12:00", account: "Global Industries", type: "Proposal", item: "Q1 Package", action: "Signed", user: { name: "Client", avatar: "" } },
-  { id: 4, date: "2024-01-22 11:30", account: "StartUp Inc", type: "Payment", item: "PAY-004", action: "Received", user: { name: "System", avatar: "" } },
-  { id: 5, date: "2024-01-22 10:45", account: "Enterprise Ltd", type: "Lead", item: "New Inquiry", action: "Created", user: { name: "Mike R.", avatar: "" } },
-  { id: 6, date: "2024-01-21 16:20", account: "Acme Corp", type: "Time Entry", item: "Project Research", action: "Logged", user: { name: "John D.", avatar: "" } },
+type ActivityItem = {
+  id: string | number;
+  date: string;
+  account: string;
+  type: string;
+  item: string;
+  action: string;
+  user: { name: string; avatar: string };
+};
+
+const fallbackActivities: ActivityItem[] = [
+  { id: 1, date: "2024-01-22 14:30", account: "Acme Corp",       type: "Invoice",    item: "INV-001",          action: "Created",  user: { name: "John D.",  avatar: "" } },
+  { id: 2, date: "2024-01-22 13:15", account: "Tech Solutions",  type: "Document",   item: "Tax Return 2024",  action: "Uploaded", user: { name: "Sarah M.", avatar: "" } },
+  { id: 3, date: "2024-01-22 12:00", account: "Global Industries",type: "Proposal",  item: "Q1 Package",       action: "Signed",   user: { name: "Client",   avatar: "" } },
+  { id: 4, date: "2024-01-22 11:30", account: "StartUp Inc",     type: "Payment",    item: "PAY-004",          action: "Received", user: { name: "System",   avatar: "" } },
+  { id: 5, date: "2024-01-22 10:45", account: "Enterprise Ltd",  type: "Lead",       item: "New Inquiry",      action: "Created",  user: { name: "Mike R.",  avatar: "" } },
+  { id: 6, date: "2024-01-21 16:20", account: "Acme Corp",       type: "Time Entry", item: "Project Research", action: "Logged",   user: { name: "John D.",  avatar: "" } },
 ];
 
 const typeOptions = [
-  { value: "all", label: "All Types" }, { value: "invoice", label: "Invoice" }, { value: "document", label: "Document" }, { value: "proposal", label: "Proposal" }, { value: "payment", label: "Payment" }, { value: "lead", label: "Lead" },
+  { value: "all",        label: "All Types" },
+  { value: "invoice",    label: "Invoice" },
+  { value: "document",   label: "Document" },
+  { value: "proposal",   label: "Proposal" },
+  { value: "payment",    label: "Payment" },
+  { value: "lead",       label: "Lead" },
+  { value: "time entry", label: "Time Entry" },
 ];
 
 const ActivityFeedPage = () => {
+  const fetchBackend = useBackendFetch();
+  const [activities, setActivities] = useState<ActivityItem[]>(fallbackActivities);
   const [searchValue, setSearchValue] = useState("");
   const [selectedType, setSelectedType] = useState("all");
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<(string | number)[]>([]);
+
+  useEffect(() => {
+    fetchBackend<{ activities: Record<string, unknown>[] }>("/activities?limit=100")
+      .then((res) => {
+        const items = (res.activities ?? []).map((a) => ({
+          id: String(a._id ?? a.id),
+          date: a.date ? new Date(String(a.date)).toLocaleString() : "",
+          account: String(a.clientName ?? ""),
+          type: String(a.type ?? "Other"),
+          item: String(a.item ?? ""),
+          action: String(a.action ?? ""),
+          user: { name: String(a.userName ?? "System"), avatar: "" },
+        }));
+        if (items.length > 0) setActivities(items);
+      })
+      .catch(() => { /* keep fallback */ });
+  }, [fetchBackend]);
 
   const getTypeBadge = (type: string) => {
-    const colors: Record<string, string> = { Invoice: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400", Document: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400", Proposal: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400", Payment: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400", Lead: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400", "Time Entry": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400" };
-    return <Badge className={colors[type] || ""}>{type}</Badge>;
+    const colors: Record<string, string> = {
+      Invoice: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+      Document: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400",
+      Proposal: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+      Payment: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+      Lead: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
+      "Time Entry": "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400",
+    };
+    return <Badge className={colors[type] ?? ""}>{type}</Badge>;
   };
 
-  const toggleFavorite = (id: number) => setFavorites((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
+  const toggleFavorite = (id: string | number) =>
+    setFavorites((prev) => prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]);
 
-  const filteredActivities = mockActivities.filter((a) => {
+  const filteredActivities = activities.filter((a) => {
     const matchesType = selectedType === "all" || a.type.toLowerCase() === selectedType;
     const matchesSearch = a.account.toLowerCase().includes(searchValue.toLowerCase()) || a.item.toLowerCase().includes(searchValue.toLowerCase());
     return matchesType && matchesSearch;
   });
 
-  const handleExport = () => { exportToCSV(filteredActivities.map((a) => ({ date: a.date, account: a.account, type: a.type, item: a.item, action: a.action, user: a.user.name })), "activity-feed"); toast.success("Activity feed exported"); };
+  const handleExport = () => {
+    exportToCSV(filteredActivities.map((a) => ({ date: a.date, account: a.account, type: a.type, item: a.item, action: a.action, user: a.user.name })), "activity-feed");
+    toast.success("Activity feed exported");
+  };
 
   return (
     <>

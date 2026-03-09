@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
 import { Inbox, Mail, Star, Archive, Trash2 } from "lucide-react";
@@ -9,8 +9,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import ComposeMessageDialog from "@/components/dashboard/dialogs/ComposeMessageDialog";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const initialMessages = [
+type Message = { id: number; from: string; subject: string; preview: string; time: string; unread: boolean; starred: boolean };
+
+const fallbackMessages: Message[] = [
   { id: 1, from: "John Smith", subject: "Tax Return Documents", preview: "Hi, I've uploaded the remaining documents for my tax return...", time: "10:30 AM", unread: true, starred: true },
   { id: 2, from: "Sarah Johnson", subject: "Question about Invoice #1234", preview: "I noticed a discrepancy in the latest invoice. Could you please...", time: "9:15 AM", unread: true, starred: false },
   { id: 3, from: "Michael Brown", subject: "Meeting Confirmation", preview: "Confirming our meeting scheduled for tomorrow at 2 PM...", time: "Yesterday", unread: false, starred: false },
@@ -19,7 +22,26 @@ const initialMessages = [
 ];
 
 const InboxPage = () => {
-  const [messages, setMessages] = useState(initialMessages);
+  const fetchBackend = useBackendFetch();
+  const [messages, setMessages] = useState<Message[]>(fallbackMessages);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ _id: string; fromName?: string; subject?: string; preview?: string; createdAt?: string; unread?: boolean; starred?: boolean }> }>("/messages-dashboard")
+      .then(res => {
+        if (res?.data?.length) {
+          setMessages(res.data.map((m, i) => ({
+            id: i + 1,
+            from: m.fromName ?? "Unknown",
+            subject: m.subject ?? "(no subject)",
+            preview: m.preview ?? "",
+            time: m.createdAt ? new Date(m.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "",
+            unread: m.unread ?? false,
+            starred: m.starred ?? false,
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
   const [searchValue, setSearchValue] = useState("");
   const [selected, setSelected] = useState<number[]>([]);
   const [composeOpen, setComposeOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileCheck, Plus, X, Sparkles } from "lucide-react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
@@ -8,8 +8,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 import NewProposalDialog from "@/components/dashboard/dialogs/NewProposalDialog";
+import { useBackendFetch } from "@/hooks/useBackendFetch";
 
-const initialProposals = [
+const fallbackProposals = [
   { id: 1, account: "Acme Corp", name: "Q1 Service Package", status: "sent", paymentMethod: "Credit Card", auth: true, invoicing: "Monthly", packages: 2, date: "2024-01-20", signed: false },
   { id: 2, account: "Tech Solutions", name: "Annual Retainer", status: "signed", paymentMethod: "ACH", auth: true, invoicing: "Quarterly", packages: 3, date: "2024-01-18", signed: true },
   { id: 3, account: "Global Industries", name: "Enterprise Deal", status: "draft", paymentMethod: "-", auth: false, invoicing: "-", packages: 5, date: "2024-01-22", signed: false },
@@ -21,10 +22,32 @@ const presetOptions = [
 ];
 
 const ProposalsELsPage = () => {
+  const fetchBackend = useBackendFetch();
   const [searchValue, setSearchValue] = useState("");
   const [selectedPreset, setSelectedPreset] = useState("all");
   const [showBanner, setShowBanner] = useState(true);
-  const [proposals, setProposals] = useState(initialProposals);
+  const [proposals, setProposals] = useState(fallbackProposals);
+
+  useEffect(() => {
+    fetchBackend<{ data: Array<{ _id: string; clientName?: string; name?: string; status?: string; signed?: boolean; signedAt?: string; totalAmount?: number; createdAt?: string }> }>("/proposals")
+      .then(res => {
+        if (res?.data?.length) {
+          setProposals(res.data.map((p, i) => ({
+            id: i + 1,
+            account: p.clientName ?? "",
+            name: p.name ?? "",
+            status: p.status ?? "draft",
+            paymentMethod: "-",
+            auth: p.signed ?? false,
+            invoicing: "-",
+            packages: 1,
+            date: p.createdAt ? new Date(p.createdAt).toISOString().split("T")[0] : "",
+            signed: p.signed ?? false,
+          })));
+        }
+      })
+      .catch(() => {});
+  }, [fetchBackend]);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const getStatusBadge = (s: string) => { switch(s) { case "signed": return <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Signed</Badge>; case "sent": return <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">Sent</Badge>; case "viewed": return <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400">Viewed</Badge>; default: return <Badge variant="secondary">Draft</Badge>; } };

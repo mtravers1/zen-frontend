@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardPageHeader from "@/components/dashboard/DashboardPageHeader";
 import PageToolbar from "@/components/dashboard/PageToolbar";
 import { Contact, Plus, Download, Mail, Phone } from "lucide-react";
@@ -11,24 +11,59 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner";
 import { exportToCSV } from "@/lib/export";
 import NewContactDialog from "@/components/dashboard/dialogs/NewContactDialog";
+import useBackendFetch from "@/hooks/useBackendFetch";
 
-const initialContacts = [
-  { id: 1, name: "John Smith", initials: "JS", account: "Smith Corporation", role: "CEO", email: "john@smithcorp.com", phone: "(555) 123-4567", isPrimary: true },
-  { id: 2, name: "Sarah Johnson", initials: "SJ", account: "Johnson LLC", role: "CFO", email: "sarah@johnsonllc.com", phone: "(555) 234-5678", isPrimary: true },
-  { id: 3, name: "Michael Brown", initials: "MB", account: "Brown & Associates", role: "Partner", email: "michael@brownassoc.com", phone: "(555) 345-6789", isPrimary: true },
-  { id: 4, name: "Emily Davis", initials: "ED", account: "Smith Corporation", role: "Controller", email: "emily@smithcorp.com", phone: "(555) 456-7890", isPrimary: false },
-  { id: 5, name: "Robert Wilson", initials: "RW", account: "Wilson Group", role: "Owner", email: "robert@wilsongroup.com", phone: "(555) 567-8901", isPrimary: true },
+type ContactItem = {
+  id: string | number;
+  name: string;
+  initials: string;
+  account: string;
+  role: string;
+  email: string;
+  phone: string;
+  isPrimary: boolean;
+};
+
+const fallbackContacts: ContactItem[] = [
+  { id: 1, name: "John Smith",    initials: "JS", account: "Smith Corporation", role: "CEO",        email: "john@smithcorp.com",   phone: "(555) 123-4567", isPrimary: true  },
+  { id: 2, name: "Sarah Johnson", initials: "SJ", account: "Johnson LLC",       role: "CFO",        email: "sarah@johnsonllc.com", phone: "(555) 234-5678", isPrimary: true  },
+  { id: 3, name: "Michael Brown", initials: "MB", account: "Brown & Associates",role: "Partner",    email: "michael@brownassoc.com",phone: "(555) 345-6789", isPrimary: true  },
+  { id: 4, name: "Emily Davis",   initials: "ED", account: "Smith Corporation", role: "Controller", email: "emily@smithcorp.com",  phone: "(555) 456-7890", isPrimary: false },
+  { id: 5, name: "Robert Wilson", initials: "RW", account: "Wilson Group",      role: "Owner",      email: "robert@wilsongroup.com",phone: "(555) 567-8901", isPrimary: true  },
 ];
 
 const ContactsPage = () => {
-  const [contacts, setContacts] = useState(initialContacts);
+  const fetchBackend = useBackendFetch();
+  const [contacts, setContacts] = useState<ContactItem[]>(fallbackContacts);
   const [searchValue, setSearchValue] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [accountFilter, setAccountFilter] = useState("all");
 
-  const uniqueAccounts = [...new Set(contacts.map(c => c.account))];
+  useEffect(() => {
+    fetchBackend<Record<string, unknown>[]>("/contacts")
+      .then((res) => {
+        const items = (Array.isArray(res) ? res : []).map((c) => {
+          const name = String(c.name ?? "");
+          const parts = name.trim().split(" ");
+          return {
+            id: String(c._id ?? c.id),
+            name,
+            initials: String(c.initials ?? parts.map((p: string) => p[0]).join("").toUpperCase().slice(0, 2)),
+            account: String(c.clientName ?? c.account ?? ""),
+            role: String(c.role ?? ""),
+            email: String(c.email ?? ""),
+            phone: String(c.phone ?? ""),
+            isPrimary: Boolean(c.isPrimary),
+          };
+        });
+        if (items.length > 0) setContacts(items);
+      })
+      .catch(() => { /* keep fallback */ });
+  }, [fetchBackend]);
 
-  const filtered = contacts.filter(c => {
+  const uniqueAccounts = [...new Set(contacts.map((c) => c.account))];
+
+  const filtered = contacts.filter((c) => {
     const matchesSearch = !searchValue || c.name.toLowerCase().includes(searchValue.toLowerCase()) || c.account.toLowerCase().includes(searchValue.toLowerCase()) || c.email.toLowerCase().includes(searchValue.toLowerCase());
     const matchesAccount = accountFilter === "all" || c.account === accountFilter;
     return matchesSearch && matchesAccount;
@@ -41,7 +76,7 @@ const ContactsPage = () => {
         <div className="flex items-center justify-between">
           <div className="text-sm text-muted-foreground">{filtered.length} contacts</div>
           <div className="flex items-center gap-2">
-            <Button variant="outline" onClick={() => { exportToCSV(filtered.map(c => ({ Name: c.name, Account: c.account, Role: c.role, Email: c.email, Phone: c.phone, Primary: c.isPrimary ? "Yes" : "No" })), "contacts"); toast.success("Contacts exported"); }}>
+            <Button variant="outline" onClick={() => { exportToCSV(filtered.map((c) => ({ Name: c.name, Account: c.account, Role: c.role, Email: c.email, Phone: c.phone, Primary: c.isPrimary ? "Yes" : "No" })), "contacts"); toast.success("Contacts exported"); }}>
               <Download className="w-4 h-4 mr-2" />Export
             </Button>
             <Button onClick={() => setDialogOpen(true)}><Plus className="w-4 h-4 mr-2" />New Contact</Button>
@@ -57,7 +92,7 @@ const ContactsPage = () => {
               <SelectTrigger className="w-[180px] h-8 bg-background"><SelectValue placeholder="Account" /></SelectTrigger>
               <SelectContent className="bg-background border border-border z-50">
                 <SelectItem value="all">All Accounts</SelectItem>
-                {uniqueAccounts.map(a => <SelectItem key={a} value={a}>{a}</SelectItem>)}
+                {uniqueAccounts.map((a) => <SelectItem key={a} value={a}>{a}</SelectItem>)}
               </SelectContent>
             </Select>
           }
@@ -90,8 +125,8 @@ const ContactsPage = () => {
         </Card>
       </div>
       <NewContactDialog open={dialogOpen} onOpenChange={setDialogOpen} onSubmit={(data) => {
-        const initials = data.name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
-        setContacts(prev => [...prev, { id: Date.now(), ...data, initials }]);
+        const initials = data.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2);
+        setContacts((prev) => [...prev, { id: Date.now(), ...data, initials }]);
         toast.success(`Contact "${data.name}" created`);
       }} />
     </>

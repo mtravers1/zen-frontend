@@ -10,57 +10,58 @@ import LeadsTable from "@/components/dashboard/LeadsTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Dashboard = () => {
-  const { isStaff } = useAuth();
+	const { isStaff } = useAuth();
 
-  return (
-    <>
-    <DashboardLayout>
-      <DashboardHeader />
-      <StatsCards />
+	return (
+		<>
+			<DashboardLayout>
+				<DashboardHeader />
+				<StatsCards />
+				<h1 className="text-2xl font-semibold">Coming Soon</h1>
 
-      {/* Main content with tabs for staff */}
-      {isStaff() ? (
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="bg-secondary/50">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="inquiries">Inquiries</TabsTrigger>
-            <TabsTrigger value="leads">Leads</TabsTrigger>
-          </TabsList>
+				{/* Main content with tabs for staff */}
+				{isStaff() ? (
+					<Tabs defaultValue="overview" className="space-y-6">
+						<TabsList className="bg-secondary/50">
+							<TabsTrigger value="overview">Overview</TabsTrigger>
+							<TabsTrigger value="inquiries">Inquiries</TabsTrigger>
+							<TabsTrigger value="leads">Leads</TabsTrigger>
+						</TabsList>
 
-          <TabsContent value="overview" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <MyServices />
-              </div>
-              <div className="space-y-6">
-                <AccountSummary />
-                <QuickActions />
-              </div>
-            </div>
-          </TabsContent>
+						<TabsContent value="overview" className="space-y-6">
+							<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+								<div className="lg:col-span-2">
+									<MyServices />
+								</div>
+								<div className="space-y-6">
+									<AccountSummary />
+									<QuickActions />
+								</div>
+							</div>
+						</TabsContent>
 
-          <TabsContent value="inquiries">
-            <ServiceInquiriesTable />
-          </TabsContent>
+						<TabsContent value="inquiries">
+							<ServiceInquiriesTable />
+						</TabsContent>
 
-          <TabsContent value="leads">
-            <LeadsTable />
-          </TabsContent>
-        </Tabs>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <MyServices />
-          </div>
-          <div className="space-y-6">
-            <AccountSummary />
-            <QuickActions />
-          </div>
-        </div>
-      )}
-    </DashboardLayout>
-    </>
-  );
+						<TabsContent value="leads">
+							<LeadsTable />
+						</TabsContent>
+					</Tabs>
+				) : (
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+						<div className="lg:col-span-2">
+							<MyServices />
+						</div>
+						<div className="space-y-6">
+							<AccountSummary />
+							<QuickActions />
+						</div>
+					</div>
+				)}
+			</DashboardLayout>
+		</>
+	);
 };
 
 export default Dashboard;
